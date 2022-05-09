@@ -1,0 +1,17 @@
+.mi_mastertag_box{
+    text-align: center;
+}
+.mi_circle_image{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border:2px solid #d5d5d5;
+    margin: 1px;
+    transition: all 0.4s ease;
+}
+.mi_mastertag_box:hover .mi_circle_image{
+    border:2px solid #108579;
+}
+.mi_mastertag_box:hover a {
+    color: #108579;
+}

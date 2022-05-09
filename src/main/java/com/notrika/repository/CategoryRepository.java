@@ -1,0 +1,11 @@
+package com.notrika.repository;
+
+import com.notrika.entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface CategoryRepository extends JpaRepository<Category,Long>  {
+}
+//commit
