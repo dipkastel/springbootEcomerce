@@ -2263,17 +2263,6 @@
             return {};
         },
 
-        /*
-         * Animated view box changes
-         * As from http://code.voidblossom.com/animating-viewbox-easing-formulas/,
-         * (from https://github.com/theshaun works on mapael)
-         * @param x coordinate of the point to focus on
-         * @param y coordinate of the point to focus on
-         * @param w map defined width
-         * @param h map defined height
-         * @param duration defined length of time for animation
-         * @param easingFunction defined Raphael supported easing_formula to use
-         */
         animateViewBox: function (targetX, targetY, targetW, targetH, duration, easingFunction) {
             var self = this;
 

@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.notrika.entity.Type;
 import com.notrika.service.TypeService;
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
+
 @RestController
 @RequestMapping(path = "/select", produces = "application/json")
 @CrossOrigin(origins = "*")

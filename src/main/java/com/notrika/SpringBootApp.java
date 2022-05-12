@@ -1,5 +1,6 @@
 package com.notrika;
 
+import com.notrika.wpRestApi.WpRestApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

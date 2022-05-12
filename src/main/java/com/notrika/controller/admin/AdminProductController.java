@@ -32,11 +32,7 @@ import com.notrika.service.ImageService;
 import com.notrika.service.ProductService;
 import com.notrika.service.TypeService;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminProductController {

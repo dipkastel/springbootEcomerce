@@ -30,10 +30,7 @@ import com.notrika.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author Lam Cong Hau
- *
- */
+
 @Slf4j
 @Controller
 @RequestMapping("/product")

@@ -150,7 +150,6 @@
 	</main>
 	<jsp:include page="../../components/footer.jsp"></jsp:include>
 	<script>
-    //@Author Lam Cong Hau
     var countWish = document.querySelector('#countWish');
     var cookie = document.cookie;
     var arr_product;

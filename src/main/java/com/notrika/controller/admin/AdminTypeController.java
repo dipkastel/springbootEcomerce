@@ -18,11 +18,7 @@ import com.notrika.service.TypeService;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminTypeController {

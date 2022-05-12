@@ -9,7 +9,6 @@
 		<jsp:include page="../common/loading.jsp"></jsp:include>
 		<jsp:include page="../components/nav-bar.jsp"></jsp:include>
 		<jsp:include page="../components/side-bar.jsp"></jsp:include>
-		<!-- @author: Lam Cong Hau -->
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->

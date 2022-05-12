@@ -12,11 +12,7 @@ import com.notrika.entity.Product;
 import com.notrika.entity.Rating;
 import com.notrika.repository.DAO;
 import com.notrika.repository.RatingRepository;
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @Service
 @Transactional
 public class RatingService implements DAO<Rating> {

@@ -1,7 +1,9 @@
 package com.notrika.controller.admin.settings.Import;
 
+import com.notrika.config.wpRest;
 import com.notrika.controller.admin.AdminProductController;
 import com.notrika.entity.req._req_import_conf;
+import com.notrika.helper.Wp;
 import com.notrika.service.SettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,10 @@ public class AdminImportController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminProductController.class);
 	private final SettingsService settingsService;
+
+	@Autowired
+	private Wp wp;
+
 
 	@Autowired
 	public AdminImportController(SettingsService settingsService) {
@@ -38,6 +44,7 @@ public class AdminImportController {
 		settingsService.addOrUpdate(SettingsService.Keys.ImportSiteUrl, input.getSiteUrl());
 		settingsService.addOrUpdate(SettingsService.Keys.ImportConsumerKey, input.getConsumerKey());
 		settingsService.addOrUpdate(SettingsService.Keys.ImportConsumerPassword, input.getConsumerPassword());
+		 wp.reInitialization();
 		return "redirect:/admin/import";
 	}
 

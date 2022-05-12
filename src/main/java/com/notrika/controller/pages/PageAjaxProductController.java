@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.notrika.entity.Product;
 import com.notrika.service.ProductService;
 
-/**
- * 
- * @author Lam Cong Hau
- *
- */
+
 @RestController
 @RequestMapping(path = "/api/wish-list", produces = "application/json")
 @CrossOrigin(origins = "*")

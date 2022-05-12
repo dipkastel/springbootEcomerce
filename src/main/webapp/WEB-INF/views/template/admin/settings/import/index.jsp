@@ -8,7 +8,6 @@
     <jsp:include page="../../common/loading.jsp"></jsp:include>
     <jsp:include page="../../components/nav-bar.jsp"></jsp:include>
     <jsp:include page="../../components/side-bar.jsp"></jsp:include>
-    <!-- @author: Lam Cong Hau -->
     <div class="content-wrapper" style="min-height: 1299.69px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -66,7 +65,7 @@
                                             <div class="form-group">
                                                 <label for="consumerPassword">consumer password</label>
                                                 <input type="text"
-                                                       class="form-control" id="consumerPassword" name="consumerPassword" value="${apiConsumerKey.svalue}"
+                                                       class="form-control" id="consumerPassword" name="consumerPassword" value="${apiConsumerPassword.svalue}"
                                                        placeholder="ck_***" maxlength="50"> <span
                                                     id="consumerPassword-error" class="error invalid-feedback"></span>
                                             </div>
@@ -203,6 +202,7 @@
     $('#testConnection').on('click',function () {
         $.get("/admin/import/TestConnection")
         .done(function(data){
+            console.log(data)
             alert("Data: " + data);
         })
         .fail(function(jqXHR, textStatus, errorThrown){
