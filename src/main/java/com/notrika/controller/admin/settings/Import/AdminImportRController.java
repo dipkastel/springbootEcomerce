@@ -27,6 +27,7 @@ public class AdminImportRController {
 	@GetMapping("/TestConnection")
 	public SystemStatus EditUserController(Model model, Authentication authentication){
 		SystemStatus systemStatus = wpRestApi.system.getSystemStatus();
+
 		return systemStatus;
 	}
 

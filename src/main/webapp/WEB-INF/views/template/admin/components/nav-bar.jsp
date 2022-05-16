@@ -6,7 +6,7 @@
             <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="${pageContext.servletContext.contextPath}/" class="nav-link msg">Computer Shop</a>
+            <a href="${pageContext.servletContext.contextPath}/" class="nav-link msg">web site</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="${pageContext.servletContext.contextPath}/admin" class="nav-link navAdmin">Admin</a>

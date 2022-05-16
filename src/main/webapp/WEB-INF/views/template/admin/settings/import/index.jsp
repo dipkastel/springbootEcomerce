@@ -44,28 +44,31 @@
 
                                 <form id="frmSetConnection"
                                       action="${pageContext.servletContext.contextPath}/admin/import/SetConnection"
-                                      method="post" >
+                                      method="post">
 
                                     <div class="row">
                                         <div id="col1" class="col-md-6">
                                             <div class="form-group">
                                                 <label for="siteUrl">site Url</label>
                                                 <input type="text"
-                                                       class="form-control" id="siteUrl" name="siteUrl" value="${apiSiteUrl.svalue}"
+                                                       class="form-control" id="siteUrl" name="siteUrl"
+                                                       value="${apiSiteUrl.svalue}"
                                                        placeholder="http://xxx.com" maxlength="50"> <span
                                                     id="siteUrl-error" class="error invalid-feedback"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="consumerKey">consumer Key</label>
                                                 <input type="text"
-                                                       class="form-control" id="consumerKey" name="consumerKey" value="${apiConsumerKey.svalue}"
+                                                       class="form-control" id="consumerKey" name="consumerKey"
+                                                       value="${apiConsumerKey.svalue}"
                                                        placeholder="ck_***" maxlength="50"> <span
                                                     id="consumerKey-error" class="error invalid-feedback"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="consumerPassword">consumer password</label>
                                                 <input type="text"
-                                                       class="form-control" id="consumerPassword" name="consumerPassword" value="${apiConsumerPassword.svalue}"
+                                                       class="form-control" id="consumerPassword"
+                                                       name="consumerPassword" value="${apiConsumerPassword.svalue}"
                                                        placeholder="ck_***" maxlength="50"> <span
                                                     id="consumerPassword-error" class="error invalid-feedback"></span>
                                             </div>
@@ -88,8 +91,8 @@
                 <h5 class="mb-2">ورود اطلاعات</h5>
 
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="card card-outline card-primary">
+                    <div class="col-md-3" >
+                        <div id="test_connection" class="card card-outline card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">test connection</h3>
 
@@ -101,7 +104,7 @@
                                 <!-- /.card-tools -->
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div id="test_connection_body" class="card-body">
                                 <p class="text-right">
                                     درستی اتصال به وبسایت مرجع را ابتدا باید چک کنید
                                 </p>
@@ -114,11 +117,10 @@
                         </div>
                         <!-- /.card -->
                     </div>
-                    <!-- /.col -->
-                    <div class="col-md-3">
+                    <div id="div_import_product" class="col-md-3" hidden>
                         <div class="card card-outline card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Primary Outline</h3>
+                                <h3 class="card-title">import products</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -136,10 +138,32 @@
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
-                    <div class="col-md-3">
+                    <div id="div_import_tags" class="col-md-3" hidden>
+
                         <div class="card card-outline card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Primary Outline</h3>
+                                <h3 class="card-title">import tags</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                ورود تگ ها
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                    <div id="div_import_categories" class="col-md-3" hidden>
+                        <div class="card card-outline card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">import categories</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -156,28 +180,6 @@
                         </div>
                         <!-- /.card -->
                     </div>
-                    <!-- /.col -->
-                    <div class="col-md-3">
-                        <div class="card card-outline card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">Primary Outline</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                The body of the card
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
                 </div>
                 <!-- /.row -->
 
@@ -196,18 +198,31 @@
 <!-- ./wrapper -->
 <jsp:include page="../../components/script.jsp"></jsp:include>
 <script>
-    $('#btnSetConnection').on('click',function () {
-                $('#frmSetConnection').submit();
+    $('#btnSetConnection').on('click', function () {
+        $('#frmSetConnection').submit();
     });
-    $('#testConnection').on('click',function () {
+    $('#testConnection').on('click', function () {
         $.get("/admin/import/TestConnection")
-        .done(function(data){
-            console.log(data)
-            alert("Data: " + data);
-        })
-        .fail(function(jqXHR, textStatus, errorThrown){
-            alert("status code: " + jqXHR.status + "\ntextStatus: " + textStatus);
-        });
+            .done(function (data) {
+                $("#test_connection").removeClass("card-outline card-primary");
+                $("#test_connection").addClass("bg-success");
+                $("#test_connection_body").html("");
+                for (var item in data.environment) {
+
+                    $("#test_connection_body").append("<p>" + item + " : " + data.environment[item] + "</p>");
+
+                }
+                $("#div_import_product").removeAttr("hidden")
+                $("#div_import_tags").removeAttr("hidden")
+                $("#div_import_categories").removeAttr("hidden")
+
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+
+                $("#test_connection").removeClass("card-outline card-primary");
+                $("#test_connection").addClass("bg-danger");
+                $("#test_connection_body").append("<p>"+"خطا در دریافت اطلاعات از وبسایت"+"</p>");
+            });
     });
 </script>
 </body>
