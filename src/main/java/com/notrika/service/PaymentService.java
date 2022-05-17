@@ -133,5 +133,9 @@ public class PaymentService implements DAO<Payment> {
 		Product product = productService.findById(item.getProduct().getId());
 		return item.getSellingQuantity() <= product.getStockQuantity();
 	}
+
+	public void deleteAll() {
+		repo.deleteAll();
+	}
 }
 //commit

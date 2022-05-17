@@ -101,5 +101,9 @@ public class CustomerOrderService implements DAO<CustomerOrder> {
         Product product = productService.findById(item.getProduct().getId());
         return item.getSellingQuantity() <= product.getStockQuantity();
     }
+
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 }
 //commit

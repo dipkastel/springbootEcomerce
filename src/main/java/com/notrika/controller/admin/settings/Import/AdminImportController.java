@@ -35,7 +35,7 @@ public class AdminImportController {
 		model.addAttribute("apiSiteUrl" ,settingsService.findBySkey(SettingsService.Keys.ImportSiteUrl));
 		model.addAttribute("apiConsumerKey" ,settingsService.findBySkey(SettingsService.Keys.ImportConsumerKey) );
 		model.addAttribute("apiConsumerPassword" ,settingsService.findBySkey(SettingsService.Keys.ImportConsumerPassword) );
-		return "template/admin/settings/import/index";
+		return "template/admin/settings/import/import";
 		}
 	
 	@PostMapping("/SetConnection")

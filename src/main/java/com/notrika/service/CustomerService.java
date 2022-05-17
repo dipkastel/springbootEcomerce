@@ -47,5 +47,8 @@ public class CustomerService implements DAO<Customer> {
         return repo.findByUserId(userId);
     }
 
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 }
 //commit

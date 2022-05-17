@@ -36,6 +36,7 @@ public class Product {
     private double price;
     private Date updated;
 
+
     @ManyToOne(targetEntity = Category.class,fetch = FetchType.EAGER)
     private Category category;
 
@@ -45,6 +46,7 @@ public class Product {
     @ManyToOne(targetEntity = Type.class,fetch = FetchType.EAGER)
     private Type type;
     private boolean enabled;
+
 
     @PrePersist
     void updated() {

@@ -2,13 +2,16 @@ package com.notrika.service;
 
 import com.notrika.entity.Product;
 import com.notrika.repository.DAO;
+import com.notrika.repository.OrderRepository;
 import com.notrika.repository.ProductRepository;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -90,4 +93,7 @@ public class ProductService implements DAO<Product> {
         return repo.findProductContainsByCategory(keyword,categoryId);
     }
 
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 }

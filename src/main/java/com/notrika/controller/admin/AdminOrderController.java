@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.notrika.entity.CustomerOrder;
 import com.notrika.entity.UserDetail;
 import com.notrika.service.OrderService;
-/**
- * 
- * @author Vy
- * list , detail
- */
+
 @Controller
 @RequestMapping("admin")
 public class AdminOrderController {

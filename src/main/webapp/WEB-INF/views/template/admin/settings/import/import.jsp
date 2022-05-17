@@ -91,7 +91,7 @@
                 <h5 class="mb-2">ورود اطلاعات</h5>
 
                 <div class="row">
-                    <div class="col-md-3" >
+                    <div class="col-md-3">
                         <div id="test_connection" class="card card-outline card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">test connection</h3>
@@ -117,68 +117,56 @@
                         </div>
                         <!-- /.card -->
                     </div>
-                    <div id="div_import_product" class="col-md-3" hidden>
-                        <div class="card card-outline card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">import products</h3>
+                    <div class="row col-md-9" >
+                        <div id="div_import_product" class="col-md-6" hidden>
 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">import All products from Api</h3>
                                 </div>
-                                <!-- /.card-tools -->
+                                <!-- /.card-header -->
+                                    <div class="card-body">
+
+                                        <div class="form-text">
+                                            <p>
+                                                This operation may take a long time.
+                                            </p>
+                                            <p id="ProductImportOpration"></p>
+                                            <p id="ProductImportDetails"></p>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="CheckDeleteAllProducts">
+                                            <label class="form-check-label" for="CheckDeleteAllProducts">delete All Products</label>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button id="btn-import-products" class="btn btn-primary">import</button>
+                                    </div>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                The body of the card
-                            </div>
-                            <!-- /.card-body -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                    <div id="div_import_tags" class="col-md-3" hidden>
+                        <div id="div_import_tags" class="col-md-6" hidden>
+                            <div class="card card-outline card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">import tags</h3>
 
-                        <div class="card card-outline card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">import tags</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.card-tools -->
                                 </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                ورود تگ ها
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                    <div id="div_import_categories" class="col-md-3" hidden>
-                        <div class="card card-outline card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">import categories</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    ورود تگ ها
                                 </div>
-                                <!-- /.card-tools -->
+                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                The body of the card
-                            </div>
-                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
                     </div>
                 </div>
                 <!-- /.row -->
@@ -221,9 +209,36 @@
 
                 $("#test_connection").removeClass("card-outline card-primary");
                 $("#test_connection").addClass("bg-danger");
-                $("#test_connection_body").append("<p>"+"خطا در دریافت اطلاعات از وبسایت"+"</p>");
+                $("#test_connection_body").append("<p>" + "خطا در دریافت اطلاعات از وبسایت" + "</p>");
             });
     });
+    $('#btn-import-products').on('click',function(){
+
+
+        var xhr = function(url) {
+            return new Promise(function(resolve, reject) {
+                var xmhr = new XMLHttpRequest();
+                xmhr.open("GET", url, true);
+                xmhr.send();
+            });
+        };
+
+        var sse = new EventSource('/admin/import/progress');
+        sse.onmessage = function (evt) {
+            var progress = JSON.parse(evt.data)
+            if(!progress.complete){
+                $("#ProductImportOpration").html(progress.opration);
+                $("#ProductImportDetails").prepend("برای"+progress.productCount+"محصول اعمال شد"+"</br>");
+            }
+        };
+        $('#btn-import-products').prop('disabled', true);
+        $('#CheckDeleteAllProducts').prop('disabled', true);
+
+        xhr('/admin/import/products/all?deleteAll='+$('#CheckDeleteAllProducts').is(':checked'))
+            .then(function(success){
+                console.log("success srb"+success)
+            });
+    })
 </script>
 </body>
 </html>
