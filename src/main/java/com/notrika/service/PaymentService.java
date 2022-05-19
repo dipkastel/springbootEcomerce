@@ -99,7 +99,7 @@ public class PaymentService implements DAO<Payment> {
 				if (isStockEqual(cartItem)){
 					log.info("decrease stock = 0 and set enable to false (out-stock)");
 					product.setStockQuantity(product.getStockQuantity()-cartItem.getSellingQuantity());
-					product.setEnabled(false);
+//					product.setEnabled(false);
 				}else{
 					log.info("decrease stock");
 					product.setStockQuantity(product.getStockQuantity()-cartItem.getSellingQuantity());

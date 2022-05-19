@@ -182,7 +182,7 @@ public class PageProductFilterController {
         List<Product> list = new ArrayList<>();
         typeList.forEach(t->{
             productList.stream()
-                    .filter(p->p.getCategory().getId() == categoryId && p.getType().getName().equals(t))
+                    .filter(p->p.getCategory().getId() == categoryId && p.getType().equals(t))
                     .forEach(p->list.add(p));
         });
         return list;
@@ -203,7 +203,7 @@ public class PageProductFilterController {
         List<Product> list = new ArrayList<>();
         typeList.forEach(t->{
             productList.stream()
-                    .filter(p->p.getType().getName().equals(t))
+                    .filter(p->p.getType().equals(t))
                     .forEach(p->list.add(p));
         });
         return list;

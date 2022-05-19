@@ -79,7 +79,7 @@ public class PageProductController {
                 Set<String> typeByProduct = new HashSet<>();
                 productService.findAll().forEach(p -> {
                     brandByProduct.add(p.getBrand());
-                    typeByProduct.add(p.getType().getName());
+                    typeByProduct.add(p.getType());
                 });
                 model.addAttribute("brandByProduct", brandByProduct);
                 model.addAttribute("typeByProduct", typeByProduct);
@@ -112,7 +112,7 @@ public class PageProductController {
             Set<String> typeByProduct = new HashSet<>();
             productService.findAll().forEach(p -> {
                 brandByProduct.add(p.getBrand());
-                typeByProduct.add(p.getType().getName());
+                typeByProduct.add(p.getType());
             });
             model.addAttribute("brandByProduct", brandByProduct);
             model.addAttribute("typeByProduct", typeByProduct);

@@ -22,7 +22,7 @@
                                                 <%--                                                ${typeByCategory}--%>
                                             <h4>Parts<span class="sub-toggle"></span></h4>
                                             <ul class="mega-menu__list">
-                                                <c:forEach items="${typeByCategory[c.name]}" var="t">
+                                                <c:forEach items="${c.subCategories}" var="t">
                                                     <li><a href="${pageContext.servletContext.contextPath}/product?category=${c.id}&type=${t.id}">${t.name}</a>
                                                     </li>
                                                 </c:forEach>
@@ -166,47 +166,41 @@
 
     <nav class="navigation ">
         <div class="ps-container">
-            <div class="navigation__left">
-                <div class="menu--product-categories">
-                    <div class="menu__toggle"><i class="icon-menu"></i><span> دسته بندی محصولات</span></div>
-                    <div class="menu__content">
-                        <%--                        product category--%>
-
-                            <ul class="menu--dropdown">
-                                <c:forEach  items="${categories}" var="c">
-                                    <li class="menu-item-has-children has-mega-menu"><a href="${pageContext.servletContext.contextPath}/product?category=${c.id}"><i class="icon-desktop"></i>${c.name}</a>
-                                        <div class="mega-menu">
-                                            <div class="mega-menu__column">
-                                                <h4>Parts<span class="sub-toggle"></span></h4>
-                                                <ul class="mega-menu__list">
-                                                    <c:forEach items="${typeByCategory[c.name]}" var="t">
-                                                        <li><a href="${pageContext.servletContext.contextPath}/product?category=${c.id}&type=${t.id}">${t.name}</a>
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </div>
-<%--                                            #//commit--%>
-                                            <div class="mega-menu__column">
-                                                <h4>Brand<span class="sub-toggle"></span></h4>
-                                                <ul class="mega-menu__list">
-                                                    <c:forEach items="${brandsByCategory[c.name]}" var="b">
-                                                        <li><a href="${pageContext.servletContext.contextPath}/product?category=${c.id}&brand=${b.id}">${b.name}</a>
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                </c:forEach>
-                            </ul>
-                            <%--                        product category--%>
-
-                    </div>
-                </div>
-            </div>
             <div class="navigation__right">
                 <ul class="menu">
+
+                    <c:forEach  items="${categories}" var="c">
+
+                        <li>
+
+                            <div class="menu--product-categories">
+                                <div class="menu__toggle"><i class="icon-menu"></i><span> ${c.name}</span></div>
+                                <div class="menu__content">
+                                        <%--                        product category--%>
+
+                                    <ul class="menu--dropdown">
+                                        <c:forEach  items="${c.subCategories}" var="d">
+                                            <li class="menu-item-has-children has-mega-menu"><a href="${pageContext.servletContext.contextPath}/product?category=${d.id}"><i class="icon-desktop"></i>${d.name}</a>
+                                                <div class="mega-menu">
+                                                    <div class="mega-menu__column">
+                                                        <ul class="mega-menu__list">
+                                                            <c:forEach items="${d.subCategories}" var="t">
+                                                                <li><a href="${pageContext.servletContext.contextPath}/product?category=${d.id}&type=${t.id}">${t.name}</a>
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </c:forEach>
+                                    </ul>
+                                        <%--                        product category--%>
+
+                                </div>
+                            </div>
+                        </li>
+                    </c:forEach>
                     <li ><a href="${pageContext.servletContext.contextPath}/product">فروشگاه</a>
                     </li>
                     <li ><a href="${pageContext.servletContext.contextPath}/contact">تماس با ما</a>

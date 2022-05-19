@@ -74,8 +74,8 @@ public class AdminProductController {
 	public String saveProduct(@RequestParam("img") MultipartFile[] uploadfile, Product sp, Locale locale, Model model, HttpServletRequest request)
 			throws IOException {
 		logger.info("post : saveProduct");
-		String color = sp.getProductColor();
-		sp.setProductColor(color);
+//		String color = sp.getProductColor();
+//		sp.setProductColor(color);
 		List<ImageGallery> list = new ArrayList<ImageGallery>();
 		for (MultipartFile m : uploadfile) {
 			if (!m.isEmpty()) {
@@ -114,10 +114,10 @@ public class AdminProductController {
 		logger.info("product edit {}.", locale);
 		Product product = productService.findById(id);
 		model.addAttribute("product", product);
-		String[] listColor = product.getProductColor().split(",");
-		for (String color : listColor) {
-			model.addAttribute(color, color);
-		}
+//		String[] listColor = product.getProductColor().split(",");
+//		for (String color : listColor) {
+//			model.addAttribute(color, color);
+//		}
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("types", typeService.findAll());
@@ -132,16 +132,16 @@ public class AdminProductController {
 		logger.info("product update {}.", locale);
 		List<ImageGallery> list = new ArrayList<ImageGallery>();
 		Product product = productService.findById(p.getId());
-		product.setProductName(p.getProductName());
+		product.setName(p.getName());
 		product.setBrand(p.getBrand());
 		product.setCategory(p.getCategory());
-		product.setEnabled(p.isEnabled());
+//		product.setEnabled(p.isEnabled());
 		product.setType(p.getType());
 		product.setPrice(p.getPrice());
 		product.setStockQuantity(p.getStockQuantity());
 		product.setDescription(p.getDescription());
 		product.setShortDescription(p.getShortDescription());
-		product.setProductColor(p.getProductColor());
+//		product.setProductColor(p.getProductColor());
 		list = product.getImages();
 		int count = 0;
 		for (MultipartFile m : uploadfile) {
@@ -168,10 +168,10 @@ public class AdminProductController {
 		logger.info("product detail {}.", locale);
 		Product p = productService.findById(id);
 		model.addAttribute("product", p);
-		String[] listColor = p.getProductColor().split(",");
-		for (String color : listColor) {
-			model.addAttribute(color, color);
-		}
+//		String[] listColor = p.getProductColor().split(",");
+//		for (String color : listColor) {
+//			model.addAttribute(color, color);
+//		}
 //		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 //		model.addAttribute("user", userDetails.getUser());
 		return "template/admin/product/detail-product";

@@ -17,6 +17,7 @@ public class Setting {
     public Setting(String Key, String value,String section){
         this.skey = Key;
         this.svalue = value;
+        this.section = section;
     }
 
     @Id

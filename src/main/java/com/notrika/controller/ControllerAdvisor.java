@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @ControllerAdvice
@@ -41,7 +42,7 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
 
     @ModelAttribute("categories")
     public List<Category> categories(){
-        return  categoryService.findAll();
+        return  categoryService.findAll().stream().filter(p->p.getParentId()==null).collect(Collectors.toList());
     }
 
 

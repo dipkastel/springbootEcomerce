@@ -1,13 +1,13 @@
 package com.notrika.controller.pages;
 
+import com.mservice.allinone.models.CaptureMoMoRequest;
+import com.mservice.allinone.processor.allinone.CaptureMoMo;
+import com.mservice.shared.sharedmodels.Environment;
 import com.notrika.entity.BannerGallery;
 import com.notrika.entity.Product;
 import com.notrika.entity.Tag;
 import com.notrika.helper.CookieHelper;
 import com.notrika.service.*;
-import com.mservice.allinone.models.CaptureMoMoRequest;
-import com.mservice.allinone.processor.allinone.CaptureMoMo;
-import com.mservice.shared.sharedmodels.Environment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -74,11 +74,6 @@ public class PageHomeController {
 		model.addAttribute("masterTags", masterTags);
 		//}
 		List<Product> topProducts = listProduct;
-		topProducts.addAll(listProduct);
-		topProducts.addAll(listProduct);
-		topProducts.addAll(listProduct);
-		topProducts.addAll(listProduct);
-		topProducts.addAll(listProduct);
 		topProducts.addAll(listProduct);
 		model.addAttribute("productByCategory", productByCategory);
 		model.addAttribute("topProducts", listProduct);

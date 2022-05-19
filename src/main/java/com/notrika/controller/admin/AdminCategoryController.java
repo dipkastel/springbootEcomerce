@@ -47,7 +47,6 @@ public class AdminCategoryController {
 
 	@PostMapping(value = "/category/new")
 	public String saveType(Category category, Locale locale, Model model, HttpServletRequest request) {
-		category.setEnabled(true);
 		categoryService.save(category);
 		String message = (String) request.getSession().getAttribute("message");
 		request.getSession().setAttribute("message", "Submit success !");
@@ -65,7 +64,6 @@ public class AdminCategoryController {
 	@PostMapping(value = "/category/update")
 	public String update(Category category, Locale locale, Model model,HttpServletRequest request) {
 		Category c = categoryService.findById(category.getId());
-		c.setEnabled(category.isEnabled());
 		c.setName(category.getName());
 		categoryService.save(c);
 		String message = (String) request.getSession().getAttribute("message");

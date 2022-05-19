@@ -7,54 +7,54 @@
 
 
 
-<%--Quick view product--%>
-<c:forEach var="p" items="${allProducts}">
+<%--&lt;%&ndash;Quick view product&ndash;%&gt;--%>
+<%--<c:forEach var="p" items="${allProducts}">--%>
 
-	<div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
-				<article class="ps-product--detail ps-product--fullwidth ps-product--quickview">
-					<div class="ps-product__header">
-						<div class="ps-product__thumbnail" data-vertical="false">
-							<div class="ps-product__images" data-arrow="true">
-								<div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-								<div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-								<div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-								<div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>
-							</div>
-						</div>
-						<div class="ps-product__info">
-							<h1>${p.productName}</h1>
-							<div class="ps-product__meta">
-								<p>برند: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>
-								<div class="ps-product__rating">
-									<select class="ps-rating" data-read-only="true">
-										<option value="1">1</option>
-										<option value="1">2</option>
-										<option value="1">3</option>
-										<option value="1">4</option>
-										<option value="2">5</option>
-									</select><span>(1 نظر)</span>
-								</div>
-							</div>
-							<h4 class="ps-product__price">
-								<fmt:formatNumber type="number" value="${p.price}" /> تومان</h4>
-							<div class="ps-product__desc">
-								<p>فروشنده:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> بایچه</strong></a></p>
-								<div class="ps-list--dot">
-										${p.shortDescription}
-								</div>
-							</div>
-							<div class="ps-product__shopping"><a class="ps-btn ps-btn--black toCart"  value="${p.id}">افزودن به سبد خرید</a><a class="ps-btn buyNow" value="${p.id}">خرید</a>
-							</div>
-						</div>
-					</div>
-				</article>
-			</div>
-		</div>
-	</div>
+<%--	<div class="modal fade product-quickview-open" id="product-quickview-${p.id}" tabindex="-1" role="dialog" aria-labelledby="product-quickview-${p.id}" aria-hidden="true">--%>
+<%--		<div class="modal-dialog modal-dialog-centered" role="document">--%>
+<%--			<div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>--%>
+<%--				<article class="ps-product--detail ps-product--fullwidth ps-product--quickview">--%>
+<%--					<div class="ps-product__header">--%>
+<%--						<div class="ps-product__thumbnail" data-vertical="false">--%>
+<%--							<div class="ps-product__images" data-arrow="true">--%>
+<%--								<div class="item"><img src="${pageContext.request.contextPath}/product/display/0&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--								<div class="item"><img src="${pageContext.request.contextPath}/product/display/1&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--								<div class="item"><img src="${pageContext.request.contextPath}/product/display/2&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--								<div class="item"><img src="${pageContext.request.contextPath}/product/display/3&${p.id}" alt="" style="width: 404px;height: 404px"></div>--%>
+<%--							</div>--%>
+<%--						</div>--%>
+<%--						<div class="ps-product__info">--%>
+<%--							<h1>${p.productName}</h1>--%>
+<%--							<div class="ps-product__meta">--%>
+<%--								<p>برند: <a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}">${p.brand.name}</a></p>--%>
+<%--								<div class="ps-product__rating">--%>
+<%--									<select class="ps-rating" data-read-only="true">--%>
+<%--										<option value="1">1</option>--%>
+<%--										<option value="1">2</option>--%>
+<%--										<option value="1">3</option>--%>
+<%--										<option value="1">4</option>--%>
+<%--										<option value="2">5</option>--%>
+<%--									</select><span>(1 نظر)</span>--%>
+<%--								</div>--%>
+<%--							</div>--%>
+<%--							<h4 class="ps-product__price">--%>
+<%--								<fmt:formatNumber type="number" value="${p.price}" /> تومان</h4>--%>
+<%--							<div class="ps-product__desc">--%>
+<%--								<p>فروشنده:<a href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"><strong> بایچه</strong></a></p>--%>
+<%--								<div class="ps-list--dot">--%>
+<%--										${p.shortDescription}--%>
+<%--								</div>--%>
+<%--							</div>--%>
+<%--							<div class="ps-product__shopping"><a class="ps-btn ps-btn--black toCart"  value="${p.id}">افزودن به سبد خرید</a><a class="ps-btn buyNow" value="${p.id}">خرید</a>--%>
+<%--							</div>--%>
+<%--						</div>--%>
+<%--					</div>--%>
+<%--				</article>--%>
+<%--			</div>--%>
+<%--		</div>--%>
+<%--	</div>--%>
 
-</c:forEach>
+<%--</c:forEach>--%>
 <%--Quick view product--%>
 
 <!-- Messenger Plugin chat Code -->
@@ -354,8 +354,8 @@
 			}
 		}
 		// initCartItem();
-		initCartItemData();
-		getAllProducts();
+		// initCartItemData();
+		// getAllProducts();
 	}
 
 
@@ -671,7 +671,7 @@
 			if (categoryId.value !== ""){
 				queryCategory += "&categoryId="+categoryId.value
 			}
-			
+
 			const data = null;
 			const xhr = new XMLHttpRequest();
 			xhr.addEventListener("readystatechange", function() {
@@ -686,7 +686,7 @@
 			xhr.setRequestHeader('Content-type', 'application/json');
 			xhr.send(data);
 		});
-		
+
 		function getSearchTable(json){
 			var table =""
 			for (let i = 0; i <json.length ; i++) {
@@ -751,70 +751,4 @@
 	}
 </script>
 <jsp:include page="../message/message-user.jsp"></jsp:include>
-<%--<script>--%>
-
-<%--	$("input").on("keyup", function (e) {--%>
-<%--		// var value = $(this).val() || "";--%>
-<%--		// var regex = /<(\/?\w+[^\n>]*\/?)>/ig;--%>
-<%--		// if(regex.test(value)){--%>
-<%--		// 	layer.msg("Invalid characters!");--%>
-<%--		// 	$(this).val(value.replace(regex, "&lt;$1&gt;"));--%>
-<%--		// 	e.preventDefault();--%>
-<%--		// 	return false;--%>
-<%--			if (e.shiftKey && (e.which == 188 || e.which == 190)) {--%>
-<%--				e.preventDefault();--%>
-<%--				alert("no ko")--%>
-<%--			}--%>
-<%--		// }--%>
-<%--	});--%>
-<%--</script>--%>
-
-
-<%--<script>--%>
-
-<%--	$('#btnSubcribe')--%>
-<%--			.on(--%>
-<%--					'click',--%>
-<%--					function () {--%>
-<%--						let fname = $('#fnameSub');--%>
-<%--						let fnameError = $('#fname-errorSub');--%>
-<%--						let lname = $('#lnameSub');--%>
-<%--						let lnameError = $('#lname-errorSub');--%>
-<%--						let email = $('#emailSub');--%>
-<%--						let emailError = $('#email-errorSub');--%>
-<%--						let hasSubmit = [];--%>
-
-<%--						if (fname.val().length === 0) {--%>
-<%--							hasSubmit.push(1);--%>
-<%--							fname.addClass(--%>
-<%--									'form-control is-invalid');--%>
-<%--							fnameError.html(--%>
-<%--									'Please enter First name!');--%>
-<%--						}--%>
-
-<%--						if (lname.val().length === 0) {--%>
-<%--							hasSubmit.push(1);--%>
-<%--							lname.addClass(--%>
-<%--									'form-control is-invalid');--%>
-<%--							lnameError.html(--%>
-<%--									'Please enter Last name!');--%>
-<%--						}--%>
-
-
-<%--						if (email.val().length === 0) {--%>
-<%--							hasSubmit.push(1);--%>
-<%--							email.addClass(--%>
-<%--									'form-control is-invalid');--%>
-<%--							emailError.html(--%>
-<%--									'Please enter Email!');--%>
-
-<%--						}--%>
-
-<%--						if (hasSubmit.length === 0) {--%>
-<%--							$('#frmsubcriber').submit();--%>
-<%--						}--%>
-
-<%--					});--%>
-<%--</script>--%>
-
 </html>

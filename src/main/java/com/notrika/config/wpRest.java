@@ -9,11 +9,4 @@ import org.springframework.context.annotation.Configuration;
 public class wpRest {
 
 
-    @Autowired
-    private Wp wp;
-
-    @Bean
-    public void wpRestApiInitial() {
-        wp.reInitialization();
-    }
 }

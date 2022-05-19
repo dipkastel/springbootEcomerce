@@ -6,25 +6,16 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name = "tag")
+@Table(name = "products")
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Tag {
+public class productAttribute {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-
-
-    private String TagName;
-    private String slug;
-    private String description;
-    private Boolean MasterTag;
-
-    @OneToOne(targetEntity = ImageGallery.class, cascade = CascadeType.ALL)
-    private ImageGallery image;
-
+    public String name;
+    public String option;
 }
