@@ -19,7 +19,7 @@ public class Tag {
     private  Long id;
 
 
-    private String TagName;
+    private String name;
     private String slug;
     private String description;
     private Boolean MasterTag;

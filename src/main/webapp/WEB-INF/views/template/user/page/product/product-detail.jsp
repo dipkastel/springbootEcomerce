@@ -18,7 +18,7 @@
 
 								<figure>
 									<div class="ps-wrapper">
-										<c:if test="${product.enabled == false}">
+										<c:if test="${product.onSale == false}">
 											<div class="ps-product__badge out-stock"
 												style="background-color: #000; color: #fff; font-size: 14px; font-weight: 600; line-height: 20px; padding: 5px 10px; border-radius: 4px;">
 												ناموجود</div>
@@ -76,7 +76,7 @@
 								</div>
 							</div>
 							<div class="ps-product__info">
-								<h1>${product.productName }</h1>
+								<h1>${product.name }</h1>
 								<div class="ps-product__meta">
 									<p>
 										برند:<a>${product.brand.name }</a>
@@ -129,32 +129,7 @@
 									</p>
 									<div class="ps-list--dot">${product.shortDescription }</div>
 								</div>
-								<div class="ps-product__variations">
-									<figure>
-										<figcaption>Color</figcaption>
-										<c:if test="${black != null}">
-											<div class="ps-variant ps-variant--color color--1">
-												<span class="ps-variant__tooltip">Black</span>
-											</div>
-										</c:if>
-										<c:if test="${white != null}">
-											<div class="ps-variant ps-variant--color color--2">
-												<span class="ps-variant__tooltip">White</span>
-											</div>
-										</c:if>
-										<c:if test="${red != null}">
-											<div class="ps-variant ps-variant--color color--3">
-												<span class="ps-variant__tooltip">Red</span>
-											</div>
-										</c:if>
-										<c:if test="${yellow != null}">
-											<div class="ps-variant ps-variant--color color--4">
-												<span class="ps-variant__tooltip">Yellow</span>
-											</div>
-										</c:if>
-									</figure>
-								</div>
-								<c:if test="${product.enabled}">
+								<c:if test="${product.onSale}">
 									<div class="ps-product__shopping">
 										<figure>
 											<span style="color: red" class="invalid-${product.id}"></span>

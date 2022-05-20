@@ -40,5 +40,8 @@ public class BrandService implements DAO<Brand> {
         return repo.findByNameContains(brandName);
     }
 
+    public Brand findByName(String name) {
+        return repo.findByName(name);
+    }
 }
 //commit

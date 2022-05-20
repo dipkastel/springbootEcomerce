@@ -134,7 +134,7 @@ public class AdminProductController {
 		Product product = productService.findById(p.getId());
 		product.setName(p.getName());
 		product.setBrand(p.getBrand());
-		product.setCategory(p.getCategory());
+		product.setCategories(p.getCategories());
 //		product.setEnabled(p.isEnabled());
 		product.setType(p.getType());
 		product.setPrice(p.getPrice());

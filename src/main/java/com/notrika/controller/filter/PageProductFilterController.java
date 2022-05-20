@@ -51,7 +51,7 @@ public class PageProductFilterController {
             if (minPrice!=null&&maxPrice!=null){
                 LOGGER.info("list filter by price with  (categoryId!=null,minPrice!=null,maxPrice!=null)");
                 products = productService.findByPriceBetween(minPrice,maxPrice).stream()
-                .filter(p->p.getCategory().getId() == categoryId)
+                .filter(p->p.getCategories().get(0).getId() == categoryId)
                 .collect(Collectors.toList());
 
                 if (listBrandId !=null && listType !=null){
@@ -89,7 +89,7 @@ public class PageProductFilterController {
             }else{
                 //all
                 LOGGER.info("list filter by All with (categoryId!=null,listBrandId==null,listType==null)");
-                products =  productService.findByCategoryId(categoryId);
+                products =  productService.findByCategories(categoryId);
             }
 
         }else{
@@ -182,7 +182,7 @@ public class PageProductFilterController {
         List<Product> list = new ArrayList<>();
         typeList.forEach(t->{
             productList.stream()
-                    .filter(p->p.getCategory().getId() == categoryId && p.getType().equals(t))
+                    .filter(p->p.getCategories().get(0).getId() == categoryId && p.getType().equals(t))
                     .forEach(p->list.add(p));
         });
         return list;
@@ -193,7 +193,7 @@ public class PageProductFilterController {
     public   List<Product> getProductByCategoryAndBrand(Long categoryId,List<Long> brandIdList){
         List<Product> list = new ArrayList<>();
         brandIdList.forEach(id -> {
-            productService.findByCategoryIdAndBrandId(categoryId,id).forEach(p->list.add(p));
+            productService.findByCategoriesContainsAndBrandId(categoryId,id).forEach(p->list.add(p));
         });
         return list;
     }

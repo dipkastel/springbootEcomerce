@@ -44,8 +44,8 @@ public class PageProductController {
             LOGGER.info("load by CategoryId (categoryId != null)");
             this.categoryId = categoryId;
             addModelAttribute(
-                    productService.findByCategoryId(categoryId),
-                    productService.findByCategoryId(categoryId).stream().count(),
+                    productService.findByCategories(categoryId),
+                    productService.findByCategories(categoryId).stream().count(),
                     categoryService.findById(categoryId),
                     model
             );
@@ -61,8 +61,8 @@ public class PageProductController {
             if (brandId != null) {
                 LOGGER.info("load by CategoryId and BrandId (categoryId != null, brandId != null)");
                 addModelAttribute(
-                        productService.findByCategoryIdAndBrandId(categoryId, brandId),
-                        productService.findByCategoryIdAndBrandId(categoryId, brandId).stream().count(),
+                        productService.findByCategoriesContainsAndBrandId(categoryId, brandId),
+                        productService.findByCategoriesContainsAndBrandId(categoryId, brandId).stream().count(),
                         categoryService.findById(categoryId),
                         model
                 );

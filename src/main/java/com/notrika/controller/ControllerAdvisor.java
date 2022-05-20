@@ -58,7 +58,7 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
         Map<String, Set<Brand>> map = new HashMap<>();
         categoryService.findAll().forEach(c->{
             Set<Brand> brands = new HashSet<>();
-            productService.findByCategoryId(c.getId()).forEach(p->brands.add(p.getBrand()));
+//            productService.findByCategoriesContains(c.getId()).forEach(p->brands.add(p.getBrand()));
             map.put(c.getName(),brands);
         });
         return map;

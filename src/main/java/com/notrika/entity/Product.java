@@ -1,12 +1,11 @@
 package com.notrika.entity;
 
-import com.notrika.wpRestApi.entities.product.Dimensions;
-import com.notrika.wpRestApi.entities.product.MetaDatum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,21 +49,17 @@ public class Product {
         this.updated = new Date();
     }
 
-    @ManyToOne(targetEntity = Brand.class,fetch = FetchType.EAGER)
-    private Brand brand;
-    @OneToMany(targetEntity = Brand.class, cascade = CascadeType.ALL)
-    public List<Brand> brands = null;
+    @ManyToOne(targetEntity = Brand.class, cascade = CascadeType.MERGE)
+    public Brand brand = null;
 
-    @ManyToOne(targetEntity = Category.class,fetch = FetchType.EAGER)
-    private Category category;
-    @OneToMany(targetEntity = Category.class, cascade = CascadeType.ALL)
-    public List<Category> categories = null;
+    @ManyToMany
+    public List<Category> categories = new ArrayList<>();
 
     @OneToMany(targetEntity = productAttribute.class, cascade = CascadeType.ALL)
-    public List<productAttribute> attributes = null;
+    public List<productAttribute> attributes = new ArrayList<>();
 
-    @OneToMany(targetEntity = Tag.class, cascade = CascadeType.ALL)
-    public List<Tag> tags = null;
+    @OneToMany(targetEntity = Tag.class, cascade = CascadeType.MERGE)
+    public List<Tag> tags = new ArrayList<>();
 
     @OneToMany(targetEntity = ImageGallery.class, cascade = CascadeType.ALL)
     private List<ImageGallery> images;

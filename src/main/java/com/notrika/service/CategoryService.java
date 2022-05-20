@@ -36,5 +36,9 @@ public class CategoryService implements DAO<Category> {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public Category findByName(String name) {
+        return repo.findByName(name);
+    }
 }
 //commit

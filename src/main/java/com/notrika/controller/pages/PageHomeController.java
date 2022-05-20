@@ -60,13 +60,13 @@ public class PageHomeController {
 		//review{
 		Map<String, Map<Long, Integer>> mapReviewByCategory = new HashMap<String, Map<Long, Integer>>();
 		Map<String, Map<Long, Double>> mapAvgStarByCategory = new HashMap<String, Map<Long, Double>>();
-		categoryService.findAll().forEach(c -> {
-			productByCategory.put(c.getName(), productByCategory(listProduct, c.getName()));
+		categoryService.findAll().stream().filter(p->p.getParentId()==null).forEach(c -> {
+			productByCategory.put(c.getName(), productByCategory(c.getId()));
 			//review
-			Map<Long, Integer> mapReviewByCategoryProduct = ratingService.findAllReviewByList(productByCategory(listProduct, c.getName()));
+			Map<Long, Integer> mapReviewByCategoryProduct = ratingService.findAllReviewByList(productByCategory(c.getId()));
 			mapReviewByCategory.put(c.getName(), mapReviewByCategoryProduct);
 			
-			Map<Long, Double> mapAvgStarByCategoryProduct = ratingService.findAllAvgStarByList(productByCategory(listProduct, c.getName()));
+			Map<Long, Double> mapAvgStarByCategoryProduct = ratingService.findAllAvgStarByList(productByCategory(c.getId()));
 			mapAvgStarByCategory.put(c.getName(), mapAvgStarByCategoryProduct);
 		});
 		model.addAttribute("mapReviewByCategory", mapReviewByCategory);
@@ -102,8 +102,8 @@ public class PageHomeController {
 		return "ajax";
 	}
 
-	public List<Product> productByCategory(List<Product> list, String categoryName) {
-		return list.stream().filter(p -> p.getCategory().getName().equals(categoryName)).collect(Collectors.toList());
+	public List<Product> productByCategory(long catId) {
+		return productService.findByCategories(catId);
 	}
 
 	@GetMapping("/banner/display/{id}")

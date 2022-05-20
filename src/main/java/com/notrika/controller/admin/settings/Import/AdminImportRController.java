@@ -1,16 +1,9 @@
 package com.notrika.controller.admin.settings.Import;
 
-import com.notrika.entity.ProductImportProgress;
+import com.notrika.entity.*;
 import com.notrika.helper.Wp;
-import com.notrika.service.CategoryService;
-import com.notrika.service.ProductService;
-import com.notrika.service.TagService;
-import com.notrika.service.WebsiteManagerService;
+import com.notrika.service.*;
 import com.notrika.wpRestApi.WpRestApi;
-import com.notrika.wpRestApi.entities.Tag.Tag;
-import com.notrika.wpRestApi.entities.category.Category;
-import com.notrika.wpRestApi.entities.product.Product;
-import com.notrika.wpRestApi.entities.systemStatus.SystemStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
@@ -20,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +38,11 @@ public class AdminImportRController {
     @Autowired
     private TagService tagService;
     @Autowired
+    private BrandService brandService;
+    @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ImageService imageService;
 
     @Autowired
     private WebsiteManagerService websiteManagerService;
@@ -62,10 +63,10 @@ public class AdminImportRController {
     }
 
     @GetMapping("/TestConnection")
-    public SystemStatus EditUserController(Model model, Authentication authentication) {
+    public com.notrika.wpRestApi.entities.systemStatus.SystemStatus EditUserController(Model model, Authentication authentication) {
 
         wp.reInitialization();
-        SystemStatus systemStatus = wpRestApi.system.getSystemStatus();
+        com.notrika.wpRestApi.entities.systemStatus.SystemStatus systemStatus = wpRestApi.system.getSystemStatus();
 
         return systemStatus;
     }
@@ -89,9 +90,7 @@ public class AdminImportRController {
     public void importProductAll() {
 
         executor.execute(() -> {
-            List<Product> allProducts = getProducts();
-            List<com.notrika.entity.Product> myProduct = convertProducts(allProducts);
-            insertProduct(myProduct);
+            List<com.notrika.wpRestApi.entities.product.Product> allProducts = getProducts();
         });
     }
 
@@ -104,7 +103,7 @@ public class AdminImportRController {
 
     @GetMapping("/tags/all")
     public boolean importAllTags() {
-        com.notrika.wpRestApi.entities.Tag.Tag[] tags = new Tag[0];
+        com.notrika.wpRestApi.entities.Tag.Tag[] tags = new com.notrika.wpRestApi.entities.Tag.Tag[0];
         List<com.notrika.wpRestApi.entities.Tag.Tag> allTags = new ArrayList();
 
         progress = new ProductImportProgress();
@@ -118,7 +117,7 @@ public class AdminImportRController {
                 page++;
                 progress.setProductCount(allTags.size());
             } catch (Exception e) {
-                tags = new Tag[4];
+                tags = new com.notrika.wpRestApi.entities.Tag.Tag[4];
             }
         } while (!(tags.length <= 0));
 
@@ -128,7 +127,7 @@ public class AdminImportRController {
         List<com.notrika.entity.Tag> myTags = allTags.stream().map(p -> {
             com.notrika.entity.Tag tag = new com.notrika.entity.Tag();
             tag.setId(p.id);
-            tag.setTagName(p.name);
+            tag.setName(p.name);
             tag.setSlug(p.slug);
             tag.setDescription(p.description);
             tag.setMasterTag(false);
@@ -138,7 +137,7 @@ public class AdminImportRController {
 
         progress.setOpration("ثبت در پایگاه");
         final int[] count = {0};
-        myTags.forEach(t->{
+        myTags.forEach(t -> {
             tagService.save(t);
             count[0]++;
             progress.setProductCount(count[0]);
@@ -146,9 +145,10 @@ public class AdminImportRController {
         return true;
 
     }
+
     @GetMapping("/category/all")
     public boolean importAllCategories() {
-        com.notrika.wpRestApi.entities.category.Category[] cats = new Category[0];
+        com.notrika.wpRestApi.entities.category.Category[] cats = new com.notrika.wpRestApi.entities.category.Category[0];
         List<com.notrika.wpRestApi.entities.category.Category> allcats = new ArrayList();
 
         progress = new ProductImportProgress();
@@ -162,19 +162,19 @@ public class AdminImportRController {
                 page++;
                 progress.setProductCount(allcats.size());
             } catch (Exception e) {
-                cats = new Category[4];
+                cats = new com.notrika.wpRestApi.entities.category.Category[4];
             }
         } while (!(cats.length <= 0));
 
         progress.setOpration("تغییر فرمت ");
 
 
-        List<com.notrika.entity.Category> mycats =getcats(allcats,0l);
+        List<com.notrika.entity.Category> mycats = getcats(allcats, 0l);
 
 
         progress.setOpration("ثبت در پایگاه");
         final int[] count = {0};
-        mycats.forEach(t->{
+        mycats.forEach(t -> {
             categoryService.save(t);
             count[0]++;
             progress.setProductCount(count[0]);
@@ -183,8 +183,9 @@ public class AdminImportRController {
 
     }
 
-    private List<com.notrika.entity.Category> getcats(List<Category> allcats,Long parent) {
-        return  allcats.stream().filter(c->Long.valueOf(c.parent).equals(parent)).map(p -> {
+    //recursive
+    private List<com.notrika.entity.Category> getcats(List<com.notrika.wpRestApi.entities.category.Category> allcats, Long parent) {
+        return allcats.stream().filter(c -> Long.valueOf(c.parent).equals(parent)).map(p -> {
             com.notrika.entity.Category cat = new com.notrika.entity.Category();
             cat.setId(p.id);
             cat.setName(p.name);
@@ -192,7 +193,7 @@ public class AdminImportRController {
             cat.setDescription(p.description);
             cat.setDisplay(p.display);
             cat.setMenuOrder(p.menuOrder);
-            cat.setSubCategories(getcats(allcats,p.id));
+            cat.setSubCategories(getcats(allcats, p.id));
             return cat;
         }).collect(Collectors.toList());
     }
@@ -209,46 +210,176 @@ public class AdminImportRController {
         progress.setComplete(true);
     }
 
-    private List<com.notrika.entity.Product> convertProducts(List<Product> allProducts) {
+    private void convertAndInsertProducts(List<com.notrika.wpRestApi.entities.product.Product> allProducts) {
         AtomicInteger count = new AtomicInteger();
         progress = new ProductImportProgress();
         progress.setOpration("تغییر محصولات به فرمت سایت ");
-        List<com.notrika.entity.Product> products = allProducts.stream().map(p -> {
-            com.notrika.entity.Product myProduct = new com.notrika.entity.Product();
-            myProduct.setName(p.name);
-            myProduct.setStockQuantity((p.stockQuantity != null) ? p.stockQuantity : 0);
-//            myProduct.setPrice(p.price);
-            count.getAndIncrement();
-            progress.setProductCount(count.get());
-            return myProduct;
-        }).collect(Collectors.toList());
-        progress.setComplete(true);
-        return products;
+        allProducts.forEach(p -> {
+            try {
+                com.notrika.entity.Product myProduct = new com.notrika.entity.Product();
+                myProduct.setName(p.name);
+                myProduct.setSlug(p.slug);
+                myProduct.setType(p.type);
+                myProduct.setStatus(p.status);
+                myProduct.setFeatured(p.featured);
+                myProduct.setCatalogVisibility(p.catalogVisibility);
+                myProduct.setDescription(p.description);
+                myProduct.setShortDescription(p.shortDescription);
+                myProduct.setSku(p.sku);
+                try {
+                    myProduct.setPrice(Double.valueOf(p.price));
+                } catch (Exception e) {
+                    myProduct.setPrice(0d);
+                }
+                try {
+                    myProduct.setRegularPrice(Double.valueOf(p.regularPrice));
+                } catch (Exception e) {
+                    myProduct.setRegularPrice(0d);
+                }
+                try {
+                    myProduct.setSalePrice(Double.valueOf(p.salePrice));
+                } catch (Exception e) {
+                    myProduct.setSalePrice(0d);
+                }
+                myProduct.setPurchasable(p.purchasable);
+                myProduct.setOnSale(p.onSale);
+                myProduct.setStockQuantity((p.stockQuantity != null) ? p.stockQuantity : 0);
+                myProduct.setWeight(p.weight);
+                myProduct.setSoldIndividually(p.soldIndividually);
+                myProduct.setAverageRating(p.averageRating);
+                myProduct.setRatingCount(p.ratingCount);
+                myProduct.setStockStatus(p.stockStatus);
+                myProduct.setReviewsAllowed(p.reviewsAllowed);
+                //brand
+                try {
+                    com.notrika.wpRestApi.entities.product.Brand wpbrand = p.brands.get(0);
+                    Brand brand = brandService.findByName(wpbrand.name);
+                    if (brand == null) {
+                        Brand brand1 = new Brand();
+                        brand1.setName(wpbrand.name);
+                        brand1.setSlug(wpbrand.slug);
+                        brandService.save(brand1);
+                        brand = brandService.findByName(wpbrand.name);
+                    }
+                    myProduct.setBrand(brand);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    List<com.notrika.wpRestApi.entities.product.Category> wpcats = p.categories;
+                    List<Category> cats = new ArrayList<>();
+                    for (com.notrika.wpRestApi.entities.product.Category cat : wpcats) {
+                        Category myCat = categoryService.findByName(cat.name);
+                        myProduct.categories.add(myCat);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+                try {
+                    List<com.notrika.wpRestApi.entities.product.Attribute> wpattrs = p.attributes;
+                    for (com.notrika.wpRestApi.entities.product.Attribute attr : wpattrs) {
+                        productAttribute myAttr = new productAttribute();
+                        myAttr.name = attr.name;
+                        myAttr.option = "";
+                        attr.options.forEach(a -> {
+                            myAttr.option += a + ",";
+                        });
+                        myProduct.attributes.add(myAttr);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    List<com.notrika.wpRestApi.entities.Tag.Tag> wptags = p.tags;
+                    wptags.forEach(t -> {
+                        Tag mytag = tagService.findByName(t.name);
+                        if (mytag == null) {
+                            mytag = new Tag();
+                            mytag.setName(t.name);
+                            mytag.setSlug(t.slug);
+                            mytag.setDescription(t.description);
+                            mytag.setMasterTag(false);
+                        }
+                        myProduct.tags.add(mytag);
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                List<ImageGallery> images = new ArrayList<>();
+                p.images.forEach(i -> {
+                    InputStream is = null;
+                    try {
+                        URL url = new URL(i.src);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        is = url.openStream();
+                        byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
+                        int n;
+
+                        while ((n = is.read(byteChunk)) > 0) {
+                            baos.write(byteChunk, 0, n);
+                        }
+
+                        ImageGallery imageGallery = new ImageGallery();
+                        imageGallery.setImage(baos.toByteArray());
+                        images.add(imageGallery);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (is != null) {
+                            try {
+                                is.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+                myProduct.setImages(images);
+                productService.save(myProduct);
+                count.getAndIncrement();
+                progress.setProductCount(count.get());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    private List<Product> getProducts() {
+    private List<com.notrika.wpRestApi.entities.product.Product> getProducts() {
 
-        Product[] products;
-        List<Product> allProducts = new ArrayList<Product>();
+        com.notrika.wpRestApi.entities.product.Product[] wpproducts;
+        List<com.notrika.wpRestApi.entities.product.Product> allWpProducts = new ArrayList<>();
         int page = 1;
-        int per_page = 99;
+        int per_page = 5;
         progress = new ProductImportProgress();
         progress.setOpration(wpRestApi.wpRestApiConfigService.getSiteUrl() + "دریافت محصولات از سایت ");
 
         do {
             try {
-                products = wpRestApi.product.getAll(page, per_page);
-                allProducts.addAll(Arrays.stream(products).collect(Collectors.toList()));
-                progress.setProductCount(allProducts.size());
-                if (products.length <= 0) {
+                wpproducts = wpRestApi.product.getAll(page, per_page);
+                allWpProducts.addAll(Arrays.stream(wpproducts).collect(Collectors.toList()));
+                progress.setProductCount(allWpProducts.size());
+                if (wpproducts.length <= 0) {
                     progress.setComplete(true);
+                } else {
+                    try {
+
+                        convertAndInsertProducts(Arrays.stream(wpproducts).collect(Collectors.toList()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 page++;
             } catch (Exception e) {
-
+                e.printStackTrace();
 
             }
         } while (!progress.isComplete());
-        return allProducts;
+        return allWpProducts;
     }
 }

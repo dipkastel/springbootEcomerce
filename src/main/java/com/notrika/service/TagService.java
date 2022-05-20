@@ -37,4 +37,7 @@ public class TagService implements DAO<Tag> {
         repo.deleteById(id);
     }
 
+    public Tag findByName(String name) {
+        return repo.findByName(name);
+    }
 }

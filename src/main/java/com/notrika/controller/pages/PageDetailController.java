@@ -1,7 +1,6 @@
 package com.notrika.controller.pages;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -81,7 +80,7 @@ public class PageDetailController {
 //			model.addAttribute(color, color);
 //		}
 
-		List<Product> listProductByCategory = productService.findByCategoryId(p.getCategory().getId());
+		List<Product> listProductByCategory = productService.findByCategories(p.categories.get(0).getId());
 		model.addAttribute("listProductByCategory", listProductByCategory);
 		model.addAttribute("allProducts", productService.findAll());
 		// review

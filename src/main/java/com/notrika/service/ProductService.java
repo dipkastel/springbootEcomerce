@@ -42,12 +42,12 @@ public class ProductService implements DAO<Product> {
         repo.deleteById(id);
     }
 
-    public List<Product> findByCategoryId(Long categoryId) {
-        return repo.findByCategoryId(categoryId);
+    public List<Product> findByCategories(Long categoryId) {
+        return repo.findByCategories(categoryId);
     }
 
-    public List<Product> findByCategoryIdAndBrandId(Long categoryId, Long brandId) {
-        return repo.findByCategoryIdAndBrandId(categoryId, brandId);
+    public List<Product> findByCategoriesContainsAndBrandId(Long categoryId, Long brandId) {
+        return repo.findByCategoriesContainsAndBrandId(categoryId, brandId);
     }
 
     public List<Product> findByCategoryIdAndTypeId(Long categoryId, Long typeId) {
@@ -90,7 +90,7 @@ public class ProductService implements DAO<Product> {
         return repo.findProductContains(keyword);
     }
     public List<Product> findProductContainsByCategoryId(String keyword, Long categoryId){
-        return repo.findProductContainsByCategory(keyword,categoryId);
+        return null;
     }
 
     public void deleteAll() {
