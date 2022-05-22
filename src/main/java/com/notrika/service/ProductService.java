@@ -96,4 +96,10 @@ public class ProductService implements DAO<Product> {
     public void deleteAll() {
         repo.deleteAll();
     }
+
+
+    public List<Product> findByPagination(int _page ,int per_page) {
+        int page = _page*per_page;
+        return repo.findFromAndTake(page,per_page);
+    }
 }

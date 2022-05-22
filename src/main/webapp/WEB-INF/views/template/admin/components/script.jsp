@@ -76,8 +76,8 @@
 		element.parent().addClass('active');
 	}else{
 		data.addClass('nav-item menu-is-opening menu-open');
-		data.find('a:first').addClass('nav-link active');
-		element.addClass('nav-link active');
+		data.find('a:first').addClass('active');
+		element.addClass('active');
 	}
 </script>
     <jsp:include page="../../user/message/message.jsp"></jsp:include>

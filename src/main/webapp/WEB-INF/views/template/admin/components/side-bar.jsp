@@ -64,6 +64,13 @@
                                 <p>بنر ها</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.servletContext.contextPath}/admin/menus"
+                               class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>منو ها</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

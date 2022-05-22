@@ -51,11 +51,7 @@
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Name</th>
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Status</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Price</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Color</th>
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Stock quantity</th>
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
@@ -75,32 +71,24 @@
 															<tr>
 																<td>${product.id }</td>
 																<td>
-																	<a href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}">${product.productName }</a>
+																	<a href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}">${product.name }</a>
 																</td>
 																<td class="text-center">
-																	<c:choose>
-																	<c:when test="${product.enabled == true}">
-																		<a
-																				class="my-btn-state rounded-circle btn btn-sm btn-success">
-																			<i class="fas fa-check"></i>
-																		</a>
-																	</c:when>
-
-																	<c:otherwise>
-																		<a
-																				class="my-btn-state rounded-circle btn btn-sm btn-danger">
-																			<i class="fas fa-minus"></i>
-																		</a>
-																	</c:otherwise>
-																	</c:choose>
+<%--																		<a--%>
+<%--																				class="my-btn-state rounded-circle btn btn-sm btn-success">--%>
+<%--																			<i class="fas fa-check"></i>--%>
+<%--																		</a>--%>
+<%--																		<a--%>
+<%--																				class="my-btn-state rounded-circle btn btn-sm btn-danger">--%>
+<%--																			<i class="fas fa-minus"></i>--%>
+<%--																		</a>--%>
 																</td>
 																<td>${product.price }</td>
-																<td>${product.productColor }</td>
 																<td>${product.stockQuantity }</td>
 																<td><fmt:formatDate value='${product.updated }'  type='date' pattern='dd/MM/yyyy'/></td>
-																<td>${product.brand.name }</td>
-																<td>${product.category.name }</td>
-																<td>${product.type.name }</td>
+<%--																<td>${product.brand.name }</td>--%>
+<%--																<td>${product.category.name }</td>--%>
+<%--																<td>${product.type.name }</td>--%>
 																<td class="project-actions text-center">
 <%--																	<a--%>
 <%--																	class="btn btn-primary btn-sm"--%>
