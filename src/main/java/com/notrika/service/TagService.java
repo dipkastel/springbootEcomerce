@@ -38,6 +38,6 @@ public class TagService implements DAO<Tag> {
     }
 
     public Tag findByName(String name) {
-        return repo.findByName(name);
+        return repo.findByNameLike(name);
     }
 }

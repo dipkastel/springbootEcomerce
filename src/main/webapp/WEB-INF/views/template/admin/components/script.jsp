@@ -59,6 +59,9 @@
 <!-- Summernote -->
 <script
 	src="${pageContext.servletContext.contextPath}/plugins-admin/summernote/summernote-bs4.min.js"></script>
+<!-- Summernote -->
+
+<script src="${pageContext.servletContext.contextPath}/plugins-admin/jsgrid/jsgrid.min.js"></script>
 <!-- overlayScrollbars -->
 <script
 	src="${pageContext.servletContext.contextPath}/plugins-admin/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>

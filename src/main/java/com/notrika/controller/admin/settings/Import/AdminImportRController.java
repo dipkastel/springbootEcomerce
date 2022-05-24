@@ -17,9 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -198,20 +196,8 @@ public class AdminImportRController {
         }).collect(Collectors.toList());
     }
 
-    private void insertProduct(List<com.notrika.entity.Product> myProduct) {
-        progress = new ProductImportProgress();
-        progress.setOpration("ذخیره محصولات");
-        int count = 0;
-        for (com.notrika.entity.Product product : myProduct) {
-            productService.save(product);
-            count++;
-            progress.setProductCount(count);
-        }
-        progress.setComplete(true);
-    }
 
-    private void convertAndInsertProducts(List<com.notrika.wpRestApi.entities.product.Product> allProducts) {
-        AtomicInteger count = new AtomicInteger();
+    private void convertAndInsertProducts(List<com.notrika.wpRestApi.entities.product.Product> allProducts, AtomicInteger count) {
         progress = new ProductImportProgress();
         progress.setOpration("تغییر محصولات به فرمت سایت ");
         allProducts.forEach(p -> {
@@ -252,20 +238,22 @@ public class AdminImportRController {
                 myProduct.setReviewsAllowed(p.reviewsAllowed);
                 //brand
                 try {
-                    com.notrika.wpRestApi.entities.product.Brand wpbrand = p.brands.get(0);
-                    Brand brand = brandService.findByName(wpbrand.name);
-                    if (brand == null) {
-                        Brand brand1 = new Brand();
-                        brand1.setName(wpbrand.name);
-                        brand1.setSlug(wpbrand.slug);
-                        brandService.save(brand1);
-                        brand = brandService.findByName(wpbrand.name);
+                    if(p.brands.size()>0){
+                        com.notrika.wpRestApi.entities.product.Brand wpbrand = p.brands.get(0);
+                        Brand brand = brandService.findByName(wpbrand.name);
+                        if (brand == null) {
+                            Brand brand1 = new Brand();
+                            brand1.setName(wpbrand.name);
+                            brand1.setSlug(wpbrand.slug);
+                            brandService.save(brand1);
+                            brand = brandService.findByName(wpbrand.name);
+                        }
+                        myProduct.setBrand(brand);
                     }
-                    myProduct.setBrand(brand);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+                //category
                 try {
                     List<com.notrika.wpRestApi.entities.product.Category> wpcats = p.categories;
                     List<Category> cats = new ArrayList<>();
@@ -278,39 +266,41 @@ public class AdminImportRController {
                     e.printStackTrace();
                 }
 
-
+                //productAttribute
                 try {
-                    List<com.notrika.wpRestApi.entities.product.Attribute> wpattrs = p.attributes;
-                    for (com.notrika.wpRestApi.entities.product.Attribute attr : wpattrs) {
-                        productAttribute myAttr = new productAttribute();
-                        myAttr.name = attr.name;
-                        myAttr.option = "";
-                        attr.options.forEach(a -> {
-                            myAttr.option += a + ",";
-                        });
-                        myProduct.attributes.add(myAttr);
+
+                    for (com.notrika.wpRestApi.entities.product.Attribute attr : p.attributes) {
+                        if(attr.options.size()>0){
+                            productAttribute myAttr = new productAttribute();
+                            myAttr.name = attr.name;
+                            myAttr.option = "";
+                            attr.options.forEach(a -> {
+                                myAttr.option += a + ",";
+                            });
+                            myProduct.attributes.add(myAttr);
+                        }
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+                //tags
                 try {
                     List<com.notrika.wpRestApi.entities.Tag.Tag> wptags = p.tags;
+                    Set<Tag> tagSet =new  HashSet();
                     wptags.forEach(t -> {
-                        Tag mytag = tagService.findByName(t.name);
-                        if (mytag == null) {
-                            mytag = new Tag();
+                            Tag mytag = new Tag();
                             mytag.setName(t.name);
                             mytag.setSlug(t.slug);
                             mytag.setDescription(t.description);
                             mytag.setMasterTag(false);
-                        }
-                        myProduct.tags.add(mytag);
+                        tagSet.add(mytag);
                     });
+                    myProduct.setTags(tagSet);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                //images
                 List<ImageGallery> images = new ArrayList<>();
                 p.images.forEach(i -> {
                     InputStream is = null;
@@ -352,6 +342,7 @@ public class AdminImportRController {
 
     private List<com.notrika.wpRestApi.entities.product.Product> getProducts() {
 
+        AtomicInteger count = new AtomicInteger();
         com.notrika.wpRestApi.entities.product.Product[] wpproducts;
         List<com.notrika.wpRestApi.entities.product.Product> allWpProducts = new ArrayList<>();
         int page = 1;
@@ -369,7 +360,7 @@ public class AdminImportRController {
                 } else {
                     try {
 
-                        convertAndInsertProducts(Arrays.stream(wpproducts).collect(Collectors.toList()));
+                        convertAndInsertProducts(Arrays.stream(wpproducts).collect(Collectors.toList()),count);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

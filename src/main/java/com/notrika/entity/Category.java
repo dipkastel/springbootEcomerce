@@ -11,6 +11,7 @@ import com.notrika.wpRestApi.entities.product.MetaDatum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.awt.event.HierarchyListener;
@@ -38,6 +39,10 @@ public class Category {
     public String display;
     public Integer menuOrder;
 
+
+    @ManyToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<Product> products = new ArrayList<>();
 
     @Column(name="parent_id", insertable=false, updatable=false)
     private Long parentId;

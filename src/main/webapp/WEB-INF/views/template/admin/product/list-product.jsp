@@ -36,77 +36,79 @@
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-									<div id="example1_wrapper"
-										class="dataTables_wrapper dt-bootstrap4">
-										<div class="row">
 
-											<div class="col-sm-12">
-												<table id="example1"
-													class="table table-bordered table-striped dataTable dtr-inline"
-													role="grid" aria-describedby="example1_info">
-													<thead>
-														<tr role="row">
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Id</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Name</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Price</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Stock quantity</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Date update</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Brand</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Category</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Type</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Action</th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="product" items="${list }">
-															<tr>
-																<td>${product.id }</td>
-																<td>
-																	<a href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}">${product.name }</a>
-																</td>
-																<td class="text-center">
-<%--																		<a--%>
-<%--																				class="my-btn-state rounded-circle btn btn-sm btn-success">--%>
-<%--																			<i class="fas fa-check"></i>--%>
-<%--																		</a>--%>
-<%--																		<a--%>
-<%--																				class="my-btn-state rounded-circle btn btn-sm btn-danger">--%>
-<%--																			<i class="fas fa-minus"></i>--%>
-<%--																		</a>--%>
-																</td>
-																<td>${product.price }</td>
-																<td>${product.stockQuantity }</td>
-																<td><fmt:formatDate value='${product.updated }'  type='date' pattern='dd/MM/yyyy'/></td>
-<%--																<td>${product.brand.name }</td>--%>
-<%--																<td>${product.category.name }</td>--%>
-<%--																<td>${product.type.name }</td>--%>
-																<td class="project-actions text-center">
+									<div id="jsGridProducts"></div>
+<%--									<div id="example1_wrapper"--%>
+<%--										class="dataTables_wrapper dt-bootstrap4">--%>
+<%--										<div class="row">--%>
+
+<%--											<div class="col-sm-12">--%>
+<%--												<table id="example1"--%>
+<%--													class="table table-bordered table-striped dataTable dtr-inline"--%>
+<%--													role="grid" aria-describedby="example1_info">--%>
+<%--													<thead>--%>
+<%--														<tr role="row">--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Id</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Name</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Price</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Stock quantity</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Date update</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Brand</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Category</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Type</th>--%>
+<%--															<th class="sorting text-center" tabindex="0" aria-controls="example1"--%>
+<%--																rowspan="1" colspan="1">Action</th>--%>
+<%--														</tr>--%>
+<%--													</thead>--%>
+<%--													<tbody>--%>
+<%--														<c:forEach var="product" items="${list }">--%>
+<%--															<tr>--%>
+<%--																<td>${product.id }</td>--%>
+<%--																<td>--%>
+<%--																	<a href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}">${product.name }</a>--%>
+<%--																</td>--%>
+<%--																<td class="text-center">--%>
+<%--&lt;%&ndash;																		<a&ndash;%&gt;--%>
+<%--&lt;%&ndash;																				class="my-btn-state rounded-circle btn btn-sm btn-success">&ndash;%&gt;--%>
+<%--&lt;%&ndash;																			<i class="fas fa-check"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;																		</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;																		<a&ndash;%&gt;--%>
+<%--&lt;%&ndash;																				class="my-btn-state rounded-circle btn btn-sm btn-danger">&ndash;%&gt;--%>
+<%--&lt;%&ndash;																			<i class="fas fa-minus"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;																		</a>&ndash;%&gt;--%>
+<%--																</td>--%>
+<%--																<td>${product.price }</td>--%>
+<%--																<td>${product.stockQuantity }</td>--%>
+<%--																<td><fmt:formatDate value='${product.updated }'  type='date' pattern='dd/MM/yyyy'/></td>--%>
+<%--&lt;%&ndash;																<td>${product.brand.name }</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;																<td>${product.category.name }</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;																<td>${product.type.name }</td>&ndash;%&gt;--%>
+<%--																<td class="project-actions text-center">--%>
+<%--&lt;%&ndash;																	<a&ndash;%&gt;--%>
+<%--&lt;%&ndash;																	class="btn btn-primary btn-sm"&ndash;%&gt;--%>
+<%--&lt;%&ndash;																	href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}"><i&ndash;%&gt;--%>
+<%--&lt;%&ndash;																		class="fas fa-folder"></i>View</a> &ndash;%&gt;--%>
 <%--																	<a--%>
-<%--																	class="btn btn-primary btn-sm"--%>
-<%--																	href="${pageContext.request.contextPath}/admin/product/detail?id=${product.id}"><i--%>
-<%--																		class="fas fa-folder"></i>View</a> --%>
-																	<a
-																	class="btn btn-info btn-sm"
-																	href="${pageContext.request.contextPath}/admin/product/edit?id=${product.id}"><i
-																		class="fas fa-pencil-alt"></i>Edit</a></td>
-															</tr>
-														</c:forEach>
-													</tbody>
-													<tfoot>
-													</tfoot>
-												</table>
-											</div>
-										</div>
-									</div>
+<%--																	class="btn btn-info btn-sm"--%>
+<%--																	href="${pageContext.request.contextPath}/admin/product/edit?id=${product.id}"><i--%>
+<%--																		class="fas fa-pencil-alt"></i>Edit</a></td>--%>
+<%--															</tr>--%>
+<%--														</c:forEach>--%>
+<%--													</tbody>--%>
+<%--													<tfoot>--%>
+<%--													</tfoot>--%>
+<%--												</table>--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--									</div>--%>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -129,18 +131,8 @@
 	</div>
 	<!-- ./wrapper -->
 	<jsp:include page="../components/script.jsp"></jsp:include>
-	<script>
-		$(function() {
-			$("#example1").DataTable(
-					{
-						"responsive" : true,
-						"lengthChange" : false,
-						"autoWidth" : false,
-						"buttons" : [ "copy", "csv", "excel", "pdf", "print",
-								"colvis" ]
-					}).buttons().container().appendTo(
-					'#example1_wrapper .col-md-6:eq(0)');
-		});
-	</script>
+	<jsp:include page="js/jsgrid.jsp"></jsp:include>
+
+
 </body>
 </html>

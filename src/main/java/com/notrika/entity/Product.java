@@ -3,11 +3,10 @@ package com.notrika.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "products")
@@ -49,17 +48,19 @@ public class Product {
         this.updated = new Date();
     }
 
-    @ManyToOne(targetEntity = Brand.class, cascade = CascadeType.MERGE)
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
     public Brand brand = null;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "products",targetEntity = Category.class, cascade = CascadeType.ALL)
     public List<Category> categories = new ArrayList<>();
 
-    @OneToMany(targetEntity = productAttribute.class, cascade = CascadeType.ALL)
-    public List<productAttribute> attributes = new ArrayList<>();
+    @ManyToMany
+    Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(targetEntity = Tag.class, cascade = CascadeType.MERGE)
-    public List<Tag> tags = new ArrayList<>();
+    @OneToMany(mappedBy = "product",targetEntity = productAttribute.class, cascade = CascadeType.ALL)
+    public Set<productAttribute> attributes =new HashSet<>();
+
 
     @OneToMany(targetEntity = ImageGallery.class, cascade = CascadeType.ALL)
     private List<ImageGallery> images;

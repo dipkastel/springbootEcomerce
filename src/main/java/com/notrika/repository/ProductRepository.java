@@ -30,7 +30,7 @@ public interface ProductRepository extends JpaRepository<Product,Long>  {
             nativeQuery = true)
     List<Product> findByCategories(@Param("categoryId") Long categoryId);
 
-    @Query(value = "select * from products p order by id DESC limit :start , :itemcount ",nativeQuery = true)
+    @Query(value = "select * from products p order by id limit :start , :itemcount ",nativeQuery = true)
     List<Product> findFromAndTake(@Param("start") Integer startFrom,@Param("itemcount") Integer itemcount);
 
 

@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/dist/css/adminlte.min.css">
+    <!-- jsgrid style -->
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/jsgrid/jsgrid-theme.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->

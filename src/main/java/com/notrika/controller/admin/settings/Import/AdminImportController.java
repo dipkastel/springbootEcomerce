@@ -1,7 +1,6 @@
 package com.notrika.controller.admin.settings.Import;
 
-import com.notrika.config.wpRest;
-import com.notrika.controller.admin.AdminProductController;
+import com.notrika.controller.admin.product.AdminProductController;
 import com.notrika.entity.req._req_import_conf;
 import com.notrika.helper.Wp;
 import com.notrika.service.SettingsService;
