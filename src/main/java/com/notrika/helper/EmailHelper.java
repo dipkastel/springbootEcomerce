@@ -18,29 +18,29 @@ public class EmailHelper {
 
     public  boolean send(String to, String subject, String content) {
         try {
-            Properties properties = new Properties();
-            properties.put("mail.smtp.auth", "true");
-            properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.host",  emailConfig.getHost());
-            properties.put("mail.smtp.port", emailConfig.getPort());
-            Session session = Session.getDefaultInstance(properties, new Authenticator() {
-
-
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(emailConfig.getUsername(), emailConfig.getPassword());
-                }
-
-            });
-
-            // mail declare
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(emailConfig.getUsername()));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject(subject);
-            message.setContent(content, "text/html");
-            message.setSentDate(new Date());
-            Transport.send(message);
+//            Properties properties = new Properties();
+//            properties.put("mail.smtp.auth", "true");
+//            properties.put("mail.smtp.starttls.enable", "true");
+//            properties.put("mail.smtp.host",  emailConfig.getHost());
+//            properties.put("mail.smtp.port", emailConfig.getPort());
+//            Session session = Session.getDefaultInstance(properties, new Authenticator() {
+//
+//
+//                @Override
+//                protected PasswordAuthentication getPasswordAuthentication() {
+//                    return new PasswordAuthentication(emailConfig.getUsername(), emailConfig.getPassword());
+//                }
+//
+//            });
+//
+//            // mail declare
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(emailConfig.getUsername()));
+//            message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+//            message.setSubject(subject);
+//            message.setContent(content, "text/html");
+//            message.setSentDate(new Date());
+//            Transport.send(message);
 
             return true;
         } catch (Exception e) {

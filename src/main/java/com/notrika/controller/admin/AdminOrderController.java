@@ -15,7 +15,7 @@ import com.notrika.entity.UserDetail;
 import com.notrika.service.OrderService;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("admin/")
 public class AdminOrderController {
 	private final OrderService order;
 	

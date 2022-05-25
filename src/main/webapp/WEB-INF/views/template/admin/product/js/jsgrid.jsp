@@ -3,7 +3,6 @@
         $("#jsGridProducts").jsGrid({
             height: "auto",
             width: "100%",
-
             sorting: true,
             paging: true,
             autoload: true,
@@ -42,4 +41,5 @@
                 { name: "price", type: "text", width: 150 }
             ]
         });
+
 </script>

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div class="ps-panel--sidebar" id="cart-mobile">
     <div class="ps-panel__header">
-        <h3>Shopping Cart</h3>
+        <h3>سبد خرید</h3>
     </div>
     <div class="navigation__content">
         <div class="ps-cart--mobile">

@@ -40,4 +40,14 @@ public class TagService implements DAO<Tag> {
     public Tag findByName(String name) {
         return repo.findByNameLike(name);
     }
+
+    public List<Tag> findByPagination(Long _page, Long count) {
+
+        Long first_Index = _page*count;
+        return repo.findByPagination(first_Index,count);
+    }
+
+    public Long findAllCount() {
+        return repo.count();
+    }
 }

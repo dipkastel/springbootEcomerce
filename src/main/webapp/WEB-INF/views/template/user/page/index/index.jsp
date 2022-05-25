@@ -8,7 +8,7 @@
 <body>
 <%--    header    --%>
 <jsp:include page="../../components/header.jsp"/>
-<%--    sidebar    --%>
+<%--    sidebar mobile    --%>
 <jsp:include page="../../components/sidebar.jsp"/>
 
 <div class="fix-offset"></div>

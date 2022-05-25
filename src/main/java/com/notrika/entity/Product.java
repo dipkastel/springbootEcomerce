@@ -55,7 +55,8 @@ public class Product {
     @ManyToMany(mappedBy = "products",targetEntity = Category.class, cascade = CascadeType.ALL)
     public List<Category> categories = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "products")
+    @ToString.Exclude
     Set<Tag> tags = new HashSet<>();
 
     @OneToMany(mappedBy = "product",targetEntity = productAttribute.class, cascade = CascadeType.ALL)

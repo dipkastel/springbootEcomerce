@@ -22,7 +22,7 @@ import java.util.Locale;
 
 
 @RestController
-@RequestMapping(path = "/admin/product", produces = "application/json", headers = "Accept=*/*")
+@RequestMapping(path = "/api/product", produces = "application/json", headers = "Accept=*/*")
 @CrossOrigin(origins = "*")
 public class AdminProductRController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminProductRController.class);
@@ -31,7 +31,7 @@ public class AdminProductRController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
-	@GetMapping("/products")
+	@GetMapping("/all")
 	public List<Product> getAll(Authentication authentication,@RequestParam(name = "page",defaultValue = "1") Integer page,@RequestParam(name = "per_page",defaultValue = "10") Integer per_page) {
 		List<Product> list = productService.findByPagination(page,per_page);
 		logger.info("list: " + list.size());

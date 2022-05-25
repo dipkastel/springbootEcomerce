@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../components/head.jsp"></jsp:include>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
+		<!-- Preloader -->
+
 		<jsp:include page="../common/loading.jsp"></jsp:include>
 		<jsp:include page="../components/nav-bar.jsp"></jsp:include>
 		<jsp:include page="../components/side-bar.jsp"></jsp:include>
@@ -15,7 +16,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-12">
-							<h1 class="text-center">Product Manager</h1>
+							<h1 class="text-center">مدیریت برچسب ها</h1>
 						</div>
 					</div>
 				</div>
@@ -31,13 +32,12 @@
 							<div class="card">
 								<div class="card-header">
 										<a
-												href="${pageContext.servletContext.contextPath}/admin/product/new"
-												class="btn btn-success">Add product</a>
+												href="${pageContext.servletContext.contextPath}/admin/tag/new"
+												class="btn btn-success">افزودن</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-
-									<div id="jsGridProducts"></div>
+									<div id="tagtable" />
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -61,7 +61,5 @@
 	<!-- ./wrapper -->
 	<jsp:include page="../components/script.jsp"></jsp:include>
 	<jsp:include page="js/jsgrid.jsp"></jsp:include>
-
-
 </body>
 </html>

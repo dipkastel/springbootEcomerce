@@ -9,7 +9,7 @@
          data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6"
          data-owl-item-lg="8" data-owl-item-xl="11"
          data-owl-duration="500" data-owl-mousedrag="on">
-
+        ${masterTags}
         <c:forEach items="${masterTags}" var="p">
             <div class="mi_mastertag_box">
                 <div class="ps-product__thumbnail">
