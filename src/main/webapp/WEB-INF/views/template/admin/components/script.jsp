@@ -72,7 +72,14 @@
 <script src="${pageContext.servletContext.contextPath}/dist/js/demo.js"></script>
 <script>
 	let path = $(location).attr('pathname');
-	let element = $('a[href="'+path+'"]')
+
+	function getElement(path) {
+		var splitedPath = path.split('/')
+		if(splitedPath[2]) return  $('a[href="'+"/"+splitedPath[1]+"/"+splitedPath[2]+'"]');
+		else return $('a[href="'+"/"+splitedPath[1]+'"]');
+	}
+
+	let element = getElement(path);
 	let data = element.parent().parent().parent();
 	if (data.attr("class").includes("mt-2")){
 		element.addClass('active');

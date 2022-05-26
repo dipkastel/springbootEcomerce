@@ -25,17 +25,26 @@ public class Tag {
     private  Long id;
 
     private String name;
-    private String slug;
-    private String description;
-    private Boolean MasterTag;
+    private String slug="";
+    private String description="";
+    private Boolean masterTag=false;
+    private Long image_id;
 
 
     @ManyToMany
     @ToString.Exclude
     private Set<Product> products = new HashSet<>();
 
-    @OneToOne(targetEntity = ImageGallery.class, cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "image_id")
     @Nullable
     private ImageGallery image;
 
+    public void setTag(Tag tag) {
+        this.setName(tag.name);
+        this.setSlug(tag.slug);
+        this.setDescription(tag.description);
+        this.setMasterTag(tag.masterTag);
+        this.setImage(tag.image);
+    }
 }

@@ -48,8 +48,6 @@ public class AdminTagController {
 
 	@GetMapping(value = "/tag/edit")
 	public String edit(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model) {
-//		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//		model.addAttribute("user", userDetails.getUser());
 		model.addAttribute("tag", tagService.findById(id));
 		return "template/admin/tag/form-edit-tag";
 	}
@@ -57,7 +55,7 @@ public class AdminTagController {
 	@PostMapping(value = "/tag/update")
 	public String update(Tag tag, Locale locale, Model model, HttpServletRequest request) {
 		Tag b = tagService.findById(tag.getId());
-		b.setName(tag.getName());
+		b.setTag(tag);
 		tagService.save(b);
 		String message = (String) request.getSession().getAttribute("message");
 		request.getSession().setAttribute("message", "Update success !");
