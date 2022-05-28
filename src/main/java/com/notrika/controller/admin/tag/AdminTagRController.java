@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api", produces = "application/json", headers = "Accept=*/*")
+@RequestMapping(path = "/api/tag", produces = "application/json", headers = "Accept=*/*")
 @CrossOrigin(origins = "*")
 public class AdminTagRController {
 
@@ -20,14 +20,14 @@ public class AdminTagRController {
 		this.tagService = _tagService;
 	}
 
-	@GetMapping("/tag/all")
+	@GetMapping("/all")
 	public PaginationResult<Tag> getAll(Authentication authentication, @RequestParam(name = "page",defaultValue = "1") Long page, @RequestParam(name = "per_page",defaultValue = "10") Long per_page) {
 		PaginationResult result = new PaginationResult();
 		result.data = tagService.findByPagination(page-1,per_page);
 		result.count = tagService.findAllCount();
 		return result;
 	}
-	@GetMapping("/tag/delete")
+	@GetMapping("/delete")
 	public void delete(Authentication authentication, @RequestParam(name = "id") Long id) {
 		tagService.delete(id);
 	}

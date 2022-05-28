@@ -14,7 +14,7 @@
             controller: {
                 loadData: function(filter) {
                     var deferred = $.Deferred();
-                    $.get("/admin/product/products?page="+filter.pageIndex+"&&per_page="+filter.pageSize)
+                    $.get("/api/product/all?page="+filter.pageIndex+"&&per_page="+filter.pageSize)
                         .done(function (_data) {
                             console.log(_data);
 

@@ -44,6 +44,11 @@
             },
             {name: "description", type: "text", width: 300},
             {type: "checkbox", title: "master", name: "masterTag", width: 50},
+            { name: "image", type: "text", width: 60,itemTemplate: function(value) {
+                    if(value)
+                        return "<img src='data:image/image/png;base64,"+value.image+"' height='60' width='60'/>";
+                    else return ""
+                }},
             {
                 type: "control", itemTemplate: function (value, item,grid,a) {
                     return $("<button>").text("edit").addClass("btn btn-primary").click(function (arg) {
@@ -51,11 +56,6 @@
                     });
                 }, width: 60
             },
-            { name: "image", type: "text", width: 60,itemTemplate: function(value) {
-                    if(value)
-                        return "<img src='data:image/image/png;base64,"+value.image+"' height='60' width='60'/>";
-                    else return ""
-            }},
             {
                 type: "control", itemTemplate: function (value, item) {
                     return $("<button>").text("delete").addClass("btn btn-danger").click(function (arg) {

@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="${pageContext.servletContext.contextPath}/admin/menus"
+                            <a href="${pageContext.servletContext.contextPath}/admin/menu"
                                class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>منو ها</p>

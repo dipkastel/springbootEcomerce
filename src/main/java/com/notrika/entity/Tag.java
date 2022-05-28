@@ -28,7 +28,6 @@ public class Tag {
     private String slug="";
     private String description="";
     private Boolean masterTag=false;
-    private Long image_id;
 
 
     @ManyToMany
