@@ -2,7 +2,16 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="components/head.jsp"></jsp:include>
+<jsp:include page="../common/head.jsp">
+	<jsp:param name="pageTitle" value="notrika | dashboard" />
+	<jsp:param name="admintheme" value="true" />
+	<jsp:param name="dataTable" value="true" />
+	<jsp:param name="icheck" value="false" />
+	<jsp:param name="JQVMap" value="false" />
+	<jsp:param name="jsgrid" value="false" />
+	<jsp:param name="daterangePicker" value="false" />
+	<jsp:param name="summernote" value="false" />
+</jsp:include>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 		<div
@@ -13,8 +22,8 @@
 
 		</div>
 <%--		<jsp:include page="common/loading.jsp"></jsp:include>--%>
-		<jsp:include page="components/nav-bar.jsp"></jsp:include>
-		<jsp:include page="components/side-bar.jsp"></jsp:include>
+		<jsp:include page="../components/nav-bar.jsp"></jsp:include>
+		<jsp:include page="../components/side-bar.jsp"></jsp:include>
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -256,7 +265,7 @@
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
-		<jsp:include page="components/footer.jsp"></jsp:include>
+		<jsp:include page="../components/footer.jsp"></jsp:include>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Control sidebar content goes here -->
@@ -264,119 +273,18 @@
 		<!-- /.control-sidebar -->
 	</div>
 	<!-- ./wrapper -->
-	<jsp:include page="components/script.jsp"></jsp:include>
-	<!-- ChartJS -->
-	<script
-		src="${pageContext.servletContext.contextPath}/plugins-admin/chart.js/Chart.min.js"></script>
-	<script>
-		$(function() {
-			'use strict'
-
-			var ticksStyle = {
-				fontColor : '#495057',
-				fontStyle : 'bold'
-			}
-			var mode = 'index'
-			var intersect = true
-
-			var priceLastYear = $('#priceLastYear');
-			var arrLastYear = priceLastYear[0].value.replace("[", "").replace(
-					"]", "").split(",");
-
-			var priceThisYear = $('#priceThisYear');
-			var arrThisYear = priceThisYear[0].value.replace("[", "").replace(
-					"]", "").split(",");
-
-			var $salesChart = $('#sales-chart');
-			// eslint-disable-next-line no-unused-vars
-			var salesChart = new Chart($salesChart, {
-				type : 'bar',
-				data : {
-					labels : [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
-							'AGU', 'SEP', 'OCT', 'NOV', 'DEC' ],
-					datasets : [
-							{
-								backgroundColor : '#007bff',
-								borderColor : '#007bff',
-								data : [ arrThisYear[0], arrThisYear[1],
-										arrThisYear[2], arrThisYear[3],
-										arrThisYear[4], arrThisYear[5],
-										arrThisYear[6], arrThisYear[7],
-										arrThisYear[8], arrThisYear[9],
-										arrThisYear[10], arrThisYear[11] ]
-							},
-							{
-								backgroundColor : '#ced4da',
-								borderColor : '#ced4da',
-								data : [ arrLastYear[0], arrLastYear[1],
-										arrLastYear[2], arrLastYear[3],
-										arrLastYear[4], arrLastYear[5],
-										arrLastYear[6], arrLastYear[7],
-										arrLastYear[8], arrLastYear[9],
-										arrLastYear[10], arrLastYear[11] ]
-							} ]
-				},
-				options : {
-					maintainAspectRatio : false,
-					tooltips : {
-						mode : mode,
-						intersect : intersect
-					},
-					hover : {
-						mode : mode,
-						intersect : intersect
-					},
-					legend : {
-						display : false
-					},
-					scales : {
-						yAxes : [ {
-							// display: false,
-							gridLines : {
-								display : true,
-								lineWidth : '4px',
-								color : 'rgba(0, 0, 0, .2)',
-								zeroLineColor : 'transparent'
-							},
-							ticks : $.extend({
-								beginAtZero : true,
-
-								// Include a dollar sign in the ticks
-								callback : function(value) {
-									if (value >= 1000) {
-										value /= 1000
-										value += 'k'
-									}
-
-									return '$' + value
-								}
-							}, ticksStyle)
-						} ],
-						xAxes : [ {
-							display : true,
-							gridLines : {
-								display : false
-							},
-							ticks : ticksStyle
-						} ]
-					}
-				}
-			})
-		});
-	</script>
-	<script>
-		$(function() {
-			$("#example1").DataTable(
-					{
-						"sort" : false,
-						"responsive" : true,
-						"lengthChange" : false,
-						"autoWidth" : false,
-						"buttons" : [ "copy", "csv", "excel", "pdf", "print",
-								"colvis" ]
-					}).buttons().container().appendTo(
-					'#example1_wrapper .col-md-6:eq(0)');
-		});
-	</script>
+	<jsp:include page="../components/script.jsp">
+		<jsp:param name="admintheme" value="true" />
+		<jsp:param name="bootstrap" value="false" />
+		<jsp:param name="dataTable" value="true" />
+		<jsp:param name="Sparkline" value="false" />
+		<jsp:param name="JQVMap" value="false" />
+		<jsp:param name="KnobChart" value="false" />
+		<jsp:param name="jsgrid" value="false" />
+		<jsp:param name="daterangePicker" value="false" />
+		<jsp:param name="summernote" value="false" />
+		<jsp:param name="Chart" value="true" />
+	</jsp:include>
+	<script src="js/dashboard.js"/>
 </body>
 </html>

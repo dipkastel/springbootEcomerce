@@ -85,6 +85,14 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
         <!-- restful -->
+        <!-- restful -->
+        <dependency>
+            <groupId>com.googlecode.rapid-framework</groupId>
+            <artifactId>rapid-core</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+        <!-- restful -->
+
 
 
         <!--CKFinder start -->

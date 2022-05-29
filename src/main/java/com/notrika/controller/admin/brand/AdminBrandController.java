@@ -1,7 +1,7 @@
-package com.notrika.controller.admin;
+package com.notrika.controller.admin.brand;
 
-import com.notrika.entity.Category;
-import com.notrika.service.CategoryService;
+import com.notrika.entity.Brand;
+import com.notrika.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,60 +14,60 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
-
 @Controller
 @RequestMapping("/admin")
-public class AdminCategoryController {
+public class AdminBrandController {
 
 
-	private final CategoryService categoryService;
+	private final BrandService brandService;
 
 	@Autowired
-	public AdminCategoryController(CategoryService categoryService) {
-		this.categoryService = categoryService;
+	public AdminBrandController(BrandService brandService) {
+		this.brandService = brandService;
 	}
 
-	@GetMapping("/category")
+	@GetMapping("/brand")
 	public String show(Authentication authentication, Model model) {
 
-		model.addAttribute("list", categoryService.findAll());
+		model.addAttribute("list", brandService.findAll());
 //		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 //		model.addAttribute("user", userDetails.getUser());
-		return "template/admin/category/list-category";
+		return "template/admin/brand/list-brand";
 	}
 	
-	@GetMapping(value = "/category/new")
+	@GetMapping(value = "/brand/new")
 	public String newType(Authentication authentication, Locale locale, Model model) {
 
-		model.addAttribute("category", new Category());
+		model.addAttribute("brand", new Brand());
 //		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 //		model.addAttribute("user", userDetails.getUser());
-		return "template/admin/category/form-add-category";
+		return "template/admin/brand/form-add-brand";
 	}
 
-	@PostMapping(value = "/category/new")
-	public String saveType(Category category, Locale locale, Model model, HttpServletRequest request) {
-		categoryService.save(category);
+	@PostMapping(value = "/brand/new")
+	public String saveType(Brand brand, Locale locale, Model model,HttpServletRequest request) {
+		brandService.save(brand);
 		String message = (String) request.getSession().getAttribute("message");
 		request.getSession().setAttribute("message", "Submit success !");
-		return "redirect:/admin/category";
+		return "redirect:/admin/brand";
 	}
 
-	@GetMapping(value = "/category/edit")
+	@GetMapping(value = "/brand/edit")
 	public String edit(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model) {
 //		UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 //		model.addAttribute("user", userDetails.getUser());
-		model.addAttribute("category", categoryService.findById(id));
-		return "template/admin/category/form-edit-category";
+		model.addAttribute("brand", brandService.findById(id));
+		return "template/admin/brand/form-edit-brand";
 	}
 
-	@PostMapping(value = "/category/update")
-	public String update(Category category, Locale locale, Model model,HttpServletRequest request) {
-		Category c = categoryService.findById(category.getId());
-		c.setName(category.getName());
-		categoryService.save(c);
+	@PostMapping(value = "/brand/update")
+	public String update(Brand brand, Locale locale, Model model, HttpServletRequest request) {
+		Brand b = brandService.findById(brand.getId());
+		b.setName(brand.getName());
+		brandService.save(b);
 		String message = (String) request.getSession().getAttribute("message");
-		request.getSession().setAttribute("message", "Submit success !");
-		return "redirect:/admin/category";
+		request.getSession().setAttribute("message", "Update success !");
+
+		return "redirect:/admin/brand";
 	}
 }

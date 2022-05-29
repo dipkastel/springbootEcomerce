@@ -1,4 +1,4 @@
-package com.notrika.controller.admin.settings.Import;
+package com.notrika.controller.admin.settings.importSetting;
 
 import com.notrika.controller.admin.product.AdminProductController;
 import com.notrika.entity.req._req_import_conf;

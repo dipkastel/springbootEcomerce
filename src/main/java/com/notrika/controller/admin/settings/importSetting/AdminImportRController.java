@@ -1,4 +1,4 @@
-package com.notrika.controller.admin.settings.Import;
+package com.notrika.controller.admin.settings.importSetting;
 
 import com.notrika.entity.*;
 import com.notrika.helper.Wp;

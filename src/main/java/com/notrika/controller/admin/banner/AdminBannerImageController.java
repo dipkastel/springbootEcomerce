@@ -1,4 +1,4 @@
-package com.notrika.controller.admin;
+package com.notrika.controller.admin.banner;
 
 import java.io.IOException;
 import java.util.List;

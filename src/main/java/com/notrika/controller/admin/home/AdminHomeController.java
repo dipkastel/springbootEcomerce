@@ -1,4 +1,4 @@
-package com.notrika.controller.admin;
+package com.notrika.controller.admin.home;
 
 import com.notrika.entity.Product;
 import com.notrika.service.ContactService;
@@ -73,6 +73,6 @@ public class AdminHomeController {
 		List<Product> list = new ArrayList<>();
 		productService.findTop5().forEach(pid->list.add(productService.findById(pid)));
 		model.addAttribute("topProducts", list);
-		return "template/admin/index";
+		return "template/admin/dashboard/index";
 	}
 }
