@@ -58,7 +58,7 @@
   // Checkboxes
 
   $container.append(
-    '<h5>تنظیمات بخش</h5><hr class="mb-2"/>'
+      '<h5>تنظیمات بخش</h5><hr class="mb-2"/>'
   )
 
   var $dark_mode_checkbox = $('<input />', {

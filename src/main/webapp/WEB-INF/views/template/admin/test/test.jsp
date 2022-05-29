@@ -18,23 +18,24 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <jsp:include page="../common/loading.jsp"></jsp:include>
-    <jsp:include page="../components/nav-bar.jsp"></jsp:include>
+    <jsp:include page="../components/nav-bar.jsp">
+        <jsp:param name="controlSidebar" value="true" />
+    </jsp:include>
     <jsp:include page="../components/side-bar.jsp"></jsp:include>
     <div class="content-wrapper" style="min-height: 1299.69px;">
-
 
     </div>
     <jsp:include page="../components/footer.jsp"></jsp:include>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
+
     </aside>
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 <jsp:include page="../components/script.jsp">
     <jsp:param name="admintheme" value="true" />
-    <jsp:param name="bootstrap" value="false" />
+    <jsp:param name="bootstrap" value="true" />
     <jsp:param name="dataTable" value="false" />
     <jsp:param name="Sparkline" value="false" />
     <jsp:param name="JQVMap" value="false" />

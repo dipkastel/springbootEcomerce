@@ -1,3 +1,4 @@
+<script>
 $(function() {
     'use strict'
 
@@ -105,3 +106,4 @@ $(function() {
         }).buttons().container().appendTo(
         '#example1_wrapper .col-md-6:eq(0)');
 });
+</script>

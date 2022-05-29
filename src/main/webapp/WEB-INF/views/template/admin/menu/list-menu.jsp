@@ -1,15 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="../components/head.jsp"></jsp:include>
+<head>
+    <jsp:include page="../common/head.jsp">
+        <jsp:param name="pageTitle" value="notrika | baseSettings"/>
+        <jsp:param name="admintheme" value="true"/>
+        <jsp:param name="jstree" value="true"/>
+    </jsp:include>
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <!-- Preloader -->
-
     <jsp:include page="../common/loading.jsp"></jsp:include>
-    <jsp:include page="../components/nav-bar.jsp"></jsp:include>
+    <jsp:include page="../components/nav-bar.jsp">
+        <jsp:param name="controlSidebar" value="true"/>
+    </jsp:include>
     <jsp:include page="../components/side-bar.jsp"></jsp:include>
     <div class="content-wrapper" style="min-height: 1299.69px;">
+
+
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -26,111 +37,46 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
-                        <!-- /.card -->
-                        <div class="card">
+                    <div class="col-6">
+                        <div id="jstree-card" class="card card-outline card-primary">
                             <div class="card-header">
+                                <input type="button" id="add_default" value="add menu">
+                                <div class="card-tools">
+                                    <input type="button" id="clear_search" value="clear">
+                                    <input type="button" id="search" value="search">
+                                    <input type="text" id="text" value="">
+                                </div>
+                                <!-- /.card-tools -->
 
-                                <a href="#modal-add-menu" data-toggle="modal" data-target="#modal-add-menu"
-                                   class="btn btn-success">Add menu Item</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-
-
-                                <div id="nested" class="row">
-                                    <div id="ActiveMenu" class="list-group col nested-sortable">
-
-                                    </div>
-                                    <div id="DeactiveMenu" class="list-group col nested-sortable">
-
-                                    </div>
-                                </div>
-
-
+                                <div id="jstree"></div>
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
+                    </div>
+                    <div class="col-6">
+                        <div id="item-card" class="card card-outline card-primary" style="display: none;">
+                            <div class="card-header">
+                                <h3 class="card-title">Primary Outline</h3>
 
-
-                        <div class="modal fade" id="modal-add-menu">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
-                                    <div class="modal-header danger">
-                                        <h4 class="modal-title">Add menu item</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div id="modal_add_bady" class="modal-body">
-                                        <div class="form-group">
-                                            <label for="add-name">Name</label>
-                                            <input type="text" class="form-control" id="add-name" name="name"
-                                                   placeholder="Enter name" maxlength="20">
-                                            <span id="add-name-error" class="error invalid-feedback"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="add-url">url</label>
-                                            <input type="text" class="form-control" id="add-url" name="name"
-                                                   placeholder="Enter url" maxlength="20">
-                                            <span id="add-url-error" class="error invalid-feedback"></span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                        </button>
-                                        <button id="submit_modal_add" type="button" class="btn btn-primary">add</button>
-                                    </div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i>
+                                    </button>
                                 </div>
-                                <!-- /.modal-content -->
+                                <!-- /.card-tools -->
                             </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <div class="modal fade" id="modal-update-menu">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
-                                    <div class="modal-header danger">
-                                        <h4 class="modal-title">Add menu item</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div id="modal_update_bady" class="modal-body">
-                                        <input type="text" class="form-control" id="update-id" name="id"
-                                               maxlength="20" hidden>
-                                        <input type="text" class="form-control" id="update-parent-id" name="parent_id"
-                                               maxlength="20" hidden>
-                                        <input type="text" class="form-control" id="update-active" name="active"
-                                               maxlength="20" hidden>
-                                        <div class="form-group">
-                                            <label for="add-name">Name</label>
-                                            <input type="text" class="form-control" id="update-name" name="name"
-                                                   placeholder="Enter name" maxlength="20">
-                                            <span id="update-name-error" class="error invalid-feedback"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="add-url">url</label>
-                                            <input type="text" class="form-control" id="update-url" name="name"
-                                                   placeholder="Enter url" maxlength="20">
-                                            <span id="update-url-error" class="error invalid-feedback"></span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                        </button>
-                                        <button id="submit_modal_update" type="button" class="btn btn-primary">update
-                                        </button>
-                                        <button id="submit_modal_delete" type="button" class="btn btn-danger">delete
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- /.modal-content -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                The body of the card
                             </div>
-                            <!-- /.modal-dialog -->
+                            <!-- /.card-body -->
                         </div>
-
-
                     </div>
                     <!-- /.col -->
                 </div>
@@ -139,192 +85,168 @@
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
+
+
     </div>
     <jsp:include page="../components/footer.jsp"></jsp:include>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
+
     </aside>
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<jsp:include page="../components/script.jsp"></jsp:include>
-<script
-        src="${pageContext.servletContext.contextPath}/plugins-admin/sortable/Sortable.js"></script>
-<%--	<script--%>
-<%--			src="${pageContext.servletContext.contextPath}/plugins-admin/sortable/Sortable.js"></script>--%>
-<%--	<script--%>
-<%--			src="${pageContext.servletContext.contextPath}/plugins-admin/sortable/Sortable.js"></script>--%>
-
-<%--	<script type="text/javascript" src="st/prettify/prettify.js"></script>--%>
-<%--	<script type="text/javascript" src="st/prettify/run_prettify.js"></script>--%>
-
+<jsp:include page="../components/script.jsp">
+    <jsp:param name="admintheme" value="true"/>
+    <jsp:param name="bootstrap" value="true"/>
+    <jsp:param name="jstree" value="true"/>
+</jsp:include>
 <script>
-    getData();
+    $(function () {
+        initJsTree();
+    });
 
-
-    function toSortable() {
-        var nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
-
-        // Loop through each nested sortable element
-        for (var i = 0; i < nestedSortables.length; i++) {
-            new Sortable(nestedSortables[i], {
-                group: 'shared',
-                animation: 150,
-                fallbackOnBody: false,
-                swapThreshold: 0.25,
-                ghostClass: 'drag-ghost',
-                setData: function (e) {
-                },
-                onUpdate: function (evt) {
-                    console.log(evt);
-                },
-                onChange: function (evt) {
-                    evt.newIndex;
-                },
-                onEnd: function (evt) {
-                    updateItem(evt)
-                }
-
-
-            });
-        }
-
-
-    }
-
-    function getData() {
-        $.get("/api/menu/all")
-            .done(function (_data) {
-                $("#ActiveMenu").html(getSubmenus(_data, true))
-                $("#DeactiveMenu").html(getSubmenus(_data, false))
-                toSortable();
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            });
-    }
-
-    function getSubmenus(data, ActiveStatus) {
-        var result = "";
-        for (var i = 0; i < data.length; i++) {
-            var item = data[i];
-            var subMenus = ""
-            if (item.subMenu.length > 0) {
-                subMenus = getSubmenus(item.subMenu, ActiveStatus)
-            }
-            if (item.active === ActiveStatus) {
-                if (item.active) {
-                    result += '<div id="' + item.id + '" class="list-group-item nested-1" onclick="clickOnItem(' + item.id + ')">' + item.name + '<div class="list-group nested-sortable">' + subMenus + '</div></div>';
-                } else {
-                    result += '<div id="' + item.id + '" class="list-group-item nested-1" onclick="clickOnItem(' + item.id + ')">' + item.name + '</div>';
-                }
-            }
-
-        }
-        return result
-    }
-
-    function clickOnItem(item) {
-
-        $.get("/api/menu/get?id=" + item)
-            .done(function (_data) {
-                $("#update-id").val(_data.id);
-                $("#update-name").val(_data.name);
-                $("#update-url").val(_data.url);
-                $("#update-parent-id").val(_data.parent_id);
-                $("#update-active").val(_data.active);
-                $("#modal-update-menu").modal();
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            });
-        console.log(item);
-    }
-
-    $("#submit_modal_add").click(function (e) {
-        $.post("${pageContext.servletContext.contextPath}/api/menu/add",
-            {
-                name:$("#add-name").val(),
-                url: $("#add-url").val()
-            })
-            .done(function (data) {
-                getData();
-                $("#add-name").val("");
-                $("#add-url").val("");
-                $("#modal-add-menu").modal('hide');
-
-            }).fail(function (e) {
-            console.log(e);
+    function getjsTreeItem(_data) {
+        var result = [];
+        _data.forEach(function (item) {
+            result.push(
+                {
+                    "id": item.id,
+                    "text": item.name,
+                    "children": getjsTreeItem(item.subMenu),
+                    "type":item.id%2===0?"hasan":"default1"
+                });
         })
-    })
-    $("#submit_modal_update").click(function (e) {
+        return result;
+    }
 
-        $.post("${pageContext.servletContext.contextPath}/api/menu/update",
-            {
-                id:$("#update-id").val(),
-                name:$("#update-name").val(),
-                url: $("#update-url").val(),
-                active: $("#update-active").val(),
-                Parent_id: $("#update-parent-id").val()
+    function initJsTree() {
+        $('#jstree')
+            .jstree({
+                'core': {
+                    'data': function (obj, callback) {
+
+                        $.get("/api/menu/all")
+                            .done(function (data) {
+                                callback.call(this, getjsTreeItem(data));
+                            })
+                            .fail(function (jqXHR, textStatus, errorThrown) {
+                                console.log(jqXHR);
+                            });
+                    },
+                    'strings': {
+                        'Loading ...': 'صبر کنید ...'
+                    },
+                    'check_callback': function (operation, node, node_parent, node_position, more) {
+
+                        return operation === 'rename_node';
+                    },
+                    'multiple': false,
+                    'themes': {
+                        "icons": true
+                    }
+                },
+                "types": {
+                    "max_children" : -2,
+                    "max_depth" : -2,
+                    "start_drag" : true,
+                    "move_node" : true,
+                    "delete_node" : true,
+                    "remove" : true,
+
+                    "default1": {
+                        "icon": "/static/img/Angry-Nerds-1.png",
+                        "valid_children" : [ "default1" ],
+                        "plugins": [
+                            "checkbox"
+                        ],
+                        "max_children" : -2,
+                        "max_depth" : -2,
+                        "start_drag" : true,
+                        "move_node" : true,
+                        "delete_node" : true,
+                        "remove" : true,
+                    },
+                    "hasan": {
+                        "icon": "/static/img/marker.png",
+                        "valid_children" : [ "default1" ],
+                        "plugins": [
+                            "checkbox"
+                        ],
+                        "max_children" : -2,
+                        "max_depth" : -2,
+                        "start_drag" : true,
+                        "move_node" : true,
+                        "delete_node" : true,
+                        "remove" : true,
+                    }
+                },
+                "plugins": [
+                    "contextmenu", "search", "dnd", "sort", "unique", "changed",
+                    "state", "types", "wholerow", "massload","dnd"
+                ]
             })
-            .done(function (data) {
-                getData();
-                $("#modal-update-menu").modal('hide');
-            }).fail(function (e) {
-            console.log(e);
-        })
-    })
-    $("#submit_modal_delete").click(function (e) {
-        $.ajax( {
-            url : "${pageContext.servletContext.contextPath}/api/menu/delete?id="+$("#update-id").val(),
-            type : 'DELETE',
-            success : function ( data ) {
-                getData();
-                $("#modal-update-menu").modal('hide');
-            },
-            error : function ( jqXhr, textStatus, errorMessage ) {
+            .bind("move_node.jstree", function (e, data) {
                 console.log(e);
-            }
-        });
-    })
-    function updateItem(evt){
-
-        $.get("/api/menu/get?id=" + evt.item.id)
-            .done(function (_data) {
-                if(evt.item.parentElement.id==="ActiveMenu"){
-                    _data.parent_id = null
-                    _data.active = true
-                }else if(evt.item.parentElement.id==="DeactiveMenu"){
-                    _data.parent_id = null
-                    _data.active = false
-                }else{
-                    _data.parent_id = evt.item.parentElement.parentElement.id
-                    _data.active = true
-                }
-
-                $.post("${pageContext.servletContext.contextPath}/api/menu/update",
-                    _data)
-                    .done(function (data) {
-                        getData();
-                    }).fail(function (e) {
-                    console.log(e);
-                })
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
+                console.log(data);
             });
-        // console.log(evt);
-        // var itemEl = evt.item;  // dragged HTMLElement
-        // evt.to;    // target list
-        // evt.from;  // previous list
-        // evt.oldIndex;  // element's old index within old parent
-        // evt.newIndex;  // element's new index within new parent
-        // evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
-        // evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
-        // evt.clone // the clone element
-        // evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
+
+
+        //     .jstree({
+        //     "types": {
+        //         "#": {
+        //             "max_children": 1,
+        //             "max_depth": 4,
+        //             "valid_children": ["root"]
+        //         },
+        //         "root": {
+        //             "valid_children": ["default"]
+        //         },
+        //         "default": {
+        //             "icon": "/static/img/marker.png",
+        //             "valid_children": ["default", "file"]
+        //         }
+        //     },
+        //     "plugins" : [
+        //         "contextmenu", "dnd", "search",
+        //         "state", "types", "wholerow"
+        //     ]
+        // });
+        // $('#jstree').on("changed.jstree", function (e, data) {
+        //     console.log(data.selected);
+        //     $("#item-card").show()
+        // });
     }
+
+    //
+    // function getData() {
+    //     $.get("/api/menu/all")
+    //         .done(function (_data) {
+    //
+    //             $("#jstree").html(getSubmenus(_data, true))
+    //             initJsTree();
+    //         })
+    //         .fail(function (jqXHR, textStatus, errorThrown) {
+    //             console.log(jqXHR);
+    //         });
+    // }
+    //
+    // function getSubmenus(data, ActiveStatus) {
+    //     var result = "<ul>";
+    //     for (var i = 0; i < data.length; i++) {
+    //         var item = data[i];
+    //         var subMenus = ""
+    //         if (item.subMenu.length > 0) {
+    //             subMenus = getSubmenus(item.subMenu, ActiveStatus)
+    //         }
+    //         result += '<li id="' + item.id + '">' + item.name + subMenus + '</li>';
+    //         // if (item.active === ActiveStatus) {
+    //         // }
+    //
+    //     }
+    //     result += "</ul>"
+    //     return result
+    // }
 </script>
 </body>
 </html>

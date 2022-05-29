@@ -1,7 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="../components/head.jsp"></jsp:include>
+<head>
+    <jsp:include page="../common/head.jsp">
+        <jsp:param name="pageTitle" value="notrika | baseSettings" />
+        <jsp:param name="admintheme" value="true" />
+        <jsp:param name="dataTable" value="false" />
+        <jsp:param name="icheck" value="false" />
+        <jsp:param name="JQVMap" value="false" />
+        <jsp:param name="jsgrid" value="false" />
+        <jsp:param name="daterangePicker" value="false" />
+        <jsp:param name="summernote" value="false" />
+    </jsp:include>
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <!-- Preloader -->
@@ -112,7 +123,17 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<jsp:include page="../components/script.jsp"></jsp:include>
+<jsp:include page="../components/script.jsp">
+    <jsp:param name="admintheme" value="true" />
+    <jsp:param name="bootstrap" value="true" />
+    <jsp:param name="dataTable" value="false" />
+    <jsp:param name="Sparkline" value="false" />
+    <jsp:param name="JQVMap" value="false" />
+    <jsp:param name="KnobChart" value="false" />
+    <jsp:param name="jsgrid" value="false" />
+    <jsp:param name="daterangePicker" value="false" />
+    <jsp:param name="summernote" value="false" />
+</jsp:include>
 <script>
     $('#name').change(function (param){
        console.log(param)

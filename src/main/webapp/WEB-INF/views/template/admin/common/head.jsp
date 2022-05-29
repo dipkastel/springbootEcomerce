@@ -28,10 +28,13 @@
 </c:when></c:choose>
 <c:choose><c:when test="${param.summernote =='true'}">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/summernote/summernote-bs4.min.css">
-    <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 </c:when></c:choose>
+<c:choose><c:when test="${param.jstree =='true'}">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/vakata-jstree/dist/themes/default/style.min.css">
+</c:when></c:choose>
 <c:choose><c:when test="${param.admintheme =='true'}">
+    <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/dist/css/adminlte.min.css">
 </c:when></c:choose>

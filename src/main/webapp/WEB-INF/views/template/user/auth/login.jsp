@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<jsp:include page="../components/head.jsp"></jsp:include>
+<head>
+    <jsp:include page="../components/head.jsp"></jsp:include>
+</head>
 
 <body>
 <jsp:include page="../components/header.jsp"></jsp:include>

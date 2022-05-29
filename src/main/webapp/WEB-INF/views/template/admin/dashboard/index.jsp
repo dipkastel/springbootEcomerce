@@ -285,6 +285,6 @@
 		<jsp:param name="summernote" value="false" />
 		<jsp:param name="Chart" value="true" />
 	</jsp:include>
-	<script src="js/dashboard.js"/>
+	<jsp:include page="js/dashboard.jsp"/>
 </body>
 </html>
