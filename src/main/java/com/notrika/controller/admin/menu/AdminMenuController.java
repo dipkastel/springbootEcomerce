@@ -19,8 +19,9 @@ import java.util.Locale;
 public class AdminMenuController {
 
 	@GetMapping("/menu")
-	public String get(Authentication authentication, Model model) {
-		return "template/admin/menu/list-menu";
+	public String menu(Authentication authentication, Model model) {
+		return "template/admin/menu/menu";
 	}
+
 
 }

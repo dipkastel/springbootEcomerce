@@ -17,21 +17,16 @@ import java.util.stream.Collectors;
 public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
 
 
-    private final CategoryService categoryService;
-    private final BrandService brandService;
-    private final ProductService productService;
-    private final TypeService typeService;
     private final UserService userService;
     private final UserHelper userHelper;
+    private final MenuService menuService;
 
     @Autowired
-    public ControllerAdvisor(CategoryService categoryService, BrandService brandService, ProductService productService, TypeService typeService,UserService userService,UserHelper userHelper) {
-        this.categoryService = categoryService;
-        this.brandService = brandService;
-        this.productService = productService;
-        this.typeService = typeService;
+    public ControllerAdvisor(UserService userService,UserHelper userHelper,MenuService menuService) {
+
         this.userService = userService;
         this.userHelper = userHelper;
+        this.menuService = menuService;
     }
 
 
@@ -40,55 +35,60 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
         return userHelper.getUser(authentication,userService);
     }
 
-    @ModelAttribute("categories")
-    public List<Category> categories(){
-        return  categoryService.findAll().stream().filter(p->p.getParentId()==null).collect(Collectors.toList());
-    }
+//    @ModelAttribute("categories")
+//    public List<Category> categories(){
+//        return  categoryService.findAll().stream().filter(p->p.getParentId()==null).collect(Collectors.toList());
+//    }
 
 
-    @ModelAttribute("brands")
-    public List<Brand> brands(){
-        return  brandService.findAll();
-    }
+//    @ModelAttribute("brands")
+//    public List<Brand> brands(){
+//        return  brandService.findAll();
+//    }
 
-
-
-    @ModelAttribute("brandsByCategory")
-    public Map<String, Set<Brand>> filterBrandByCategory(){
-        Map<String, Set<Brand>> map = new HashMap<>();
-        categoryService.findAll().forEach(c->{
-            Set<Brand> brands = new HashSet<>();
-//            productService.findByCategoriesContains(c.getId()).forEach(p->brands.add(p.getBrand()));
-            map.put(c.getName(),brands);
-        });
-        return map;
-    }
-
-    @ModelAttribute("typeByCategory")
-    public Map<String, Set<Type>> filterTypeByCategory(){
-        Map<String, Set<Type>> map = new HashMap<>();
-        categoryService.findAll().forEach(c->{
-            Set<Type> types = new HashSet<>();
-            typeService.findByCategoryId(c.getId()).forEach(t->types.add(t));
-            map.put(c.getName(),types);
-        });
-        return map;
+    @ModelAttribute("menu")
+    public List<Menu> brands(){
+        return  menuService.findAll();
     }
 
 
 
-    @ModelAttribute("allProducts")
-    public List<Product> allProducts(){
-        return productService.findAllIgnoreStatus();
-    }
+//    @ModelAttribute("brandsByCategory")
+//    public Map<String, Set<Brand>> filterBrandByCategory(){
+//        Map<String, Set<Brand>> map = new HashMap<>();
+//        categoryService.findAll().forEach(c->{
+//            Set<Brand> brands = new HashSet<>();
+////            productService.findByCategoriesContains(c.getId()).forEach(p->brands.add(p.getBrand()));
+//            map.put(c.getName(),brands);
+//        });
+//        return map;
+//    }
 
+//    @ModelAttribute("typeByCategory")
+//    public Map<String, Set<Type>> filterTypeByCategory(){
+//        Map<String, Set<Type>> map = new HashMap<>();
+//        categoryService.findAll().forEach(c->{
+//            Set<Type> types = new HashSet<>();
+//            typeService.findByCategoryId(c.getId()).forEach(t->types.add(t));
+//            map.put(c.getName(),types);
+//        });
+//        return map;
+//    }
 
-    @ModelAttribute("topProducts")
-    public List<Product> topProducts(){
-        List<Product> list = new ArrayList<>();
-        productService.findTop5().forEach(pid->list.add(productService.findById(pid)));
-        return list;
-    }
+//
+//
+//    @ModelAttribute("allProducts")
+//    public List<Product> allProducts(){
+//        return productService.findAllIgnoreStatus();
+//    }
+//
+//
+//    @ModelAttribute("topProducts")
+//    public List<Product> topProducts(){
+//        List<Product> list = new ArrayList<>();
+//        productService.findTop5().forEach(pid->list.add(productService.findById(pid)));
+//        return list;
+//    }
 
 
 

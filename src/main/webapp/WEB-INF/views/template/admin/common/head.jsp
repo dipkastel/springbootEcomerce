@@ -33,6 +33,9 @@
 <c:choose><c:when test="${param.jstree =='true'}">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/vakata-jstree/dist/themes/default/style.min.css">
 </c:when></c:choose>
+<c:choose><c:when test="${param.sweetalert2 =='true'}">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+</c:when></c:choose>
 <c:choose><c:when test="${param.admintheme =='true'}">
     <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins-admin/overlayScrollbars/css/OverlayScrollbars.min.css">

@@ -51,6 +51,9 @@
 <c:choose><c:when test="${param.jstree =='true'}">
     <script src="${pageContext.servletContext.contextPath}/plugins-admin/vakata-jstree/dist/jstree.js"></script>
 </c:when></c:choose>
+<c:choose><c:when test="${param.sweetalert2 =='true'}">
+    <script src="${pageContext.servletContext.contextPath}/plugins-admin/sweetalert2/sweetalert2.min.js"></script>
+</c:when></c:choose>
 <c:choose><c:when test="${param.admintheme =='true'}">
     <script src="${pageContext.servletContext.contextPath}/plugins-admin/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="${pageContext.servletContext.contextPath}/dist/js/adminlte.js"></script>

@@ -249,10 +249,7 @@
 	<i class="icon icon-arrow-up"></i>
 </div>
 <div class="ps-site-overlay"></div>
-<div id="loader-wrapper">
-	<div class="loader-section section-left"></div>
-	<div class="loader-section section-right"></div>
-</div>
+
 <div class="ps-search" id="site-search">
 	<a class="ps-btn--close" ></a>
 	<div class="ps-search__content">

@@ -9,14 +9,13 @@
          data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6"
          data-owl-item-lg="8" data-owl-item-xl="11"
          data-owl-duration="500" data-owl-mousedrag="on">
-        ${masterTags}
-        <c:forEach items="${masterTags}" var="p">
+        <c:forEach items="${superCat}" var="p">
             <div class="mi_mastertag_box">
                 <div class="ps-product__thumbnail">
-                    <a href="/section/detail/${p.slug}">
+                    <a href="/section/detail/${p.url}">
                         <img src="${pageContext.request.contextPath}/image/display/${p.image.id}" class="mi_circle_image">
 
-                        <small>${p.tagName}</small>
+                        <small>${p.name}</small>
                     </a>
 
                 </div>

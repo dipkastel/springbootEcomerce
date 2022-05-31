@@ -33,7 +33,6 @@ public class AdminMenuRController {
     }
     @PostMapping("/add")
     public void add( Menu menu,Model model, Authentication authentication) {
-        menu.setActive(false);
          menuService.save(menu);
     }
     @PostMapping("/update")

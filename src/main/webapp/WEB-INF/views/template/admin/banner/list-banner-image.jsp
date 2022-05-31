@@ -78,7 +78,7 @@
                                                         <td class="text-center">${b.id }</td>
                                                         <td class="text-center"><img
                                                                 src="${pageContext.request.contextPath}/banner/display/${b.id}"
-                                                                width="100px" height="100px"></td>
+                                                                 height="100px"></td>
                                                         <td class="project-actions text-center d-flex"
                                                             style="justify-content: center"> &nbsp;&nbsp;
                                                             <form action="${pageContext.request.contextPath}/admin/banner/delete"

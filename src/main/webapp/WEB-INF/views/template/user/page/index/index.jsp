@@ -16,66 +16,66 @@
     <jsp:include page="_mastertag.jsp"/>
     <jsp:include page="_banners.jsp"/>
 
-    <%--    top product--%>
-    <div class="ps-product-list ps-clothings">
-        <div class="ps-container">
+<%--    &lt;%&ndash;    top product&ndash;%&gt;--%>
+<%--    <div class="ps-product-list ps-clothings">--%>
+<%--        <div class="ps-container">--%>
 
-            <div class="ps-section__header">
-                <div class="ps-block--countdown-deal">
-                    <div class="ps-block__right">
-                        <figure>
-                            <figcaption>محصولات برتر</figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="ps-section__header">--%>
+<%--                <div class="ps-block--countdown-deal">--%>
+<%--                    <div class="ps-block__right">--%>
+<%--                        <figure>--%>
+<%--                            <figcaption>محصولات برتر</figcaption>--%>
+<%--                        </figure>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <c:set var="carouselProducts" value="${topProducts}" scope="request"/>
-            <jsp:include page="../../components/carousel-products.jsp"/>
+<%--            <c:set var="carouselProducts" value="${topProducts}" scope="request"/>--%>
+<%--            <jsp:include page="../../components/carousel-products.jsp"/>--%>
 
-        </div>
-    </div>
+<%--        </div>--%>
+<%--    </div>--%>
 
-    <%--    top product--%>
+<%--    &lt;%&ndash;    top product&ndash;%&gt;--%>
 
-    <c:forEach items="${categories}" var="c">
-        <c:if test="${not empty productByCategory[c.name]}">
-            <div class="ps-product-list ps-clothings">
-                <div class="ps-container">
-                    <div class="ps-section__header">
-                        <h3>${c.name}</h3>
-                        <ul class="ps-section__links">
-                            <li><a
-                                    href="${pageContext.servletContext.contextPath}/product?category=${c.id}">بیشتر
-                                ...</a></li>
-                        </ul>
-                    </div>
+<%--    <c:forEach items="${categories}" var="c">--%>
+<%--        <c:if test="${not empty productByCategory[c.name]}">--%>
+<%--            <div class="ps-product-list ps-clothings">--%>
+<%--                <div class="ps-container">--%>
+<%--                    <div class="ps-section__header">--%>
+<%--                        <h3>${c.name}</h3>--%>
+<%--                        <ul class="ps-section__links">--%>
+<%--                            <li><a--%>
+<%--                                    href="${pageContext.servletContext.contextPath}/product?category=${c.id}">بیشتر--%>
+<%--                                ...</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
 
-                    <c:set var="carouselProducts" value="${productByCategory[c.name]}" scope="request"/>
-                    <jsp:include page="../../components/carousel-products.jsp"/>
-
-
-                </div>
-            </div>
-        </c:if>
-    </c:forEach>
-    <c:if test="${not empty viewlist}">
-        <div class="ps-page--product">
-            <div class="ps-container">
-
-                <div class="ps-section__header">
-                    <h3>مشاهدات اخیر</h3>
-                </div>
-
-                <c:set var="carouselProducts" value="${viewlist}" scope="request"/>
-                <jsp:include page="../../components/carousel-products.jsp"/>
-
-            </div>
-        </div>
-    </c:if>
+<%--                    <c:set var="carouselProducts" value="${productByCategory[c.name]}" scope="request"/>--%>
+<%--                    <jsp:include page="../../components/carousel-products.jsp"/>--%>
 
 
-    <jsp:include page="_site-features.jsp"/>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
+<%--    </c:forEach>--%>
+<%--    <c:if test="${not empty viewlist}">--%>
+<%--        <div class="ps-page--product">--%>
+<%--            <div class="ps-container">--%>
+
+<%--                <div class="ps-section__header">--%>
+<%--                    <h3>مشاهدات اخیر</h3>--%>
+<%--                </div>--%>
+
+<%--                <c:set var="carouselProducts" value="${viewlist}" scope="request"/>--%>
+<%--                <jsp:include page="../../components/carousel-products.jsp"/>--%>
+
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </c:if>--%>
+
+
+<%--    <jsp:include page="_site-features.jsp"/>--%>
 </div>
 <jsp:include page="../../components/footer.jsp"/>
 <script>

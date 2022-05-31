@@ -67,8 +67,15 @@
                         <li class="nav-item">
                             <a href="${pageContext.servletContext.contextPath}/admin/menu"
                                class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>منو ها</p>
+                                <i class="nav-icon far fa-list-alt"></i>
+                                <p>منو اصلی</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.servletContext.contextPath}/admin/widget"
+                               class="nav-link">
+                                <i class="nav-icon far fa-clock"></i>
+                                <p>ویجت ها</p>
                             </a>
                         </li>
                     </ul>

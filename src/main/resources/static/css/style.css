@@ -7686,7 +7686,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .owl-carousel .owl-item img {
-  width: auto;
+  /*width: auto;*/
 }
 
 .owl-carousel .ps-product {
@@ -8022,7 +8022,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .ps-carousel--nav-inside .owl-nav .owl-prev {
+  background: hwb(0deg 100% 0% / 25%) !important;
   padding-right: 2px;
+  box-shadow: 0 0 15px 15px #ffffff44;
 }
 
 .ps-carousel--nav-inside .owl-nav .owl-next {
@@ -15223,11 +15225,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 10px 5px 15px;
   background-color: #fff;
   border-radius: 0px;
   transition: all 0.4s ease;
-  border: 1px solid #6ab9b7;
 }
 
 .mega-menu > * {
@@ -15244,10 +15244,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .mega-menu .mega-menu__column {
-  min-width: 180px;
-  border-width: 0 1px 0 0;
-  border-style: solid;
-  border-color: #ddd;
 }
 
 .mega-menu .mega-menu__list {
@@ -15256,11 +15252,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .mega-menu .mega-menu__list li a {
   display: block;
-  color: #000;
-  line-height: 20px;
-  padding: 5px 10px 5px 5px;
-  font-size: 14px;
-  margin: 3px 5px;
+  color: #666;
+  padding: 10px 10px 10px 10px;
   background-color: transparent;
 }
 
@@ -15292,10 +15285,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .mega-menu .mega-menu__list li a:hover {
-  color: #ffffff;
-  padding: 5px 15px 5px 5px;
-  margin: 3px 5px;
-  background: #82cbc9;
+  color: #ff01b1;
 }
 
 .menu {
@@ -15432,10 +15422,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .menu--product-categories .menu__toggle span {
   font-size: 20px;
-  color: #000;
-  font-size: 16px;
-  font-weight: 600;
-  margin-right: 10px;
+  color: #686868;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 40px;
 }
 
 .menu--product-categories .menu__toggle:before {
@@ -15445,6 +15435,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   right: 0;
   width: 100%;
   height: 1px;
+  display: none;
   background-color: #000;
   transition: transform 0.75s cubic-bezier(0.7, 0, 0.3, 1);
   transform: scale3d(0, 1, 1);
@@ -15463,7 +15454,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   z-index: 100;
   z-index: 1000;
   min-width: 100%;
-  padding-top: 2px;
   visibility: hidden;
   opacity: 0;
   transition: all .3s ease;
@@ -15472,9 +15462,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .menu--product-categories .menu--dropdown {
   background-color: #fff;
-  border: 1px solid #d3d3d3;
-  min-width: 260px;
+  border-radius: 5px;
+  min-width: 200px;
   text-align: right;
+  box-shadow: 0px 0px 20px #ddd;
 }
 
 .menu--product-categories .menu--dropdown > .has-mega-menu {
@@ -15488,17 +15479,19 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .menu--dropdown > li {
-  padding: 0 20px;
+  padding: 0 10px;
   transition: all .4s ease;
 }
 
 .menu--dropdown > li > a {
   display: block;
   padding: 10px 0;
+  color: #3d3d3d;
+  width: 100%;
 }
 
 .menu--dropdown > li > a:hover {
-  color: white;
+  color: #ff00b1;
 }
 
 .menu--dropdown > li > a i {
@@ -15508,18 +15501,18 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .menu--dropdown > li.has-mega-menu .mega-menu {
   position: absolute;
-  top: 0;
-  right: 100%;
+  top: 10px;
+  right: 60%;
   width: auto;
-  min-width: 530px;
+  border-radius: 5px;
+  min-width: 230px;
   visibility: hidden;
   opacity: 0;
-  /* border-left: none; */
+  box-shadow: 0 0 20px #ddd;
 }
 
 .menu--dropdown > li:hover {
-  background-color: #6ab9b7;
-  color: white;
+  color: #ff00b1;
 }
 
 .menu--dropdown > li:hover.has-mega-menu .mega-menu {
