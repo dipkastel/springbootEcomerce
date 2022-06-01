@@ -40,23 +40,23 @@
 
 <%--    <c:forEach items="${categories}" var="c">--%>
 <%--        <c:if test="${not empty productByCategory[c.name]}">--%>
-<%--            <div class="ps-product-list ps-clothings">--%>
-<%--                <div class="ps-container">--%>
-<%--                    <div class="ps-section__header">--%>
-<%--                        <h3>${c.name}</h3>--%>
-<%--                        <ul class="ps-section__links">--%>
-<%--                            <li><a--%>
-<%--                                    href="${pageContext.servletContext.contextPath}/product?category=${c.id}">بیشتر--%>
-<%--                                ...</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
+            <div class="ps-product-list ps-clothings">
+                <div class="ps-section__header">
+                    <h3>${productsList1.listName}</h3>
+                    <ul class="ps-section__links">
+                        <li><a
+                                href="${productsList1.linkMore}">بیشتر
+                            ...</a></li>
+                    </ul>
+                </div>
+                <div class="ps-container">
 
-<%--                    <c:set var="carouselProducts" value="${productByCategory[c.name]}" scope="request"/>--%>
-<%--                    <jsp:include page="../../components/carousel-products.jsp"/>--%>
+                    <c:set var="carouselProducts" value="${productsList1.products}" scope="request"/>
+    <jsp:include page="../../components/carousel-products.jsp"/>
 
 
-<%--                </div>--%>
-<%--            </div>--%>
+                </div>
+            </div>
 <%--        </c:if>--%>
 <%--    </c:forEach>--%>
 <%--    <c:if test="${not empty viewlist}">--%>

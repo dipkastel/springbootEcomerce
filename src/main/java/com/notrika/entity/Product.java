@@ -1,9 +1,7 @@
 package com.notrika.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,7 +10,8 @@ import java.util.*;
 @Table(name = "products")
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 public class Product {
 
     @Id
@@ -52,11 +51,12 @@ public class Product {
     @JoinColumn(name = "brand_id")
     public Brand brand = null;
 
-    @ManyToMany(mappedBy = "products",targetEntity = Category.class, cascade = CascadeType.ALL)
-    public List<Category> categories = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "products")
+    @JsonIgnoreProperties({"products"})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @ToString.Exclude
+    public Set<Category> categories = new HashSet<>();
+
+    @ManyToMany()
     Set<Tag> tags = new HashSet<>();
 
     @OneToMany(mappedBy = "product",targetEntity = productAttribute.class, cascade = CascadeType.ALL)

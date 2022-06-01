@@ -33,6 +33,9 @@ public interface ProductRepository extends JpaRepository<Product,Long>  {
     @Query(value = "select * from products p order by id limit :start , :itemcount ",nativeQuery = true)
     List<Product> findFromAndTake(@Param("start") Integer startFrom,@Param("itemcount") Integer itemcount);
 
+    @Query(value = "select * from products p where status = :status order by id  limit :limit",nativeQuery = true)
+    List<Product> findByFilter(@Param("limit") Integer limit,@Param("status") String status);
+
 
 //
 }

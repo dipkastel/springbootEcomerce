@@ -30,6 +30,7 @@
                 },
             },
             fields: [
+                { name: "id", type: "text", width: 40 },
                 { name: "images", type: "text", width: 60,itemTemplate: function(value) {
                     if(value.length>0)
                         return "<img src='data:image/image/png;base64,"+value[0].image+"' height='60' width='60'/>";

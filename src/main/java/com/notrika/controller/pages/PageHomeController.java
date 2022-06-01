@@ -7,6 +7,7 @@ import com.notrika.entity.BannerGallery;
 import com.notrika.entity.Menu;
 import com.notrika.entity.Product;
 import com.notrika.entity.Widget;
+import com.notrika.entity.helper.MainPageList;
 import com.notrika.helper.enums.WidgetType;
 import com.notrika.service.BannerGalleryService;
 import com.notrika.service.MenuService;
@@ -25,6 +26,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,12 +35,12 @@ import java.util.List;
 //@RequestMapping("/")
 public class PageHomeController {
     private final BannerGalleryService bannerGalleryService;
-//    private final ProductService productService;
+    private final ProductService productService;
     private final WidgetService widgetService;
 
     @Autowired
-    public PageHomeController( BannerGalleryService bannerGalleryService, MenuService menuService, WidgetService widgetService) {
-//        this.productService = productService;
+    public PageHomeController( BannerGalleryService bannerGalleryService,ProductService productService, WidgetService widgetService) {
+        this.productService = productService;
         this.bannerGalleryService = bannerGalleryService;
         this.widgetService = widgetService;
 
@@ -47,13 +49,26 @@ public class PageHomeController {
     @GetMapping(value = "/")
     public String customerHomePage(HttpServletRequest request, HttpServletResponse response,
                                    Authentication authentication, Model model) {
-
+        List<String> categories = new ArrayList<>();
+        categories.add("");
+        categories.add("");
+        categories.add("");
         //super tag
         List<Widget> listSuperWidget = widgetService.findByType(WidgetType.SUPER_CAT);
         model.addAttribute("superCat", listSuperWidget);
         //baners
         List<BannerGallery> bannerList = bannerGalleryService.findAll();
         model.addAttribute("listBanner", bannerList);
+        //listProducts
+        MainPageList mainPageList = new MainPageList();
+        List<Product> products = productService.findByFilter(categories.get(0),10);
+        mainPageList.setProducts(products);
+        mainPageList.setLinkMore("/more");
+        mainPageList.setListType("Normal");
+        mainPageList.setListName("محصولات پر فروش");
+        model.addAttribute("productsList1", mainPageList);
+
+
 //
 //		Map<String, List<Product>> productByCategory = new HashMap<>();
 //		List<Product> listProduct = productService.findAllIgnoreStatus();

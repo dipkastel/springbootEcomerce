@@ -128,7 +128,8 @@ public class PageProductController {
     public void showImage(@PathVariable("n") Integer n, @PathVariable("id") Long id, HttpServletResponse response) throws IOException {
 
         Product product = productService.findById(id);
-        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        String type = "image/jpeg, image/jpg, image/png, image/gif";
+        response.setContentType(type);
         if (product.getImages().size() > n) {
             response.getOutputStream().write(product.getImages().get(n).getImage());
         }

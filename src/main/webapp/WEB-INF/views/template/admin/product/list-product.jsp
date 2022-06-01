@@ -7,12 +7,7 @@
     <jsp:include page="../common/head.jsp">
         <jsp:param name="pageTitle" value="notrika | baseSettings" />
         <jsp:param name="admintheme" value="true" />
-        <jsp:param name="dataTable" value="false" />
-        <jsp:param name="icheck" value="false" />
-        <jsp:param name="JQVMap" value="false" />
-        <jsp:param name="jsgrid" value="false" />
-        <jsp:param name="daterangePicker" value="false" />
-        <jsp:param name="summernote" value="false" />
+        <jsp:param name="jsgrid" value="true" />
     </jsp:include>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -73,13 +68,7 @@
 	<jsp:include page="../components/script.jsp">
     <jsp:param name="admintheme" value="true" />
     <jsp:param name="bootstrap" value="true" />
-    <jsp:param name="dataTable" value="false" />
-    <jsp:param name="Sparkline" value="false" />
-    <jsp:param name="JQVMap" value="false" />
-    <jsp:param name="KnobChart" value="false" />
-    <jsp:param name="jsgrid" value="false" />
-    <jsp:param name="daterangePicker" value="false" />
-    <jsp:param name="summernote" value="false" />
+    <jsp:param name="jsgrid" value="true" />
 </jsp:include>
 	<jsp:include page="js/jsgrid.jsp"></jsp:include>
 

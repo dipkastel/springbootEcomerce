@@ -98,5 +98,8 @@ public class ProductService implements DAO<Product> {
         int page = _page*per_page;
         return repo.findFromAndTake(page,per_page);
     }
+    public List<Product> findByFilter(String CategoryName,Integer limit) {
+        return repo.findByFilter(limit,"publish");
+    }
 
 }

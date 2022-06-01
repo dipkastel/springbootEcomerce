@@ -8,23 +8,19 @@ import com.notrika.wpRestApi.entities.product.Attribute;
 import com.notrika.wpRestApi.entities.product.Brand;
 import com.notrika.wpRestApi.entities.product.Dimensions;
 import com.notrika.wpRestApi.entities.product.MetaDatum;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.awt.event.HierarchyListener;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "categories")
 @AllArgsConstructor
 @EntityListeners( { HierarchyListener.class })
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 public class Category {
 
     @Id
@@ -40,16 +36,16 @@ public class Category {
     public Integer menuOrder;
 
 
-    @ManyToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
-    @ToString.Exclude
-    public List<Product> products = new ArrayList<>();
 
-    @Column(name="parent_id", insertable=false, updatable=false)
-    private Long parentId;
+
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name="parent_id")
+    @ToString.Exclude
     private List<Category> subCategories;
 
+    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "categories")
+    @ToString.Exclude
+    private Set<Product> products = new HashSet<>();
 
     public Date updated;
     @PrePersist

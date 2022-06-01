@@ -51,7 +51,7 @@ public class PageProductFilterController {
             if (minPrice!=null&&maxPrice!=null){
                 LOGGER.info("list filter by price with  (categoryId!=null,minPrice!=null,maxPrice!=null)");
                 products = productService.findByPriceBetween(minPrice,maxPrice).stream()
-                .filter(p->p.getCategories().get(0).getId() == categoryId)
+                .filter(p->p.getCategories().stream().findFirst().get().getId() == categoryId)
                 .collect(Collectors.toList());
 
                 if (listBrandId !=null && listType !=null){
@@ -182,7 +182,7 @@ public class PageProductFilterController {
         List<Product> list = new ArrayList<>();
         typeList.forEach(t->{
             productList.stream()
-                    .filter(p->p.getCategories().get(0).getId() == categoryId && p.getType().equals(t))
+                    .filter(p->p.getCategories().stream().findFirst().get().getId() == categoryId && p.getType().equals(t))
                     .forEach(p->list.add(p));
         });
         return list;
