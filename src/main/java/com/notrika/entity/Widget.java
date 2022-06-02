@@ -27,6 +27,7 @@ public class Widget {
     private String url;
     private WidgetType type;
 
+
     @OneToOne(targetEntity = ImageGallery.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     @Nullable

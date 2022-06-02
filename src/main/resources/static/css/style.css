@@ -3813,9 +3813,9 @@ textarea.form-control {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding: 20px 40px;
     width: 100%;
-    border: 1px solid #d9d9d9;
+    box-shadow: 0 0 10px #dddddd;
+    margin-top: 50px;
     border-radius: 10px;
 }
 
@@ -12907,7 +12907,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    margin-top: 25px;
     border-bottom: 1px solid #e3e3e3;
 }
 
@@ -15033,7 +15035,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 #homepage-1 .ps-product-list {
-    padding-bottom: 80px;
+    padding: 40px 0;
 }
 
 @media (max-width: 991px) {
@@ -17846,13 +17848,17 @@ html .bg--parallax {
     height: 150px;
 }
 
-#cart-content-1, #cart-content-2 {
-    /* height: 300px; */
-    /* overflow: hidden; */
-    /* overflow-y: scroll; */
+/*new*/
+.ps-special{
+    background: rgb(159,18,71);
+    background: linear-gradient(10deg, rgba(159,18,71,1) 0%, rgba(245,23,146,1) 100%);
 }
-
-/*.show{*/
-/*  display: block;*/
-/*}*/
-/*# sourceMappingURL=style.css.map */
+.ps-special-offers{
+    background-color: transparent;
+    background-image: linear-gradient(180deg,#01185C 0%,#01495C 100%);
+}
+.spacial-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -4,13 +4,11 @@ import com.mservice.allinone.models.CaptureMoMoRequest;
 import com.mservice.allinone.processor.allinone.CaptureMoMo;
 import com.mservice.shared.sharedmodels.Environment;
 import com.notrika.entity.BannerGallery;
-import com.notrika.entity.Menu;
 import com.notrika.entity.Product;
 import com.notrika.entity.Widget;
 import com.notrika.entity.helper.MainPageList;
 import com.notrika.helper.enums.WidgetType;
 import com.notrika.service.BannerGalleryService;
-import com.notrika.service.MenuService;
 import com.notrika.service.ProductService;
 import com.notrika.service.WidgetService;
 import lombok.extern.slf4j.Slf4j;
@@ -49,24 +47,59 @@ public class PageHomeController {
     @GetMapping(value = "/")
     public String customerHomePage(HttpServletRequest request, HttpServletResponse response,
                                    Authentication authentication, Model model) {
-        List<String> categories = new ArrayList<>();
-        categories.add("");
-        categories.add("");
-        categories.add("");
+
+        List<MainPageList> mainPageLayout = new ArrayList<>();
+
+
         //super tag
+        MainPageList superCat = new MainPageList(MainPageList.ListTypes.HEADER_WIDGET);
         List<Widget> listSuperWidget = widgetService.findByType(WidgetType.SUPER_CAT);
-        model.addAttribute("superCat", listSuperWidget);
-        //baners
+        superCat.setWidgets(listSuperWidget);
+        mainPageLayout.add(superCat);
+
+        //banners
+        MainPageList banners = new MainPageList(MainPageList.ListTypes.BANNER_LIST);
         List<BannerGallery> bannerList = bannerGalleryService.findAll();
-        model.addAttribute("listBanner", bannerList);
+        banners.setBanners(bannerList);
+        mainPageLayout.add(banners);
+
+
         //listProducts
-        MainPageList mainPageList = new MainPageList();
-        List<Product> products = productService.findByFilter(categories.get(0),10);
-        mainPageList.setProducts(products);
-        mainPageList.setLinkMore("/more");
-        mainPageList.setListType("Normal");
-        mainPageList.setListName("محصولات پر فروش");
-        model.addAttribute("productsList1", mainPageList);
+        MainPageList listProductsNormal = new MainPageList(MainPageList.ListTypes.NORMAL_PRODUCTS);
+        List<Product> products = productService.findByFilter("",10);
+        listProductsNormal.setProducts(products);
+        listProductsNormal.setLinkMore("/more");
+        listProductsNormal.setListName("محصولات پر فروش");
+        mainPageLayout.add(listProductsNormal);
+
+        //listProducts
+        MainPageList listProductsSpecial = new MainPageList(MainPageList.ListTypes.SPECIAL_PRODUCTS);
+        List<Product> products2 = productService.findByFilter("",10);
+        listProductsSpecial.setProducts(products2);
+        listProductsSpecial.setLinkMore("/more");
+        listProductsSpecial.setListName("محصولات کم فروش");
+        mainPageLayout.add(listProductsSpecial);
+
+        //listProducts
+        mainPageLayout.add(listProductsNormal);
+
+        //listProducts
+        MainPageList listProductsOffer = new MainPageList(MainPageList.ListTypes.SPECIAL_OFFERS);
+        List<Product> products3 = productService.findByFilter("",10);
+        listProductsOffer.setProducts(products3);
+        listProductsOffer.setLinkMore("/more");
+        listProductsOffer.setListName("محصولات کم فروش");
+        mainPageLayout.add(listProductsOffer);
+
+        //listProducts
+        mainPageLayout.add(listProductsNormal);
+
+
+        //site-features
+        MainPageList siteFeatures = new MainPageList(MainPageList.ListTypes.SITE_FEATURES);
+        mainPageLayout.add(siteFeatures);
+
+        model.addAttribute("MainList", mainPageLayout);
 
 
 //
