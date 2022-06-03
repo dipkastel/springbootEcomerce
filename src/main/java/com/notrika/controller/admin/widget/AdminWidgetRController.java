@@ -2,6 +2,7 @@ package com.notrika.controller.admin.widget;
 
 import com.notrika.entity.ImageGallery;
 import com.notrika.entity.Widget;
+import com.notrika.helper.enums.WidgetType;
 import com.notrika.service.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,6 +31,11 @@ public class AdminWidgetRController {
     @GetMapping("/all")
     public List<Widget> getAll(Model model, Authentication authentication) {
         return widgetserService.findAll();
+    }
+
+    @GetMapping("/allbytype")
+    public List<Widget> getAllbytype(@RequestParam(name = "type") WidgetType type, Model model, Authentication authentication) {
+        return widgetserService.findByType(type);
     }
 
     @GetMapping("/get")

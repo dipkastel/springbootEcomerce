@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -37,7 +38,7 @@ public class PageHomeController {
     private final WidgetService widgetService;
 
     @Autowired
-    public PageHomeController( BannerGalleryService bannerGalleryService,ProductService productService, WidgetService widgetService) {
+    public PageHomeController(BannerGalleryService bannerGalleryService, ProductService productService, WidgetService widgetService) {
         this.productService = productService;
         this.bannerGalleryService = bannerGalleryService;
         this.widgetService = widgetService;
@@ -50,12 +51,19 @@ public class PageHomeController {
 
         List<MainPageList> mainPageLayout = new ArrayList<>();
 
+        //banners Widget
+        MainPageList bannersWidget = new MainPageList(MainPageList.ListTypes.BANNERS_WIDGET);
+        List<Widget> bannersWidgetList = widgetService.findByType(WidgetType.BANNERS_WIDGET);
+        bannersWidget.setWidgets(bannersWidgetList);
+        if(bannersWidgetList.size()>0)
+            mainPageLayout.add(bannersWidget);
 
         //super tag
-        MainPageList superCat = new MainPageList(MainPageList.ListTypes.HEADER_WIDGET);
+        MainPageList superCat = new MainPageList(MainPageList.ListTypes.SUPER_CAT);
         List<Widget> listSuperWidget = widgetService.findByType(WidgetType.SUPER_CAT);
         superCat.setWidgets(listSuperWidget);
         mainPageLayout.add(superCat);
+
 
         //banners
         MainPageList banners = new MainPageList(MainPageList.ListTypes.BANNER_LIST);
@@ -63,32 +71,64 @@ public class PageHomeController {
         banners.setBanners(bannerList);
         mainPageLayout.add(banners);
 
+        //THRIPLE_BANNER_SAME Widget
+        MainPageList thripleMain = new MainPageList(MainPageList.ListTypes.THRIPLE_BANNER_SAME);
+        List<Widget> thripleItemsList = widgetService.findByType(WidgetType.THRIPLE_BANNER_SAME);
+        thripleMain.setWidgets(thripleItemsList);
+        if(thripleItemsList.size()>0)
+            mainPageLayout.add(thripleMain);
+
 
         //listProducts
         MainPageList listProductsNormal = new MainPageList(MainPageList.ListTypes.NORMAL_PRODUCTS);
-        List<Product> products = productService.findByFilter("",10);
+        List<Product> products = productService.findByFilter("", 10);
         listProductsNormal.setProducts(products);
         listProductsNormal.setLinkMore("/more");
         listProductsNormal.setListName("محصولات پر فروش");
         mainPageLayout.add(listProductsNormal);
 
+
+        //MULTIPLE_BANNER_RIGHT
+        MainPageList multipleRight = new MainPageList(MainPageList.ListTypes.MULTIPLE_BANNER_RIGHT);
+        List<Widget> multipleRightList = widgetService.findByType(WidgetType.MULTIPLE_BANNER_RIGHT);
+        multipleRight.setWidgets(multipleRightList);
+        if(multipleRightList.size()>0)
+            mainPageLayout.add(multipleRight);
+
         //listProducts
         MainPageList listProductsSpecial = new MainPageList(MainPageList.ListTypes.SPECIAL_PRODUCTS);
-        List<Product> products2 = productService.findByFilter("",10);
+        List<Product> products2 = productService.findByFilter("", 10);
         listProductsSpecial.setProducts(products2);
         listProductsSpecial.setLinkMore("/more");
         listProductsSpecial.setListName("محصولات کم فروش");
         mainPageLayout.add(listProductsSpecial);
 
+
+
+        //MULTIPLE_BANNER_SAME
+        MainPageList multipleSame = new MainPageList(MainPageList.ListTypes.MULTIPLE_BANNER_SAME);
+        List<Widget> multipleSameList = widgetService.findByType(WidgetType.MULTIPLE_BANNER_SAME);
+        multipleSame.setWidgets(multipleSameList);
+        if(multipleSameList.size()>0)
+            mainPageLayout.add(multipleSame);
+
         //listProducts
         mainPageLayout.add(listProductsNormal);
 
+
+        //MULTIPLE_BANNER_LEFT
+        MainPageList multipleLeft = new MainPageList(MainPageList.ListTypes.MULTIPLE_BANNER_LEFT);
+        List<Widget> multipleLeftList = widgetService.findByType(WidgetType.MULTIPLE_BANNER_LEFT);
+        multipleLeft.setWidgets(multipleLeftList);
+        if(multipleLeftList.size()>0)
+            mainPageLayout.add(multipleLeft);
+
         //listProducts
         MainPageList listProductsOffer = new MainPageList(MainPageList.ListTypes.SPECIAL_OFFERS);
-        List<Product> products3 = productService.findByFilter("",10);
+        List<Product> products3 = productService.findByFilter("", 10);
         listProductsOffer.setProducts(products3);
         listProductsOffer.setLinkMore("/more");
-        listProductsOffer.setListName("محصولات کم فروش");
+        listProductsOffer.setListName("محصولات کمتر فروش");
         mainPageLayout.add(listProductsOffer);
 
         //listProducts
@@ -143,6 +183,19 @@ public class PageHomeController {
 //		model.addAttribute("mapAvgStarByTop5", mapAvgStarByTop5);
 //		//}
         return "template/user/page/index/index";
+    }
+
+    private MainPageList getWidgets(int i, HashMap<WidgetType, List<Widget>> widgetsMap, List<WidgetType> widgetTypes) {
+        MainPageList pageItem;
+        if (widgetsMap.size() > i) {
+            WidgetType key = widgetsMap.keySet().toArray(new WidgetType[0])[i];
+            pageItem = new MainPageList(MainPageList.ListTypes.getWidgetType(key.toString()));
+            List<Widget> widgetList = widgetsMap.get(key);
+            pageItem.setWidgets(widgetList);
+            return pageItem;
+        } else {
+            return null;
+        }
     }
 
     @GetMapping(value = "/test")

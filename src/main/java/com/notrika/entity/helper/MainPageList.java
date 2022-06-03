@@ -6,6 +6,7 @@ import com.notrika.entity.Widget;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Setter
@@ -24,6 +25,9 @@ public class MainPageList {
     private ListTypes listType;
 
     public enum ListTypes{
-        NORMAL_PRODUCTS, SPECIAL_PRODUCTS, HEADER_WIDGET,BANNER_LIST,SITE_FEATURES,SPECIAL_OFFERS
+        NORMAL_PRODUCTS, SPECIAL_PRODUCTS, SUPER_CAT,BANNER_LIST,BANNERS_WIDGET,SITE_FEATURES,SPECIAL_OFFERS,MULTIPLE_BANNER_RIGHT,MULTIPLE_BANNER_LEFT,MULTIPLE_BANNER_SAME,THRIPLE_BANNER_SAME;
+        public static ListTypes getWidgetType(String type){
+           return Arrays.stream(ListTypes.values()).filter(p->p.name().equals(type)).findFirst().get();
+        }
     }
 }

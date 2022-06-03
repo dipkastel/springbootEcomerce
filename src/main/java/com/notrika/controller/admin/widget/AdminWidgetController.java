@@ -1,5 +1,6 @@
 package com.notrika.controller.admin.widget;
 
+import com.notrika.helper.enums.WidgetType;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ public class AdminWidgetController {
 
 	@GetMapping("/widget")
 	public String menu(Authentication authentication, Model model) {
+		model.addAttribute("types", WidgetType.values());
 		return "template/admin/widget/widget";
 	}
 

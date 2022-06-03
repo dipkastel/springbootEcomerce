@@ -101,16 +101,28 @@
         <c:when test="${mainListItem.widgets.size()>0}">
 
             <c:forEach items="${mainListItem.widgets}" var="p">
-                <div class="mi_mastertag_box">
-                    <div class="ps-product__thumbnail">
-                        <a href="/section/detail/${p.url}">
-                            <img src="${pageContext.request.contextPath}/image/display/${p.image.id}"
-                                 class="mi_circle_image">
 
-                            <small>${p.name}</small>
-                        </a>
-                    </div>
-                </div>
+                <c:choose>
+                <c:when test="${mainListItem.listType=='BANNERS_WIDGET'}">
+
+                    <img src="${pageContext.request.contextPath}/image/display/${p.image.id}"
+                         class="banner-full">
+
+                </c:when>
+                    <c:otherwise>
+                        <div class="mi_mastertag_box">
+                            <div class="ps-product__thumbnail">
+                                <a href="/section/detail/${p.url}">
+                                    <img src="${pageContext.request.contextPath}/image/display/${p.image.id}"
+                                         class="mi_circle_image">
+
+                                    <small>${p.name}</small>
+                                </a>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
             </c:forEach>
 
         </c:when>

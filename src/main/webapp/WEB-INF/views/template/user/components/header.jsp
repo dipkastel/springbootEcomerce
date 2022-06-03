@@ -4,8 +4,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <div id="loader-wrapper">
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
+    <img id="loader-section-section-logo"  src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-1.png" class="spin"  alt="">
+    <div id="loader-section-section-left" class="loader-sectionl"></div>
+    <div id="loader-section-section-right" class="loader-sectionr"></div>
 </div>
 <header class="header header--1 fixed-top" data-sticky="true">
     <div class="header__top ">

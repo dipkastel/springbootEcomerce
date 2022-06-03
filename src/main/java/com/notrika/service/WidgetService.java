@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -44,5 +45,9 @@ public class WidgetService implements DAO<Widget> {
 
     public Long findAllCount() {
         return repo.count();
+    }
+
+    public List<WidgetType> findAllGroupByType() {
+        return repo.findAllGroupByType();
     }
 }

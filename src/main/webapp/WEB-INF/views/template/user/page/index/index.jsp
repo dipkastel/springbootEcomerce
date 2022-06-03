@@ -63,6 +63,7 @@
     <%--    <jsp:include page="_site-features.jsp"/>--%>
 </div>
 <jsp:include page="../../components/footer.jsp"/>
+
 <script>
     function addToWishList(id) {
         const data = null;

@@ -747,5 +747,14 @@
 				});
 	}
 </script>
+
+<script>
+	$(function (){
+		$("#loader-section-section-left").addClass("section-left");
+		$("#loader-section-section-right").addClass("section-right");
+		$("#loader-section-section-logo").addClass("section-top");
+		$("#loader-wrapper").addClass("hiddenx");
+	});
+</script>
 <jsp:include page="../message/message-user.jsp"></jsp:include>
 </html>
