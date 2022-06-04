@@ -15044,6 +15044,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 #homepage-1 .ps-product-list {
     padding: 20px 0;
+    margin-top: 30px;
 }
 
 @media (max-width: 991px) {

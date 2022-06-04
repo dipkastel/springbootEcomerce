@@ -24,9 +24,9 @@
             <c:forEach items="${mainListItem.products}" var="p">
                 <div class="ps-product">
                     <div class="ps-product__thumbnail">
-                        <a href="/product/detail?id=${p.id}"
+                        <a href="/product/nkp-${p.id}/${p.slug}"
                            onclick="addProductToViewList(${p.id})">
-                            <img src="${pageContext.request.contextPath}/product/display/0&${p.id}"
+                            <img src="${pageContext.request.contextPath}/image/display/${p.images[0].id}"
                                  alt="" style="width: 218px; height: 218px"></a>
                         <c:choose>
                             <c:when test="${p.stockQuantity>0}">
@@ -103,13 +103,8 @@
             <c:forEach items="${mainListItem.widgets}" var="p">
 
                 <c:choose>
-                <c:when test="${mainListItem.listType=='BANNERS_WIDGET'}">
+                    <c:when test="${mainListItem.listType=='SUPER_CAT'}">
 
-                    <img src="${pageContext.request.contextPath}/image/display/${p.image.id}"
-                         class="banner-full">
-
-                </c:when>
-                    <c:otherwise>
                         <div class="mi_mastertag_box">
                             <div class="ps-product__thumbnail">
                                 <a href="/section/detail/${p.url}">
@@ -120,6 +115,11 @@
                                 </a>
                             </div>
                         </div>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="${pageContext.request.contextPath}/image/display/${p.image.id}"
+                             class="banner-full">
+
                     </c:otherwise>
                 </c:choose>
 

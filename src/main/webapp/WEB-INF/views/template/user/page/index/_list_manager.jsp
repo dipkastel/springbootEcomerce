@@ -191,13 +191,67 @@
         </div>
     </c:when>
     <c:when test="${mainListItem.listType == 'MULTIPLE_BANNER_RIGHT'}">
-        MULTIPLE_BANNER_RIGHT
+
+        <div class="container-fluid">
+            <div class="mr-30 ml-30 mt-30">
+                <div class="row ">
+
+
+                        <div class="col-8 col-xs-12">
+                            <a href="${mainListItem.widgets[0].url}">
+                                <img src="${pageContext.request.contextPath}/image/display/${mainListItem.widgets[0].image.id}"
+                                     class="thriple-same">
+                            </a>
+                        </div>
+                        <div class="col-4 col-xs-12">
+                            <a href="${mainListItem.widgets[1].url}">
+                                <img src="${pageContext.request.contextPath}/image/display/${mainListItem.widgets[1].image.id}"
+                                     class="thriple-same">
+                            </a>
+                        </div>
+                </div>
+            </div>
+        </div>
     </c:when>
     <c:when test="${mainListItem.listType == 'MULTIPLE_BANNER_LEFT'}">
-        MULTIPLE_BANNER_LEFT
+        <div class="container-fluid">
+            <div class="mr-30 ml-30 mt-30">
+                <div class="row ">
+
+
+                    <div class="col-4 col-xs-12">
+                        <a href="${mainListItem.widgets[0].url}">
+                            <img src="${pageContext.request.contextPath}/image/display/${mainListItem.widgets[0].image.id}"
+                                 class="thriple-same">
+                        </a>
+                    </div>
+                    <div class="col-8 col-xs-12">
+                        <a href="${mainListItem.widgets[1].url}">
+                            <img src="${pageContext.request.contextPath}/image/display/${mainListItem.widgets[1].image.id}"
+                                 class="thriple-same">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </c:when>
     <c:when test="${mainListItem.listType == 'MULTIPLE_BANNER_SAME'}">
-        MULTIPLE_BANNER_SAME
+        <div class="container-fluid">
+            <div class="mr-30 ml-30 mt-50">
+                <div class="row ">
+
+
+                    <c:forEach items="${mainListItem.widgets}" var="w">
+                        <div class="col-6 col-xs-12">
+                            <a href="${w.url}">
+                                <img src="${pageContext.request.contextPath}/image/display/${w.image.id}"
+                                     class="thriple-same">
+                            </a>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
     </c:when>
     <c:when test="${mainListItem.listType == 'THRIPLE_BANNER_SAME'}">
         <div class="container-fluid">

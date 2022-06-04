@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -47,11 +44,12 @@ public class PageDetailController {
 		this.ratingService = ratingService;
 	}
 
-	@GetMapping(value = "/detail")
-	public String view(@RequestParam(value = "id") Long id, Authentication authentication, Locale locale, Model model,
-			HttpServletRequest res) {
+	@GetMapping( {"/{id}","/{id}/{islug}"})
+	public String view(@PathVariable("id") String iid,@PathVariable(value = "slug" ,required = false) String islug, Authentication authentication, Locale locale, Model model,
+					   HttpServletRequest res) {
 		log.info("product detail {}.", locale);
 		// Review
+		Long id = Long.parseLong(iid.split("-")[1]);
 		if (authentication != null) {
 			User user = userHelper.getUser(authentication, userService);
 			model.addAttribute("user", user);
@@ -77,14 +75,14 @@ public class PageDetailController {
 //			model.addAttribute(color, color);
 //		}
 
-		List<Product> listProductByCategory = productService.findByCategories(p.getCategories().stream().findFirst().get().getId());
-		model.addAttribute("listProductByCategory", listProductByCategory);
-		model.addAttribute("allProducts", productService.findAll());
+//		List<Product> listProductByCategory = productService.findByCategories(p.getCategories().stream().findFirst().get().getId());
+//		model.addAttribute("listProductByCategory", listProductByCategory);
+//		model.addAttribute("allProducts", productService.findAll());
 		// review
-		Map<Long, Integer> mapReviewByCategory = ratingService.findAllReviewByList(listProductByCategory);
-		model.addAttribute("mapReviewByCategory", mapReviewByCategory);
-		Map<Long, Double> mapAvgStarByCategory = ratingService.findAllAvgStarByList(listProductByCategory);
-		model.addAttribute("mapAvgStarByCategory", mapAvgStarByCategory);
+//		Map<Long, Integer> mapReviewByCategory = ratingService.findAllReviewByList(listProductByCategory);
+//		model.addAttribute("mapReviewByCategory", mapReviewByCategory);
+//		Map<Long, Double> mapAvgStarByCategory = ratingService.findAllAvgStarByList(listProductByCategory);
+//		model.addAttribute("mapAvgStarByCategory", mapAvgStarByCategory);
 		
 		
 		Cookie[] cl = res.getCookies();

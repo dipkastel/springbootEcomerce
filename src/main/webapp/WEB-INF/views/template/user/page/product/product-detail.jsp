@@ -6,7 +6,6 @@
 <body>
 	<jsp:include page="../../components/header.jsp"></jsp:include>
 	<jsp:include page="../../components/sidebar.jsp"></jsp:include>
-
 	<div class="fix-offset"></div>
 	<div class="ps-page--product">
 		<div class="ps-container">
@@ -24,55 +23,26 @@
 												ناموجود</div>
 										</c:if>
 										<div class="ps-product__gallery" data-arrow="true">
-											<div class="item">
-												<a
-													href="${pageContext.request.contextPath}/product/display/0&${product.id}"><img
-													src="${pageContext.request.contextPath}/product/display/0&${product.id}"
-													alt="" style="width: 489px; height: 489px"></a>
-											</div>
-											<div class="item">
-												<a
-													href="${pageContext.request.contextPath}/product/display/1&${product.id}"><img
-													src="${pageContext.request.contextPath}/product/display/1&${product.id}"
-													alt="" style="width: 489px; height: 489px"></a>
-											</div>
-											<div class="item">
-												<a
-													href="${pageContext.request.contextPath}/product/display/2&${product.id}"><img
-													src="${pageContext.request.contextPath}/product/display/2&${product.id}"
-													alt="" style="width: 489px; height: 489px"></a>
-											</div>
-											<div class="item">
-												<a
-													href="${pageContext.request.contextPath}/product/display/3&${product.id}"><img
-													src="${pageContext.request.contextPath}/product/display/3&${product.id}"
-													alt="" style="width: 489px; height: 489px"></a>
-											</div>
+											<c:forEach items="${product.images}" var="i">
+												<div class="item">
+													<a
+															href="${pageContext.request.contextPath}/image/display/${i.id}?w=600"><img
+															src="${pageContext.request.contextPath}/image/display/${i.id}?w=600"
+															alt="" style="width: 489px; height: 489px"></a>
+												</div>
+											</c:forEach>
 										</div>
 									</div>
 								</figure>
-								<div class="ps-product__variants" data-item="4" data-md="4"
-									data-sm="4" data-arrow="false">
-									<div class="item">
-										<img
-											src="${pageContext.request.contextPath}/product/display/0&${product.id}"
-											alt="" style="width: 60px; height: 60px">
-									</div>
-									<div class="item">
-										<img
-											src="${pageContext.request.contextPath}/product/display/1&${product.id}"
-											alt="" style="width: 60px; height: 60px">
-									</div>
-									<div class="item">
-										<img
-											src="${pageContext.request.contextPath}/product/display/2&${product.id}"
-											alt="" style="width: 60px; height: 60px">
-									</div>
-									<div class="item">
-										<img
-											src="${pageContext.request.contextPath}/product/display/3&${product.id}"
-											alt="" style="width: 60px; height: 60px">
-									</div>
+								<div class="ps-product__variants" data-item="10" data-md="$10"
+									data-sm="10" data-arrow="false">
+
+									<c:forEach items="${product.images}" var="i" >
+										<div class="item">
+											<img src="${pageContext.request.contextPath}/image/display/${i.id}?w=100"
+													alt="" style="width: 60px; height: 60px">
+										</div>
+									</c:forEach>
 								</div>
 							</div>
 							<div class="ps-product__info">
@@ -342,97 +312,97 @@
 						data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3"
 						data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000"
 						data-owl-mousedrag="on">
-						<c:if test="${viewlist != null}">
-							<c:forEach var="p" items="${viewlist}">
-								<div class="ps-product">
-									<div class="ps-product__thumbnail">
-										<a
-											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-											onclick="addProductToViewList(${p.id})"><img
-											src="${pageContext.request.contextPath}/product/display/0&${p.id}"
-											alt="" width="203px" height="203px"></a>
-										<c:choose>
-											<c:when test="${p.enabled}">
-												<ul class="ps-product__actions">
-													<li class="toCart" value="${p.id}"><a
-														data-toggle="tooltip" data-placement="top"
-														title="Add To Cart"><i class="icon-bag2"></i></a></li>
-													<li><a data-placement="top" title="Quick View"
-														data-toggle="modal"
-														data-target="#product-quickview-${p.id}"><i
-															class="icon-eye"></i></a></li>
-													<li><a onclick="addToWishList(${p.id})"
-														data-toggle="tooltip" data-placement="top"
-														title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-												</ul>
-											</c:when>
-											<c:otherwise>
-												<div class="ps-product__badge out-stock">اتمام موجودی</div>
-											</c:otherwise>
-										</c:choose>
+<%--						<c:if test="${viewlist != null}">--%>
+<%--							<c:forEach var="p" items="${viewlist}">--%>
+<%--								<div class="ps-product">--%>
+<%--									<div class="ps-product__thumbnail">--%>
+<%--										<a--%>
+<%--											href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"--%>
+<%--											onclick="addProductToViewList(${p.id})"><img--%>
+<%--											src="${pageContext.request.contextPath}/product/display/0&${p.id}"--%>
+<%--											alt="" width="203px" height="203px"></a>--%>
+<%--										<c:choose>--%>
+<%--											<c:when test="${p.enabled}">--%>
+<%--												<ul class="ps-product__actions">--%>
+<%--													<li class="toCart" value="${p.id}"><a--%>
+<%--														data-toggle="tooltip" data-placement="top"--%>
+<%--														title="Add To Cart"><i class="icon-bag2"></i></a></li>--%>
+<%--													<li><a data-placement="top" title="Quick View"--%>
+<%--														data-toggle="modal"--%>
+<%--														data-target="#product-quickview-${p.id}"><i--%>
+<%--															class="icon-eye"></i></a></li>--%>
+<%--													<li><a onclick="addToWishList(${p.id})"--%>
+<%--														data-toggle="tooltip" data-placement="top"--%>
+<%--														title="Add to Wishlist"><i class="icon-heart"></i></a></li>--%>
+<%--												</ul>--%>
+<%--											</c:when>--%>
+<%--											<c:otherwise>--%>
+<%--												<div class="ps-product__badge out-stock">اتمام موجودی</div>--%>
+<%--											</c:otherwise>--%>
+<%--										</c:choose>--%>
 
 
-									</div>
-									<div class="ps-product__container">
-										<div class="ps-product__content">
-											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-												onclick="addProductToViewList(${p.id})">${p.productName}</a>
-											<div class="ps-product__rating">
-												<c:set var="avgView" value="${mapAvgStarByView[p.id]}"></c:set>
-												<select class="ps-rating" data-read-only="true">
-													<c:choose>
-														<c:when test="${avgView != null}">
-															<option
-																${(avgView==0 || avgView> 0) && avg < 1
-																			? "selected" : "" }
-																value="0">0</option>
-															<option
-																${(avgView==1 || avgView> 1) && avgView < 2
-																			? "selected" : "" }
-																value="1">1</option>
-															<option
-																${(avgView==2 || avgView> 2) && avgView < 3
-																			? "selected" : "" }
-																value="2">2</option>
-															<option
-																${(avgView==3 || avgView> 3) && avgView < 4
-																			? "selected" : "" }
-																value="3">3</option>
-															<option
-																${(avgView==4 || avgView> 4) && avgView < 5
-																			? "selected" : "" }
-																value="4">4</option>
-															<option
-																${avgView==5 || avgView> 5 ? "selected" :
-																		""}
-																value="5">5</option>
-														</c:when>
-														<c:otherwise>
-															<option value="0">0</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</c:otherwise>
-													</c:choose>
-												</select>
-												<c:set var="rv" value="${mapReviewByView[p.id]}"></c:set>
-												<span>(${rv} review)</span>
-											</div>
-											<p class="ps-product__price">${p.price}تومان</p>
-										</div>
-										<div class="ps-product__content hover">
-											<a class="ps-product__title"
-												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"
-												onclick="addProductToViewList(${p.id})">${p.productName}</a>
-											<p class="ps-product__price">${p.price}تومان</p>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</c:if>
+<%--									</div>--%>
+<%--									<div class="ps-product__container">--%>
+<%--										<div class="ps-product__content">--%>
+<%--											<a class="ps-product__title"--%>
+<%--												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"--%>
+<%--												onclick="addProductToViewList(${p.id})">${p.productName}</a>--%>
+<%--											<div class="ps-product__rating">--%>
+<%--												<c:set var="avgView" value="${mapAvgStarByView[p.id]}"></c:set>--%>
+<%--												<select class="ps-rating" data-read-only="true">--%>
+<%--													<c:choose>--%>
+<%--														<c:when test="${avgView != null}">--%>
+<%--															<option--%>
+<%--																${(avgView==0 || avgView> 0) && avg < 1--%>
+<%--																			? "selected" : "" }--%>
+<%--																value="0">0</option>--%>
+<%--															<option--%>
+<%--																${(avgView==1 || avgView> 1) && avgView < 2--%>
+<%--																			? "selected" : "" }--%>
+<%--																value="1">1</option>--%>
+<%--															<option--%>
+<%--																${(avgView==2 || avgView> 2) && avgView < 3--%>
+<%--																			? "selected" : "" }--%>
+<%--																value="2">2</option>--%>
+<%--															<option--%>
+<%--																${(avgView==3 || avgView> 3) && avgView < 4--%>
+<%--																			? "selected" : "" }--%>
+<%--																value="3">3</option>--%>
+<%--															<option--%>
+<%--																${(avgView==4 || avgView> 4) && avgView < 5--%>
+<%--																			? "selected" : "" }--%>
+<%--																value="4">4</option>--%>
+<%--															<option--%>
+<%--																${avgView==5 || avgView> 5 ? "selected" :--%>
+<%--																		""}--%>
+<%--																value="5">5</option>--%>
+<%--														</c:when>--%>
+<%--														<c:otherwise>--%>
+<%--															<option value="0">0</option>--%>
+<%--															<option value="1">1</option>--%>
+<%--															<option value="2">2</option>--%>
+<%--															<option value="3">3</option>--%>
+<%--															<option value="4">4</option>--%>
+<%--															<option value="5">5</option>--%>
+<%--														</c:otherwise>--%>
+<%--													</c:choose>--%>
+<%--												</select>--%>
+<%--												<c:set var="rv" value="${mapReviewByView[p.id]}"></c:set>--%>
+<%--												<span>(${rv} review)</span>--%>
+<%--											</div>--%>
+<%--											<p class="ps-product__price">${p.price}تومان</p>--%>
+<%--										</div>--%>
+<%--										<div class="ps-product__content hover">--%>
+<%--											<a class="ps-product__title"--%>
+<%--												href="${pageContext.servletContext.contextPath}/product/detail?id=${p.id}"--%>
+<%--												onclick="addProductToViewList(${p.id})">${p.productName}</a>--%>
+<%--											<p class="ps-product__price">${p.price}تومان</p>--%>
+<%--										</div>--%>
+<%--									</div>--%>
+<%--								</div>--%>
+<%--							</c:forEach>--%>
+<%--						</c:if>--%>
 					</div>
 				</div>
 			</div>

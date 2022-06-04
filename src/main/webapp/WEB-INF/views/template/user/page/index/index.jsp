@@ -13,54 +13,10 @@
 
 <div class="fix-offset"></div>
 <div id="homepage-1">
-    <%--    &lt;%&ndash;    top product&ndash;%&gt;--%>
-    <%--    <div class="ps-product-list ps-clothings">--%>
-    <%--        <div class="ps-container">--%>
-
-    <%--            <div class="ps-section__header">--%>
-    <%--                <div class="ps-block--countdown-deal">--%>
-    <%--                    <div class="ps-block__right">--%>
-    <%--                        <figure>--%>
-    <%--                            <figcaption>محصولات برتر</figcaption>--%>
-    <%--                        </figure>--%>
-    <%--                    </div>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-
-    <%--            <c:set var="carouselProducts" value="${topProducts}" scope="request"/>--%>
-    <%--            <jsp:include page="../../components/carousel-products.jsp"/>--%>
-
-    <%--        </div>--%>
-    <%--    </div>--%>
-
-    <%--    &lt;%&ndash;    top product&ndash;%&gt;--%>
-
-    <%--    <c:forEach items="${categories}" var="c">--%>
-    <%--        <c:if test="${not empty productByCategory[c.name]}">--%>
-
     <c:forEach items="${MainList}" var="m">
         <c:set var="mainListItem" value="${m}" scope="request"/>
         <jsp:include page="_list_manager.jsp"/>
     </c:forEach>
-    <%--        </c:if>--%>
-    <%--    </c:forEach>--%>
-    <%--    <c:if test="${not empty viewlist}">--%>
-    <%--        <div class="ps-page--product">--%>
-    <%--            <div class="ps-container">--%>
-
-    <%--                <div class="ps-section__header">--%>
-    <%--                    <h3>مشاهدات اخیر</h3>--%>
-    <%--                </div>--%>
-
-    <%--                <c:set var="carouselProducts" value="${viewlist}" scope="request"/>--%>
-    <%--                <jsp:include page="../../components/carousel-products.jsp"/>--%>
-
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--    </c:if>--%>
-
-
-    <%--    <jsp:include page="_site-features.jsp"/>--%>
 </div>
 <jsp:include page="../../components/footer.jsp"/>
 

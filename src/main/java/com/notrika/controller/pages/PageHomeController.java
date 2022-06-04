@@ -140,73 +140,8 @@ public class PageHomeController {
         mainPageLayout.add(siteFeatures);
 
         model.addAttribute("MainList", mainPageLayout);
-
-
-//
-//		Map<String, List<Product>> productByCategory = new HashMap<>();
-//		List<Product> listProduct = productService.findAllIgnoreStatus();
-//		List<Tag> masterTags = tagService.findAll().stream().filter(o->o.getMasterTag()==true).collect(Collectors.toList());
-//
-//		//review{
-//		Map<String, Map<Long, Integer>> mapReviewByCategory = new HashMap<String, Map<Long, Integer>>();
-//		Map<String, Map<Long, Double>> mapAvgStarByCategory = new HashMap<String, Map<Long, Double>>();
-//		categoryService.findAll().stream().filter(p->p.getParentId()==null).forEach(c -> {
-//			productByCategory.put(c.getName(), productByCategory(c.getId()));
-//			//review
-//			Map<Long, Integer> mapReviewByCategoryProduct = ratingService.findAllReviewByList(productByCategory(c.getId()));
-//			mapReviewByCategory.put(c.getName(), mapReviewByCategoryProduct);
-//
-//			Map<Long, Double> mapAvgStarByCategoryProduct = ratingService.findAllAvgStarByList(productByCategory(c.getId()));
-//			mapAvgStarByCategory.put(c.getName(), mapAvgStarByCategoryProduct);
-//		});
-//		model.addAttribute("mapReviewByCategory", mapReviewByCategory);
-//		model.addAttribute("mapAvgStarByCategory", mapAvgStarByCategory);
-//		model.addAttribute("masterTags", masterTags);
-//		//}
-//		List<Product> topProducts = listProduct;
-//		topProducts.addAll(listProduct);
-//		model.addAttribute("productByCategory", productByCategory);
-//		model.addAttribute("topProducts", listProduct);
-//		model.addAttribute("viewlist", cookieHelper.getCookieByName(request, productService, "viewlist"));
-//
-//		//review {
-//		Map<Long, Integer> mapReviewByView = ratingService.findAllReviewByList(cookieHelper.getCookieByName(request, productService, "viewlist"));
-//		model.addAttribute("mapReviewByView", mapReviewByView);
-//		Map<Long, Double> mapAvgStarByView = ratingService.findAllAvgStarByList(cookieHelper.getCookieByName(request, productService, "viewlist"));
-//		model.addAttribute("mapAvgStarByView", mapAvgStarByView);
-//
-//		List<Product> list = new ArrayList<Product>();
-//	    productService.findTop5().forEach(pid->list.add(productService.findById(pid)));
-//	    Map<Long, Integer> mapReviewByTop5 = ratingService.findAllReviewByList(list);
-//		model.addAttribute("mapReviewByTop5", mapReviewByTop5);
-//		Map<Long, Double> mapAvgStarByTop5 = ratingService.findAllAvgStarByList(list);
-//		model.addAttribute("mapAvgStarByTop5", mapAvgStarByTop5);
-//		//}
         return "template/user/page/index/index";
     }
-
-    private MainPageList getWidgets(int i, HashMap<WidgetType, List<Widget>> widgetsMap, List<WidgetType> widgetTypes) {
-        MainPageList pageItem;
-        if (widgetsMap.size() > i) {
-            WidgetType key = widgetsMap.keySet().toArray(new WidgetType[0])[i];
-            pageItem = new MainPageList(MainPageList.ListTypes.getWidgetType(key.toString()));
-            List<Widget> widgetList = widgetsMap.get(key);
-            pageItem.setWidgets(widgetList);
-            return pageItem;
-        } else {
-            return null;
-        }
-    }
-
-    @GetMapping(value = "/test")
-    public String test(HttpServletRequest request, HttpServletResponse response,
-                       Authentication authentication, Model model) {
-        return "ajax";
-    }
-
-//    public List<Product> productByCategory(long catId) {
-//        return productService.findByCategories(catId);
-//    }
 
     @GetMapping("/banner/display/{id}")
     @ResponseBody
