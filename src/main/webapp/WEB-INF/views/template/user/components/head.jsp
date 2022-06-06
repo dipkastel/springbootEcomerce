@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/media-min.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/media-max.css">
     <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">
 <%--    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/pagination.css">--%>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/PagingStyle.css">

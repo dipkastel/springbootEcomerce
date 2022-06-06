@@ -89,7 +89,7 @@
                 <jsp:param name="dataOwlItemXl" value="11"/>
                 <jsp:param name="dataOwlDuration" value="500"/>
                 <jsp:param name="dataOwlMousedrag" value="on"/>
-                <jsp:param name="owlClass" value="ps-carousel--nav owl-slider mt-30"/>
+                <jsp:param name="owlClass" value="ps-carousel--nav owl-slider suppercat-box"/>
             </jsp:include>
 
         </div>
@@ -193,7 +193,7 @@
     <c:when test="${mainListItem.listType == 'MULTIPLE_BANNER_RIGHT'}">
 
         <div class="container-fluid">
-            <div class="mr-30 ml-30 mt-30">
+            <div class="banner-box">
                 <div class="row ">
 
 
@@ -215,7 +215,7 @@
     </c:when>
     <c:when test="${mainListItem.listType == 'MULTIPLE_BANNER_LEFT'}">
         <div class="container-fluid">
-            <div class="mr-30 ml-30 mt-30">
+            <div class="banner-box">
                 <div class="row ">
 
 
@@ -237,7 +237,7 @@
     </c:when>
     <c:when test="${mainListItem.listType == 'MULTIPLE_BANNER_SAME'}">
         <div class="container-fluid">
-            <div class="mr-30 ml-30 mt-50">
+            <div class="banner-box">
                 <div class="row ">
 
 
@@ -255,7 +255,7 @@
     </c:when>
     <c:when test="${mainListItem.listType == 'THRIPLE_BANNER_SAME'}">
         <div class="container-fluid">
-            <div class="mr-30 ml-30 mt-50">
+            <div class="banner-box">
                 <div class="row ">
 
 

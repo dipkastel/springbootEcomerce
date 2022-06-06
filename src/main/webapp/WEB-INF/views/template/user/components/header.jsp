@@ -4,7 +4,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <div id="loader-wrapper">
-    <img id="loader-section-section-logo"  src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-1.png" class="spin"  alt="">
+    <img id="loader-section-section-logo" src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-1.png"
+         class="spin" alt="">
     <div id="loader-section-section-left" class="loader-sectionl"></div>
     <div id="loader-section-section-right" class="loader-sectionr"></div>
 </div>
@@ -17,29 +18,28 @@
                     <div class="menu__content">
                         <%--                        product category--%>
                         <ul class="menu--dropdown">
-                            <c:forEach items="${categories}" var="c">
+
+                            <c:forEach items="${menu}" var="c">
                                 <li class="menu-item-has-children has-mega-menu"><a
-                                        href="${pageContext.servletContext.contextPath}/product?category=${c.id}"><i
-                                        class="icon-desktop"></i>${c.name}</a>
+                                        href="${pageContext.servletContext.contextPath}${c.url}">${c.name}</a>
                                     <div class="mega-menu">
                                         <div class="mega-menu__column">
-                                                <%--                                                ${typeByCategory}--%>
-                                            <h4>Parts<span class="sub-toggle"></span></h4>
                                             <ul class="mega-menu__list">
-                                                <c:forEach items="${c.subCategories}" var="t">
-                                                    <li>
-                                                        <a href="${pageContext.servletContext.contextPath}/product?category=${c.id}&type=${t.id}">${t.name}</a>
-                                                    </li>
-                                                </c:forEach>
-                                            </ul>
-                                        </div>
+                                                <c:forEach items="${c.subMenu}" var="t">
+                                                    <li class="subsub-menu">
+                                                        <a href="${pageContext.servletContext.contextPath}${t.url}">${t.name}</a>
 
-                                        <div class="mega-menu__column">
-                                            <h4>Brand<span class="sub-toggle"></span></h4>
-                                            <ul class="mega-menu__list">
-                                                <c:forEach items="${brandsByCategory[c.name]}" var="b">
-                                                    <li>
-                                                        <a href="${pageContext.servletContext.contextPath}/product?category=${c.id}&brand=${b.id}">${b.name}</a>
+                                                        <div class="sub-mega-menu">
+                                                            <div class="mega-menu__column">
+                                                                <ul class="mega-menu__list">
+                                                                    <c:forEach items="${t.subMenu}" var="e">
+                                                                        <li>
+                                                                            <a href="${pageContext.servletContext.contextPath}${e.url}">${e.name}</a>
+                                                                        </li>
+                                                                    </c:forEach>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
                                                     </li>
                                                 </c:forEach>
                                             </ul>
@@ -210,7 +210,7 @@
                                         <c:forEach items="${c.subMenu}" var="d">
                                             <li class="menu-item-has-children has-mega-menu">
                                                 <a href="${pageContext.servletContext.contextPath}/product?category=${d.id}">
-                                                    ${d.name}
+                                                        ${d.name}
                                                 </a>
                                                 <div class="mega-menu">
                                                     <div class="mega-menu__column">

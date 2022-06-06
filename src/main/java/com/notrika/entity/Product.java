@@ -59,7 +59,7 @@ public class Product {
     @ManyToMany()
     Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(mappedBy = "product",targetEntity = productAttribute.class, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     public Set<productAttribute> attributes =new HashSet<>();
 
 
