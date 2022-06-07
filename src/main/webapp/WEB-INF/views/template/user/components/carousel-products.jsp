@@ -35,8 +35,9 @@
                                             data-toggle="tooltip" data-placement="top"
                                             title="اضافه به سبد خرید"><i class="icon-bag2"></i></a></li>
                                     <li><a data-placement="top" title="نمایش سریع"
-                                           data-toggle="modal"
-                                           data-target="#product-quickview-${p.id}"><i
+                                           class="open-quick-view"
+                                            data="${p.id}"
+                                    ><i
                                             class="icon-eye"></i></a></li>
                                     <li><a data-toggle="tooltip" data-placement="top"
                                            title="اضافه به خرید بعدی" onclick="addToWishList(${p.id})"><i

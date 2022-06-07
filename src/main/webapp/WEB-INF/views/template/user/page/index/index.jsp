@@ -2,14 +2,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<jsp:include page="../../components/head.jsp"/>
-<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/bloomStyle.css">
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+
+    <jsp:include page="../../common/header.jsp">
+        <jsp:param name="pageTitle" value="notrika | baseSettings"/>
+        <jsp:param name="clientTheme" value="true"/>
+        <jsp:param name="icons" value="true"/>
+        <jsp:param name="bootstrap" value="true"/>
+        <jsp:param name="carousel" value="true"/>
+        <jsp:param name="slick" value="true"/>
+        <jsp:param name="nouislider" value="true"/>
+        <jsp:param name="lightgallery" value="true"/>
+        <jsp:param name="select2" value="true"/>
+        <jsp:param name="pagination" value="true"/>
+        <jsp:param name="favicon" value="true"/>
+    </jsp:include>
+</head>
+<jsp:include page="css/css.jsp"/>
 
 <body>
-<%--    header    --%>
-<jsp:include page="../../components/header.jsp"/>
-<%--    sidebar mobile    --%>
-<jsp:include page="../../components/sidebar.jsp"/>
+
+<jsp:include page="../../common/loader.jsp"/>
+<jsp:include page="../../common/topMenu.jsp"/>
+<jsp:include page="../../common/topMenuMobile.jsp"/>
+<jsp:include page="../../common/sidebar.jsp"/>
 
 <div class="fix-offset"></div>
 <div id="homepage-1">
@@ -18,44 +36,21 @@
         <jsp:include page="_list_manager.jsp"/>
     </c:forEach>
 </div>
-<jsp:include page="../../components/footer.jsp"/>
 
-<script>
-    function addToWishList(id) {
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                if (this.responseText === "successful") {
-                    msg("Add to wishlist sucessful!");
-                } else if (this.responseText === "failed") {
-                    msg("You can only add 1 time!");
-                }
-                initData();
-            }
-        });
-        xhr
-            .open(
-                "GET",
-                "${pageContext.servletContext.contextPath}/api/wish-list/addProductToWishList?id_product="
-                + id);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(data);
-    }
 
-    function addProductToViewList(id) {
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-        });
-        xhr
-            .open(
-                "GET",
-                "${pageContext.servletContext.contextPath}/api/wish-list/addProductToViewList?id_product="
-                + id);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(data);
-    }
-</script>
+<jsp:include page="../../common/newsLetter.jsp"/>
+<jsp:include page="../../common/footer.jsp"/>
+<jsp:include page="../../common/backToTop.jsp"/>
+<jsp:include page="../../common/scripts.jsp">
+    <jsp:param name="jquery" value="true"/>
+    <jsp:param name="carousel" value="true"/>
+    <jsp:param name="bootstrap" value="true"/>
+    <jsp:param name="backToTop" value="true"/>
+    <jsp:param name="loader" value="true"/>
+    <jsp:param name="quickView" value="true"/>
+</jsp:include>
+
+
+<jsp:include page="js/script.jsp"/>
+
 </body>
-
