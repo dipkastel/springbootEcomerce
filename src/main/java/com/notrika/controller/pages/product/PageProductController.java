@@ -232,7 +232,7 @@ public class PageProductController {
             }
         }
         request.getSession().setAttribute("message", "invalid, please login!");
-        return "redirect:/login";
+        return "redirect:/register";
     }
 
     @GetMapping("/wishlist")

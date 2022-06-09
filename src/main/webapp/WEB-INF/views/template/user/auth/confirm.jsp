@@ -7,13 +7,11 @@
 <head>
 
     <jsp:include page="../common/header.jsp">
-        <jsp:param name="pageTitle" value="notrika | baseSettings"/>
+        <jsp:param name="pageTitle" value="notrika | confirm Number"/>
         <jsp:param name="clientTheme" value="true"/>
         <jsp:param name="icons" value="true"/>
         <jsp:param name="bootstrap" value="true"/>
-        <jsp:param name="carousel" value="true"/>
         <jsp:param name="favicon" value="true"/>
-        <jsp:param name="lightgallery" value="true"/>
     </jsp:include>
 </head>
 <jsp:include page="css/css.jsp"/>
@@ -28,38 +26,39 @@
         <div class="container">
             <div class="ps-form--account ps-tab-root" >
                 <ul class="ps-tab-list">
-                    <li class="active"><a href="#sign-in">ورود</a></li>
+                    <li class="active"><a href="#sign-in">تایید شماره همراه</a></li>
                 </ul>
                 <div class="ps-tabs">
                     <div class="ps-tab active" id="sign-in">
-                        <form action="${pageContext.servletContext.contextPath}/login" method="post" modelAttribute="user">
-                            <div class="ps-form__content">
-                                <h5>ورود به حساب کاربری</h5>
+                        <div class="ps-form__content">
+                            <h5>تایید و ورود</h5>
+                            <form action="${pageContext.servletContext.contextPath}/confirm" method="post" modelAttribute="user" id="frm">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="نام کاربری" name="username">
+                                    <input class="form-control" type="text" placeholder="شماره تلفن همراه" name="phoneNumber" id="phone" value="${phoneNumber}"/>
+                                    <span id="phone-error" class="error invalid-feedback"></span>
                                 </div>
-                                <div class="form-group form-forgot">
-                                    <input class="form-control" type="password" placeholder="رمز عبور" name="password"><a href="${pageContext.servletContext.contextPath}/forgot-password">فراموشی?</a>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="کد پیامک شده" name="password" id="password"/>
+                                    <span id="password-error" class="error invalid-feedback"></span>
                                 </div>
                                 <div class="form-group">
                                     <div class="ps-checkbox">
-                                        <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
+                                        <input class="form-control" type="checkbox" id="remember-me" name="remember-me"/>
                                         <label for="remember-me">یاداوری</label>
                                     </div>
                                 </div>
-                                <div class="form-group submtit">
-                                    <button class="ps-btn ps-btn--fullwidth">ورود</button>
-                                </div>
+                                <input class="form-control" type="text" name="refId" value="${refId}" hidden/>
+                            </form>
+                            <div class="form-group submtit">
+                                <button class="ps-btn ps-btn--fullwidth" id="btnRegister">تایید و ورود</button>
                             </div>
-                        </form>
+                        </div>
                         <div class="ps-form__footer">
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
         </div>
     </div>
 </div>

@@ -88,13 +88,13 @@
                             <c:choose>
                                 <c:when test="${user.role  == 'ROLE_USER' }">
                                     <div class="ps-block__right"><a
-                                            href="${pageContext.servletContext.contextPath}/customer/info">${user.username}</a>
+                                            href="${pageContext.servletContext.contextPath}/customer/info">${user.phoneNumber}</a>
                                     </div>
 
                                 </c:when>
                                 <c:otherwise>
                                     <div class="ps-block__right"><a
-                                            href="${pageContext.servletContext.contextPath}/admin">${user.username}</a>
+                                            href="${pageContext.servletContext.contextPath}/admin">${user.phoneNumber}</a>
                                     </div>
                                 </c:otherwise>
                             </c:choose>

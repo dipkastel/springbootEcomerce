@@ -18,11 +18,11 @@ public class PageAjaxController {
     private UserRepository repo;
 
     @GetMapping
-    public List<User> userHomePage(@RequestParam(name = "username", required = false) String username) {
-        System.err.println(username);
+    public List<User> userHomePage(@RequestParam(name = "phoneNumber", required = false) String phoneNumber) {
+        System.err.println(phoneNumber);
         List<User> u = new ArrayList<>();
-        if (username != null) {
-            u.add(repo.findByUsername(username));
+        if (phoneNumber != null) {
+            u.add(repo.findByPhoneNumber(phoneNumber));
             return u;
         }
         return repo.findAll();
@@ -30,12 +30,12 @@ public class PageAjaxController {
 
 
     @GetMapping("/checkbox")
-    public List<User> userCheckboxHomePage(@RequestParam(name = "username", required = false) List<String> listUsername) {
-        System.err.println(listUsername);
+    public List<User> userCheckboxHomePage(@RequestParam(name = "listPhoneNumber", required = false) List<String> listPhoneNumber) {
+        System.err.println(listPhoneNumber);
         List<User> u = new ArrayList<>();
 
-        if (listUsername != null) {
-            listUsername.forEach(listUser -> u.add(repo.findByUsername(listUser)));
+        if (listPhoneNumber != null) {
+            listPhoneNumber.forEach(listUser -> u.add(repo.findByPhoneNumber(listUser)));
             return u;
         }
         return repo.findAll();

@@ -1,10 +1,13 @@
 package com.notrika.config;
 
+import com.notrika.controller.admin.AdminTypeController;
 import com.notrika.entity.Cart;
 import com.notrika.entity.UserDetail;
 import com.notrika.service.CustomerService;
 import com.notrika.service.UserOauthService;
 import com.notrika.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +35,7 @@ import java.io.IOException;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(AdminTypeController.class);
     private final UserService userService;
     private final CustomerService customerService;
     private final Cart cart;
@@ -86,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
+                .loginPage("/confirm").permitAll()
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -114,13 +118,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .passwordParameter("password")
-                .usernameParameter("username")
+                .usernameParameter("phoneNumber")
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
                 .and()
                 .oauth2Login()
-                .loginPage("/login")
+                .loginPage("/confirm")
                 .userInfoEndpoint()
                 .userService(userOauthService)
                 .and()
@@ -132,7 +136,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         if (authentication.getPrincipal() instanceof OAuth2User) {
                             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
                             String message = (String) request.getSession().getAttribute("message");
-                            userService.processUserOAuth(String.valueOf(oAuth2User.getAttributes().get("email")) ,String.valueOf(oAuth2User.getAttributes().get("name")));
+                            userService.processUserOAuth(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
                             request.getSession().setAttribute("message", "Login success!");
                         }
                         response.sendRedirect(request.getContextPath() + "/");

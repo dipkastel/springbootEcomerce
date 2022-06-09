@@ -170,7 +170,14 @@ button {
     transition: all .4s ease;
     cursor: pointer;
 }
+.ps-btn, button.ps-btn:hover {
+    background-color: #6ab9b7;
+    color: #fff;
 
+}
+.ps-btn--fullwidth{
+    width: 100%;
+}
 .form-control {
     outline: none;
     height: 50px;
@@ -210,6 +217,9 @@ button {
 
 /*footer*/
 
+.tob-b{
+    border-top: 1px solid #e1e1e1;
+}
 .ps-list--social {
     margin: 0;
     padding: 0;
@@ -311,7 +321,12 @@ button {
     justify-content: space-around;
     padding-bottom: 35px;
 }
-
+.ps-footer__copyright{
+    padding: 15px;
+}
+.ps-footer__copyright p{
+    margin: 0px;
+}
 /*back to top*/
 #back2top {
     position: fixed;
@@ -1210,8 +1225,6 @@ button {
 
 .ps-newsletter {
     padding: 65px 0;
-    border-top: 1px solid #e1e1e1;
-    border-bottom: 1px solid #e1e1e1;
 }
 
 /*quick search*/

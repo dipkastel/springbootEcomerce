@@ -27,10 +27,7 @@
     <div class="ps-my-account">
         <div class="container">
             <div class="ps-form--account ps-tab-root" >
-                <ul class="ps-tab-list">
-                    <li class="active"><a href="#sign-in">ثبت نام</a></li>
-                </ul>
-                <div class="ps-tabs">
+                <div class="auth-box">
                     <div class="ps-tab active" id="sign-in">
                         <div class="ps-form__content">
                             <h5>ثبت حساب جدید</h5>
@@ -39,14 +36,10 @@
                                     <input class="form-control" type="text" placeholder="شماره تلفن همراه" name="phoneNumber" id="phone">
                                     <span id="phone-error" class="error invalid-feedback"></span>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="نام و نام خانوادگی" name="userName" id="userName">
-                                    <span id="userName-error" class="error invalid-feedback"></span>
-                                </div>
                                 <input class="form-control" type="text" name="refId" value="${refId}" hidden>
                             </form>
                             <div class="form-group submtit">
-                                <button class="ps-btn ps-btn--fullwidth" id="btnRegister">ثبت نام</button>
+                                <button class="ps-btn ps-btn--fullwidth" id="btnRegister">ارسال کد</button>
                             </div>
                         </div>
                         <div class="ps-form__footer">
@@ -58,7 +51,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="../common/newsLetter.jsp"/>
 <jsp:include page="../common/footer.jsp"/>
 <jsp:include page="../common/backToTop.jsp"/>
 </body>

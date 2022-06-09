@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<div class="ps-newsletter" >
+<div class="ps-newsletter tob-b" >
     <div class="ps-container">
         <div class="ps-form--newsletter"  >
             <div class="row">

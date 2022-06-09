@@ -6,7 +6,7 @@
     .ps-form--account {
         max-width: 430px;
         margin: 0 auto;
-        padding: 40px 0 100px 0;
+        padding: 150px 0 200px 0;
     }
 
     .ps-form--account .ps-tab-list {
@@ -55,6 +55,7 @@
 
     .ps-form--account .ps-form__content {
         padding: 30px 30px 0;
+        text-align: center;
     }
 
     .ps-form--account .ps-form__content h5 {
@@ -216,23 +217,29 @@
         font-weight: 600;
         color: #000;
     }
-
-    .ps-widget--account-dashboard .ps-widget__content ul {
-        border: 1px solid #d1d1d1;
+    .ps-section__left {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ddd;
     }
 
-    .ps-widget--account-dashboard .ps-widget__content ul li {
-        border-bottom: 1px solid #d1d1d1;
+    .ps-section__right {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 50px;
+        box-shadow: 0 0 10px #ddd;
     }
+
 
     .ps-widget--account-dashboard .ps-widget__content ul li a {
         display: block;
-        padding: 15px 20px;
-        line-height: 20px;
-        font-size: 16px;
-        font-weight: 500;
+        padding: 10px;
+        font-size: 13px;
         color: #000;
-        text-transform: capitalize;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        margin: 10px;
     }
 
     .ps-widget--account-dashboard .ps-widget__content ul li a i {
@@ -240,19 +247,15 @@
     }
 
     .ps-widget--account-dashboard .ps-widget__content ul li a:hover {
-        background-color: #6ab9b7;
-        color: #fff;
+        background-color: #ececec;
     }
 
     .ps-widget--account-dashboard .ps-widget__content ul li:last-child {
         border-bottom: none;
     }
 
-    .ps-widget--account-dashboard .ps-widget__content ul li.active {
-        background-color: #6ab9b7;
-    }
-
     .ps-widget--account-dashboard .ps-widget__content ul li.active a {
+        background-color: #6ab9b7;
         color: #fff;
     }
 

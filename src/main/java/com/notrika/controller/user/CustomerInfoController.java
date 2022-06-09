@@ -52,10 +52,10 @@ public class CustomerInfoController {
         if (countCustomer>0){
             Customer customer = customerService.findByUserId(user.getId());
             model.addAttribute("customerInfo",customer);
-            return "template/user/customer/info/info-page";
+            return "template/user/page/customer/info/info-page";
         }else{
             model.addAttribute("customerInfo",new Customer());
-            return "template/user/customer/info/info-new";
+            return "template/user/page/customer/info/info-new";
         }
 
     }
@@ -63,7 +63,7 @@ public class CustomerInfoController {
     @GetMapping("/update")
     public String processCustomerInfo(Model model,@RequestParam("id")Long id){
         model.addAttribute("customerInfo",customerService.findById(id));
-        return "template/user/customer/info/info-update";
+        return "template/user/page/customer/info/info-update";
     }
 
 

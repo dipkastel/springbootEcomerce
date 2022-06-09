@@ -2,9 +2,11 @@ package com.notrika.service;
 
 import com.notrika.entity.ImageGallery;
 import com.notrika.entity.Ref;
+import com.notrika.helper.StringHelper;
 import com.notrika.repository.DAO;
 import com.notrika.repository.ImageRepository;
 import com.notrika.repository.RefRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,31 +31,20 @@ public class RefService implements DAO<Ref> {
 		return rep.getOne(id);
 	}
 
-	public Ref findByRefid(String id) {
-		return rep.findByRefId(id);
+	public Ref findByRefid(String id) throws NotFoundException {
+		Ref ref = rep.findByRefId(id);
+		if(ref==null)
+			throw new NotFoundException("this form Not Requested!");
+		rep.delete(ref);
+		return ref;
 	}
 
 	public Ref save(String userAgent,String ipAddress) {
 		Ref ref = new Ref();
 		ref.setUserAgent(userAgent+"ip:"+ipAddress);
-		ref.setRefId(getAlphaNumericString(20));
+		ref.setRefId(StringHelper.getAlphaNumericString(20));
 		save(ref);
 		return ref;
-	}
-
-	static String getAlphaNumericString(int n)
-	{
-		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
-		StringBuilder sb = new StringBuilder(n);
-
-		for (int i = 0; i < n; i++) {
-			int index
-					= (int)(AlphaNumericString.length()
-					* Math.random());
-			sb.append(AlphaNumericString
-					.charAt(index));
-		}
-		return sb.toString();
 	}
 
 	@Override

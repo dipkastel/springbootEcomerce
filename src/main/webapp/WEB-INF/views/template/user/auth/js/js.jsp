@@ -15,21 +15,8 @@
             function () {
                 let phone = $('#phone');
                 let phoneError = $('#phone-error');
-                let userName = $('#userName');
-                let userNameError = $('#userName-error');
                 let hasSubmit = [];
 
-                if (userName.val().length >250) {
-                    hasSubmit.push(1);
-                    userName.addClass(
-                        'form-control is-invalid');
-                    userNameError.html(
-                        'نام و نام خانوادگی طولانی است');
-                }else{
-                    userName.removeClass(
-                        'is-invalid');
-                    userNameError.html('');
-                }
                 if (phone.val().length !==11) {
                     hasSubmit.push(1);
                     phone.addClass(
@@ -40,18 +27,6 @@
                     phone.removeClass(
                         'is-invalid');
                     phoneError.html('');
-                }
-
-                if (userName.val().length === 0) {
-                    hasSubmit.push(1);
-                    userName.addClass(
-                        'form-control is-invalid');
-                    userNameError.html(
-                        'نام و نام خانوادگی لازم است');
-                }else{
-                    userName.removeClass(
-                        'is-invalid');
-                    userNameError.html('');
                 }
 
                 if (phone.val().length === 0) {

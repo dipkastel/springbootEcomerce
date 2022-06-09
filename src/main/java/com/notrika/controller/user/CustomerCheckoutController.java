@@ -67,36 +67,36 @@ public class CustomerCheckoutController {
         return "template/user/customer/product/checkout-page";
     }
 
-    @GetMapping("/checkout")
-    public String customerCheckoutProductPage(Authentication authentication, Model model) {
-        String template = "redirect:/customer/info";
-        log.info("set template customer info");
-        User user = userHelper.getUser(authentication,userService);
-            Long countCustomer = customerService.countByUserId(user.getId());
-
-            if (countCustomer > 0) {
-                log.info("customer already input info");
-                customer = customerService.findByUserId(user.getId());
-                if (customer.getAddress() != null && customer.getFirstName() != null && customer.getLastName() != null && customer.getPhone() != null) {
-                    log.info("customer already input all field of info");
-                    List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
-                    model.addAttribute("customerOrder", new CustomerOrder(
-                            customer.getFirstName() + " " + customer.getLastName(),
-                            customer.getAddress(),
-                            customer.getPhone(),
-                            cart.calCartTotal(),
-                            false,
-                            customer,
-                            listItem
-                    ));
-                    log.info("set template checkout");
-                    template = "template/user/customer/product/checkout";
-                }
-            }
-
-        log.info("return teamplate");
-        return template;
-    }
+//    @GetMapping("/checkout")
+//    public String customerCheckoutProductPage(Authentication authentication, Model model) {
+//        String template = "redirect:/customer/info";
+//        log.info("set template customer info");
+//        User user = userHelper.getUser(authentication,userService);
+//            Long countCustomer = customerService.countByUserId(user.getId());
+//
+//            if (countCustomer > 0) {
+//                log.info("customer already input info");
+//                customer = customerService.findByUserId(user.getId());
+//                if (customer.getAddress() != null && customer.getFirstName() != null && customer.getLastName() != null && customer.getPhone() != null) {
+//                    log.info("customer already input all field of info");
+//                    List<CartItem> listItem = new ArrayList<>(cart.getCartItems());
+//                    model.addAttribute("customerOrder", new CustomerOrder(
+//                            customer.getFirstName() + " " + customer.getLastName(),
+//                            customer.getAddress(),
+//                            customer.getPhone(),
+//                            cart.calCartTotal(),
+//                            false,
+//                            customer,
+//                            listItem
+//                    ));
+//                    log.info("set template checkout");
+//                    template = "template/user/customer/product/checkout";
+//                }
+//            }
+//
+//        log.info("return teamplate");
+//        return template;
+//    }
 
     @PostMapping("/checkout")
     public String processCustomerOrder(Authentication authentication, CustomerOrder order, Model model) {

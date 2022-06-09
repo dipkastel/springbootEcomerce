@@ -1,6 +1,5 @@
-
-<jsp:include page="../../components/head.jsp"></jsp:include>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<jsp:include page="../../components/head.jsp"></jsp:include>
 
 <body>
 <jsp:include page="../../components/header.jsp"></jsp:include>
@@ -12,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <%--                    side bar--%>
-                    <jsp:include page="../user/customer-sidebar.jsp"></jsp:include>
+                    <jsp:include page="../../user/customer-sidebar.jsp"></jsp:include>
                     <%--                    side bar--%>
 
                 </div>
@@ -20,18 +19,21 @@
                     <div class="ps-section__right">
                         <div class="ps-form--account-setting">
                             <div class="ps-form__header">
-                                <h3>ثبت اطلاعات کاربری</h3>
+                                <h3>ویرایش اطلاعات کاربری</h3>
                             </div>
                             <br>
-                            <form class="ps-form__content" action="${pageContext.servletContext.contextPath}/customer/info/new"
+                            <form class="ps-form__content" action="${pageContext.servletContext.contextPath}/customer/info/update"
                             method="post" id="frm"
                             >
                                 <div class="row">
+                                    <input type="hidden" name="id" value="${customerInfo.id}">
+                                    <input type="hidden" name="user" value="${customerInfo.user.id}">
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>نام</label>
                                             <input class="form-control" type="text" placeholder="نام"
-                                                   name="firstName" id="fname">
+                                                   value="${customerInfo.firstName}" name="firstName" id="fname">
                                             <span id="fname-error" class="error invalid-feedback"></span>
 
                                         </div>
@@ -40,7 +42,7 @@
                                         <div class="form-group">
                                             <label>نام خانوادگی</label>
                                             <input class="form-control" type="text" placeholder="نام خانوادگی"
-                                                name="lastName" id="lname" >
+                                                   value="${customerInfo.lastName}" name="lastName" id="lname" >
                                             <span id="lname-error" class="error invalid-feedback"></span>
 
                                         </div>
@@ -49,7 +51,7 @@
                                         <div class="form-group">
                                             <label>تلفن همراه</label>
                                             <input class="form-control" type="text" placeholder="تلفن همراه"
-                                                  name="phone" id="phone">
+                                                   value="${customerInfo.phone}" name="phone" id="phone">
                                             <span id="phone-error" class="error invalid-feedback"></span>
 
                                         </div>
@@ -58,7 +60,7 @@
                                         <div class="form-group">
                                             <label>آدرس</label>
                                             <input class="form-control" type="text" placeholder="آدرس"
-                                                   name="address" id="address">
+                                                   value="${customerInfo.address}" name="address" id="address">
                                             <span id="address-error" class="error invalid-feedback"></span>
 
                                         </div>
@@ -66,10 +68,10 @@
                                 </div>
 
                             </form>
-                            <div class="form-group submit">
-                                <button class="ps-btn" id="btnSave" >ثبت</button>
-                            </div>
 
+                            <div class="form-group submit">
+                                <button class="ps-btn" id="btnSave">ذخیره</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,46 +98,50 @@
                 let fnameError = $('#fname-error');
                 let lname = $('#lname');
                 let lnameError = $('#lname-error');
+
                 let phone = $('#phone');
                 let phoneError = $('#phone-error');
                 let address = $('#address');
                 let addressError = $('#address-error');
+
                 let hasSubmit = [];
+
 
                 if (address.val().length > 250) {
                     hasSubmit.push(1);
                     address.addClass(
                         'form-control is-invalid');
                     addressError.html(
-                        'آدرس طولانی است');
+                        'آدرس طولانی است!');
                 }
                 if (phone.val().length > 250) {
                     hasSubmit.push(1);
                     phone.addClass(
                         'form-control is-invalid');
                     phoneError.html(
-                        'تلفن همراه طولانی است');
+                        'تلفن همراه طولانی است!');
                 }
                 if (lname.val().length > 250) {
                     hasSubmit.push(1);
                     lname.addClass(
                         'form-control is-invalid');
                     lnameError.html(
-                        'نام خانوادگی طولانی است');
+                        'نام خانوادگی طولانی است!');
                 }
                 if (fname.val().length > 250) {
                     hasSubmit.push(1);
                     fname.addClass(
                         'form-control is-invalid');
                     fnameError.html(
-                        'نام طولانی است');
+                        'نام طولانی است!');
                 }
+
                 if (fname.val().length === 0) {
                     hasSubmit.push(1);
                     fname.addClass(
                         'form-control is-invalid');
                     fnameError.html(
-                        'نام را وارد کنید');
+                        'نام الزامی است!');
                 }
 
                 if (lname.val().length === 0) {
@@ -143,7 +149,7 @@
                     lname.addClass(
                         'form-control is-invalid');
                     lnameError.html(
-                        'نام خانوادگی را وارد کنید');
+                        'نام خانوادگی الزامی است!');
                 }
 
                 if(IsPhone(phone.val())==false){
@@ -151,7 +157,7 @@
                     phone.addClass(
                         'form-control is-invalid');
                     phoneError.html(
-                        'تلفن همراه صحیح نیست');
+                        'تلفن همراه صحیح نیست!');
                 }
 
 
@@ -160,7 +166,7 @@
                     address.addClass(
                         'form-control is-invalid');
                     addressError.html(
-                        'آدرس را وارد کنید');
+                        'آدرس الزامی است!');
                 }
 
 
@@ -171,6 +177,5 @@
 
             });
 </script>
-
 </body>
 

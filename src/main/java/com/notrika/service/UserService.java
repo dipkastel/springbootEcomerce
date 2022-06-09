@@ -38,30 +38,27 @@ public class UserService implements UserDetailsService {
     }
     
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
+    public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
+        User user = userRepo.findByPhoneNumber(phoneNumber);
         if (user == null) {
-            throw new UsernameNotFoundException("User "+username+" not found!");
+            throw new UsernameNotFoundException("User "+phoneNumber+" not found!");
         }
         return new UserDetail(user);
     }
 
-    public User findByEmail(String email){
-        return userRepo.findByEmail(email);
-    }
-
-
-    public void processUserOAuth(String email,String username) {
-        int existUser = userRepo.countByEmail(email);
+    public void processUserOAuth(String phoneNumber) {
+        int existUser = userRepo.countByPhoneNumber(phoneNumber);
         if (existUser == 0) {
             User newUser = new User();
             newUser.setRole("ROLE_USER");
-            newUser.setEmail(email);
-            newUser.setUsername(username);
+            newUser.setPhoneNumber(phoneNumber);
             newUser.setEnabled(true);
             userRepo.save(newUser);
         }
     }
 
 
+    public User findByPhoneNumber(String phoneNumber) {
+        return userRepo.findByPhoneNumber(phoneNumber);
+    }
 }

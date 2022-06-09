@@ -43,7 +43,7 @@ public class CustomerCashController {
 
 		if (authentication.getPrincipal() instanceof OAuth2User) {
 			OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-			user = userService.findByEmail(String.valueOf(oAuth2User.getAttributes().get("email")));
+			user = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
 		}
 
 

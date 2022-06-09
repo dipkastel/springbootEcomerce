@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -99,8 +98,11 @@
                                                             href="${pageContext.servletContext.contextPath}/admin"
                                                         </c:otherwise>
                                                     </c:choose>
+                                            >
 
-                                            >${user.username}</a></div>
+                                                    ${user.phoneNumber}
+
+                                                    </a></div>
                                             <ul class="ps-dropdown-menu">
                                                 <c:choose>
                                                     <c:when test="${user.role  == 'ROLE_USER' }">
@@ -122,8 +124,9 @@
                             </c:when>
 
                             <c:otherwise>
-                                <div class="ps-block__right"><a href="${pageContext.servletContext.contextPath}/login">ورود</a><a
-                                        href="${pageContext.servletContext.contextPath}/register">ثبت نام</a></div>
+                                <div class="ps-block__right">
+                                    <a href="${pageContext.servletContext.contextPath}/register">ثبت نام/ورود</a>
+                                </div>
                             </c:otherwise>
                         </c:choose>
                     </div>
