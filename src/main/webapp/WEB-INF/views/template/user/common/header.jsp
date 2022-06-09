@@ -31,9 +31,6 @@
     <link rel="stylesheet"
           href="${pageContext.servletContext.contextPath}/plugins/owl-carousel/assets/owl.theme.default.min.css">
 </c:when></c:choose>
-<c:choose><c:when test="${param.slick =='true'}">
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/slick/slick/slick.css">
-</c:when></c:choose>
 <c:choose><c:when test="${param.nouislider =='true'}">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/nouislider/nouislider.min.css">
 </c:when></c:choose>
@@ -52,6 +49,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/media-min.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/media-max.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/media-other.css">
 </c:when></c:choose>
 <c:choose><c:when test="${param.favicon =='true'}">
     <link rel="shortcut icon" type="image/png" href="${pageContext.servletContext.contextPath}/img/favicon.png">

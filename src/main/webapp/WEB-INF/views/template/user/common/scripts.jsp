@@ -24,15 +24,15 @@
 <c:choose><c:when test="${param.matchHeight =='true'}">
 <script src="${pageContext.servletContext.contextPath}/plugins/jquery.matchHeight-min.js"></script>
 </c:when></c:choose>
-<c:choose><c:when test="${param.slick =='true'}">
-<script src="${pageContext.servletContext.contextPath}/plugins/slick/slick/slick.min.js"></script>
-    <script src="${pageContext.servletContext.contextPath}/plugins/slick-animation.min.js"></script>
-</c:when></c:choose>
 <c:choose><c:when test="${param.barrating =='true'}">
 <script src="${pageContext.servletContext.contextPath}/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
 </c:when></c:choose>
+<c:choose><c:when test="${param.tabs =='true'}">
+    <script src="${pageContext.servletContext.contextPath}/js/tabs.js"></script>
+</c:when></c:choose>
 <c:choose><c:when test="${param.lightgallery =='true'}">
 <script src="${pageContext.servletContext.contextPath}/plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+    <script src="${pageContext.servletContext.contextPath}/js/productLightbox.js"></script>
 </c:when></c:choose>
 <c:choose><c:when test="${param.sidebar =='true'}">
 <script src="${pageContext.servletContext.contextPath}/plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
@@ -57,5 +57,4 @@
 </c:when></c:choose>
 <c:choose><c:when test="${param.quickView =='true'}">
 <script src="${pageContext.servletContext.contextPath}/js/quickview.js"></script>
-<script src="${pageContext.servletContext.contextPath}/js/modalInit.js"></script>
 </c:when></c:choose>

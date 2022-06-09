@@ -12,11 +12,6 @@
         <jsp:param name="icons" value="true"/>
         <jsp:param name="bootstrap" value="true"/>
         <jsp:param name="carousel" value="true"/>
-        <jsp:param name="slick" value="true"/>
-        <jsp:param name="nouislider" value="true"/>
-        <jsp:param name="lightgallery" value="true"/>
-        <jsp:param name="select2" value="true"/>
-        <jsp:param name="pagination" value="true"/>
         <jsp:param name="favicon" value="true"/>
     </jsp:include>
 </head>
@@ -36,8 +31,8 @@
         <jsp:include page="_list_manager.jsp"/>
     </c:forEach>
 </div>
-
-
+<jsp:include page="../../components/product-quick-view-modal.jsp" />
+</body>
 <jsp:include page="../../common/newsLetter.jsp"/>
 <jsp:include page="../../common/footer.jsp"/>
 <jsp:include page="../../common/backToTop.jsp"/>
@@ -49,8 +44,6 @@
     <jsp:param name="loader" value="true"/>
     <jsp:param name="quickView" value="true"/>
 </jsp:include>
+<jsp:include page="js/js.jsp"/>
 
-
-<jsp:include page="js/script.jsp"/>
-
-</body>
+</html>

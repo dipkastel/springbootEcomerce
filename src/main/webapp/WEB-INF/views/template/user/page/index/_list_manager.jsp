@@ -16,7 +16,7 @@
             <div class="ps-container">
                 <div class="ps-section__content">
 
-                    <jsp:include page="../../components/carousel-products.jsp">
+                    <jsp:include page="../../components/carousel.jsp">
                         <jsp:param name="dataOwlAuto" value="true"/>
                         <jsp:param name="dataOwlLoop" value="true"/>
                         <jsp:param name="dataOwlSpeed" value="10000"/>
@@ -48,7 +48,7 @@
                 <div class="col-10">
 
                     <div class="ps-section__content">
-                        <jsp:include page="../../components/carousel-products.jsp">
+                        <jsp:include page="../../components/carousel.jsp">
                             <jsp:param name="dataOwlAuto" value="true"/>
                             <jsp:param name="dataOwlLoop" value="true"/>
                             <jsp:param name="dataOwlSpeed" value="6000"/>
@@ -74,7 +74,7 @@
     <c:when test="${mainListItem.listType == 'SUPER_CAT'}">
 
         <div class="container">
-            <jsp:include page="../../components/carousel-products.jsp">
+            <jsp:include page="../../components/carousel.jsp">
                 <jsp:param name="dataOwlAuto" value="true"/>
                 <jsp:param name="dataOwlLoop" value="true"/>
                 <jsp:param name="dataOwlSpeed" value="3000"/>
@@ -101,7 +101,7 @@
                 <div class="ps-section__left">
 
 
-                    <jsp:include page="../../components/carousel-products.jsp">
+                    <jsp:include page="../../components/carousel.jsp">
                         <jsp:param name="dataOwlAuto" value="true"/>
                         <jsp:param name="dataOwlLoop" value="true"/>
                         <jsp:param name="dataOwlSpeed" value="5000"/>
@@ -131,7 +131,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                <jsp:include page="../../components/carousel-products.jsp">
+                <jsp:include page="../../components/carousel.jsp">
                     <jsp:param name="dataOwlAuto" value="true"/>
                     <jsp:param name="dataOwlLoop" value="true"/>
                     <jsp:param name="dataOwlSpeed" value="5000"/>
@@ -167,7 +167,7 @@
                 <div class="col-10 col-xs-7">
 
                     <div class="ps-section__content">
-                        <jsp:include page="../../components/carousel-products.jsp">
+                        <jsp:include page="../../components/carousel.jsp">
                             <jsp:param name="dataOwlAuto" value="true"/>
                             <jsp:param name="dataOwlLoop" value="true"/>
                             <jsp:param name="dataOwlSpeed" value="6000"/>

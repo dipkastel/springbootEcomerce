@@ -6,48 +6,6 @@
     <div class="header__top ">
         <div class="ps-container">
             <div class="header__left">
-                <div class="menu--product-categories">
-                    <div class="menu__toggle"><i class="icon-menu"></i><span> دسته بندی محصولات</span></div>
-                    <div class="menu__content">
-                        <%--                        product category--%>
-                        <ul class="menu--dropdown">
-
-                            <c:forEach items="${menu}" var="c">
-                                <li class="menu-item-has-children has-mega-menu"><a
-                                        href="${pageContext.servletContext.contextPath}${c.url}">${c.name}</a>
-                                    <div class="mega-menu">
-                                        <div class="mega-menu__column">
-                                            <ul class="mega-menu__list">
-                                                <c:forEach items="${c.subMenu}" var="t">
-                                                    <li class="subsub-menu">
-                                                        <a href="${pageContext.servletContext.contextPath}${t.url}">${t.name}</a>
-
-                                                        <div class="sub-mega-menu">
-                                                            <div class="mega-menu__column">
-                                                                <ul class="mega-menu__list">
-                                                                    <c:forEach items="${t.subMenu}" var="e">
-                                                                        <li>
-                                                                            <a href="${pageContext.servletContext.contextPath}${e.url}">${e.name}</a>
-                                                                        </li>
-                                                                    </c:forEach>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </c:forEach>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                            </c:forEach>
-                        </ul>
-                        <%--                        product category--%>
-
-                    </div>
-                    <%--                </div><a class="ps-logo" href="index.html"><img src="${pageContext.servletContext.contextPath}/img/logo_light.png" alt=""></a></div>--%>
-                </div>
                 <a class="ps-logo" href="${pageContext.servletContext.contextPath}/"><img
                         src="${pageContext.servletContext.contextPath}/img/Angry-Nerds-2.png" alt=""></a></div>
 

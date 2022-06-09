@@ -23,8 +23,5 @@ public class productAttribute {
     @Column(columnDefinition = "LONGTEXT")
     public String option;
 
-    @ManyToOne
-    @ToString.Exclude
-    public Product  product;
 
 }

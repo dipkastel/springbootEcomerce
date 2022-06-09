@@ -89,7 +89,7 @@
             <h4>نظر خود را ثبت کنید</h4>
             <div class="form-group form-group__rating">
                 <label>امتیاز شما به این محصول</label>
-                <jsp:include page="stars.jsp"/>
+                <jsp:include page="_stars.jsp"/>
             </div>
             <div class="form-group">
                 <input type="hidden" id="user" name="user" value="${user }">

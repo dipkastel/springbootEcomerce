@@ -59,7 +59,8 @@ public class Product {
     @ManyToMany()
     Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany( cascade = CascadeType.ALL)
+    @ToString.Exclude
     public Set<productAttribute> attributes =new HashSet<>();
 
 

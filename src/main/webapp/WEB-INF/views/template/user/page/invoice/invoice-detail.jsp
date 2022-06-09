@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <%--                    side bar--%>
-                    <jsp:include page="../customer-sidebar.jsp"></jsp:include>
+                    <jsp:include page="../user/customer-sidebar.jsp"></jsp:include>
                     <%--                    side bar--%>
 
                 </div>
