@@ -8,15 +8,6 @@
 <jsp:include page="../components/sidebar.jsp"></jsp:include>
 
 <div class="ps-page--my-account">
-    <div class="ps-breadcrumb">
-        <div class="container">
-<%--            <jsp:include page="../message/message.jsp"></jsp:include>--%>
-            <ul class="breadcrumb">
-                <li><a href="index.html">بایچه</a></li>
-                <li>حساب من</li>
-            </ul>
-        </div>
-    </div>
     <div class="ps-my-account">
         <div class="container">
 

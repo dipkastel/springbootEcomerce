@@ -1,11 +1,28 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<jsp:include page="../components/head.jsp"/>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+
+    <jsp:include page="../common/header.jsp">
+        <jsp:param name="pageTitle" value="notrika | baseSettings"/>
+        <jsp:param name="clientTheme" value="true"/>
+        <jsp:param name="icons" value="true"/>
+        <jsp:param name="bootstrap" value="true"/>
+        <jsp:param name="carousel" value="true"/>
+        <jsp:param name="favicon" value="true"/>
+        <jsp:param name="lightgallery" value="true"/>
+    </jsp:include>
+</head>
+<jsp:include page="css/css.jsp"/>
 
 <body>
-<jsp:include page="../components/header.jsp"></jsp:include>
-<jsp:include page="../components/sidebar.jsp"></jsp:include>
-<br><br><br><br><br><br>
+<jsp:include page="../common/loader.jsp"/>
+<jsp:include page="../common/topMenu.jsp"/>
+
+<div class="fix-offset"></div>
 <main class="ps-page--my-account">
     <section class="ps-section--account">
         <div class="container">
@@ -62,86 +79,19 @@
         </div>
     </section>
 </main>
-<jsp:include page="../components/footer.jsp"></jsp:include>
-<script>
-    $('#btnUpdate')
-        .on(
-            'click',
-            function () {
-                let old = $('#old');
-                let oldError = $('#old-error');
-                let newPass = $('#new');
-                let newPassError = $('#new-error');
-                let confirm = $('#confirm');
-                let confirmError = $('#confirm-error');
-                let hasSubmit = [];
-
-                if (confirm.val().length > 250) {
-                    hasSubmit.push(1);
-                    confirm.addClass(
-                        'form-control is-invalid');
-                    confirmError.html(
-                        'کلمه عبور طولانی است');
-                }
-                if (newPass.val().length > 250) {
-                    hasSubmit.push(1);
-                    newPass.addClass(
-                        'form-control is-invalid');
-                    newPassError.html(
-                        'کلمه عبور طولانی است');
-                }
-                if (old.val().length > 250) {
-                    hasSubmit.push(1);
-                    old.addClass(
-                        'form-control is-invalid');
-                    oldError.html(
-                        'کلمه عبور طولانی است');
-                }
-
-
-
-
-                if (old.val().length === 0) {
-                    hasSubmit.push(1);
-                    old.addClass(
-                        'form-control is-invalid');
-                    oldError.html(
-                        'کلمه عبور فعلی را وارد نمایید');
-                }
-
-
-
-                if (newPass.val().length === 0) {
-                    hasSubmit.push(1);
-                    newPass.addClass(
-                        'form-control is-invalid');
-                    newPassError.html(
-                        'کلمه عبور جدید را وارد کنید');
-                }
-
-                if (confirm.val().length === 0) {
-                    hasSubmit.push(1);
-                    confirm.addClass(
-                        'form-control is-invalid');
-                    confirmError.html(
-                        'تکرار کلمه عبور را وارد نمایید');
-                }
-
-                if (confirm.val() !== newPass.val()) {
-                    hasSubmit.push(1);
-                    confirm.addClass(
-                        'form-control is-invalid');
-                    confirmError.html(
-                        'تکرار کلمه عبور متفاوت است');
-                }
-
-
-                if (hasSubmit.length === 0) {
-                    $('#frmPassword').submit();
-                }
-
-            });
-</script>
-
+<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="../common/backToTop.jsp"/>
 </body>
 
+<jsp:include page="../common/scripts.jsp">
+    <jsp:param name="jquery" value="true"/>
+    <jsp:param name="carousel" value="true"/>
+    <jsp:param name="bootstrap" value="true"/>
+    <jsp:param name="backToTop" value="true"/>
+    <jsp:param name="loader" value="true"/>
+    <jsp:param name="quickView" value="true"/>
+    <jsp:param name="tabs" value="true"/>
+    <jsp:param name="lightgallery" value="true"/>
+</jsp:include>
+<jsp:include page="js/js.jsp"/>
+</html>

@@ -16,6 +16,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class UserDetail implements UserDetails {
     User user;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority(user.getRole()));

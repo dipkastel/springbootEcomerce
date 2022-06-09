@@ -1,4 +1,10 @@
-
+<script>
+    $(function (){
+        $(".product-thumbnail").click(function (data) {
+            $('.owl-slider').trigger('to.owl.carousel', $(this).attr("data"))
+        })
+    })
+</script>
 <%--<script>--%>
 <%--    var countWish = document.querySelector('#countWish');--%>
 <%--    var cookie = document.cookie;--%>

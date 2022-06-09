@@ -1,30 +1,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
+<!DOCTYPE html>
+<html lang="fa">
 <head>
-    <jsp:include page="../components/head.jsp"></jsp:include>
+
+    <jsp:include page="../common/header.jsp">
+        <jsp:param name="pageTitle" value="notrika | baseSettings"/>
+        <jsp:param name="clientTheme" value="true"/>
+        <jsp:param name="icons" value="true"/>
+        <jsp:param name="bootstrap" value="true"/>
+        <jsp:param name="carousel" value="true"/>
+        <jsp:param name="favicon" value="true"/>
+        <jsp:param name="lightgallery" value="true"/>
+    </jsp:include>
 </head>
+<jsp:include page="css/css.jsp"/>
 
 <body>
-<jsp:include page="../components/header.jsp"></jsp:include>
-<jsp:include page="../components/sidebar.jsp"></jsp:include>
+<jsp:include page="../common/loader.jsp"/>
+<jsp:include page="../common/topMenu.jsp"/>
 
+<div class="fix-offset"></div>
 <div class="ps-page--my-account">
-    <div class="ps-breadcrumb">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li><a href="index.html">بایچه</a></li>
-                <li>حساب من</li>
-            </ul>
-        </div>
-    </div>
     <div class="ps-my-account">
         <div class="container">
-<%--            <jsp:include page="../message/message.jsp"></jsp:include>--%>
-
-
-
-
             <div class="ps-form--account ps-tab-root" >
                 <ul class="ps-tab-list">
                     <li class="active"><a href="#sign-in">ورود</a></li>
@@ -52,11 +53,6 @@
                             </div>
                         </form>
                         <div class="ps-form__footer">
-                            <p>ورود با:</p>
-                            <ul class="ps-list--social">
-                                <li><a class="facebook" href="/oauth2/authorization/facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="google" href="/oauth2/authorization/google"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -67,6 +63,20 @@
         </div>
     </div>
 </div>
-<jsp:include page="../components/footer.jsp"></jsp:include>
+<jsp:include page="../common/newsLetter.jsp"/>
+<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="../common/backToTop.jsp"/>
 </body>
 
+<jsp:include page="../common/scripts.jsp">
+    <jsp:param name="jquery" value="true"/>
+    <jsp:param name="carousel" value="true"/>
+    <jsp:param name="bootstrap" value="true"/>
+    <jsp:param name="backToTop" value="true"/>
+    <jsp:param name="loader" value="true"/>
+    <jsp:param name="quickView" value="true"/>
+    <jsp:param name="tabs" value="true"/>
+    <jsp:param name="lightgallery" value="true"/>
+</jsp:include>
+<jsp:include page="js/js.jsp"/>
+</html>

@@ -62,10 +62,10 @@
                             </figure>
                             <div class="ps-product__variants" data-arrow="false">
 
-                                <c:forEach items="${product.images}" var="i">
+                                <c:forEach items="${product.images}" var="i" varStatus="s">
                                     <div class="item">
                                         <img src="${pageContext.request.contextPath}/image/display/${i.id}?w=100"
-                                             class="product-thumbnail" data="i.id">
+                                             class="product-thumbnail" data="${s.index}">
                                     </div>
                                 </c:forEach>
                             </div>

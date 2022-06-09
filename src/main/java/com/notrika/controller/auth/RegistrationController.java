@@ -1,7 +1,9 @@
 package com.notrika.controller.auth;
 
+import com.notrika.entity.Ref;
 import com.notrika.entity.User;
 import com.notrika.repository.UserRepository;
+import com.notrika.service.RefService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 public class RegistrationController {
     private final UserRepository userRepo;
     private final PasswordEncoder encoder;
+    private final RefService refService;
 
     @Autowired
-    public RegistrationController(UserRepository userRepo, PasswordEncoder encoder) {
+    public RegistrationController(UserRepository userRepo, PasswordEncoder encoder,RefService refService) {
         this.userRepo = userRepo;
         this.encoder = encoder;
+        this.refService = refService;
     }
 
 
@@ -29,7 +33,9 @@ public class RegistrationController {
     }
 
     @GetMapping
-    public String registerPage(Model model) {
+    public String registerPage(HttpServletRequest request, String userAgent, Model model) {
+        Ref ref = refService.save(request.getHeader("User-Agent"), request.getRemoteAddr());
+        model.addAttribute("refId", ref.getRefId());
         return "template/user/auth/register";
     }
 
@@ -37,18 +43,12 @@ public class RegistrationController {
     public String processRegister(@ModelAttribute("userRegist") User user, Model model, HttpServletRequest request) {
 
         int countUser = userRepo.countByUsername(user.getUsername());
-        int countEmail = userRepo.countByEmail(user.getEmail());
-        String message = (String) request.getSession().getAttribute("message");
         if (countUser == 0) {
-            if (countEmail == 0) {
-                userRepo.save(user.toUser(encoder));
-                request.getSession().setAttribute("message", "Register success!");
-            } else {
-                request.getSession().setAttribute("message", "Email invalid !");
-            }
+            userRepo.save(user.toUser(encoder));
+            return "redirect:/";
         } else {
             request.getSession().setAttribute("message", "Username invalid !");
         }
-        return "redirect:/login";
+        return "redirect:/register";
     }
 }
