@@ -91,6 +91,65 @@ public class PageProductController {
         return "template/user/page/product/shop-by-category";
     }
 
+    @GetMapping
+    public String productHomePage(
+            Authentication authentication,
+            Model model,
+            @RequestParam(name = "category", required = false) Long categoryId,
+            @RequestParam(name = "brand", required = false) Long brandId,
+            @RequestParam(name = "type", required = false) Long typeId
+    ) {
+        if (categoryId != null) {
+            LOGGER.info("load by CategoryId (categoryId != null)");
+            this.categoryId = categoryId;
+            addModelAttribute(
+                    productService.findByCategories(categoryId),
+                    productService.findByCategories(categoryId).stream().count(),
+                    categoryService.findById(categoryId),
+                    model
+            );
+            if (typeId != null) {
+                LOGGER.info("load by CategoryId and TypeId(categoryId != null,typeId != null)");
+                addModelAttribute(
+                        productService.findByCategoryIdAndTypeId(categoryId, typeId),
+                        productService.findByCategoryIdAndTypeId(categoryId, typeId).stream().count(),
+                        categoryService.findById(categoryId),
+                        model
+                );
+            }
+            if (brandId != null) {
+                LOGGER.info("load by CategoryId and BrandId (categoryId != null, brandId != null)");
+                addModelAttribute(
+                        productService.findByCategoriesContainsAndBrandId(categoryId, brandId),
+                        productService.findByCategoriesContainsAndBrandId(categoryId, brandId).stream().count(),
+                        categoryService.findById(categoryId),
+                        model
+                );
+            }
+
+
+        }else {
+
+            LOGGER.info("load by  (categoryId == null)");
+            //all null
+            model.addAttribute("products", productService.findAll());
+            model.addAttribute("countProduct", productService.findAll().stream().count());
+            Set<Brand> brandByProduct = new HashSet<>();
+            Set<String> typeByProduct = new HashSet<>();
+            productService.findAll().forEach(p -> {
+                brandByProduct.add(p.getBrand());
+                typeByProduct.add(p.getType());
+            });
+            model.addAttribute("brandByProduct", brandByProduct);
+            model.addAttribute("typeByProduct", typeByProduct);
+
+
+        }
+        model.addAttribute("allProducts", productService.findAll());
+        LOGGER.info("return");
+        return "template/user/page/product/shop-by-category";
+    }
+
     @PostMapping
     public String processSearch(
             @RequestParam(name = "category", required = false) Long categoryId,

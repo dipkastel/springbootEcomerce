@@ -36,7 +36,7 @@
                                             title="اضافه به سبد خرید"><i class="icon-bag2"></i></a></li>
                                     <li><a data-placement="top" title="نمایش سریع"
                                            class="open-quick-view"
-                                            data="${p.id}"
+                                            p-id="${p.id}"
                                     ><i
                                             class="icon-eye"></i></a></li>
                                     <li><a data-toggle="tooltip" data-placement="top"
