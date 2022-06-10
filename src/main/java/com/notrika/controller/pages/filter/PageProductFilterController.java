@@ -1,4 +1,4 @@
-package com.notrika.controller.filter;
+package com.notrika.controller.pages.filter;
 
 import com.notrika.entity.Brand;
 import com.notrika.entity.Product;

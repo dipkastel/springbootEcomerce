@@ -20,19 +20,26 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
     private final UserService userService;
     private final UserHelper userHelper;
     private final MenuService menuService;
+    private final CustomerService customerService;
 
     @Autowired
-    public ControllerAdvisor(UserService userService,UserHelper userHelper,MenuService menuService) {
+    public ControllerAdvisor(UserService userService,UserHelper userHelper,MenuService menuService,CustomerService customerService) {
 
         this.userService = userService;
         this.userHelper = userHelper;
         this.menuService = menuService;
+        this.customerService = customerService;
     }
 
 
     @ModelAttribute("user")
     public User user(Authentication authentication){
         return userHelper.getUser(authentication,userService);
+    }
+
+    @ModelAttribute("customer")
+    public Customer costomer(Authentication authentication){
+        return userHelper.getCustomer(authentication,customerService,userService);
     }
 
 //    @ModelAttribute("categories")

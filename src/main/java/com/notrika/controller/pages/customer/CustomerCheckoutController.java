@@ -1,4 +1,4 @@
-package com.notrika.controller.user;
+package com.notrika.controller.pages.customer;
 
 import com.notrika.entity.*;
 import com.notrika.helper.UserHelper;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/customer/product")
+@RequestMapping("/customer")
 public class CustomerCheckoutController {
     private Customer customer;
     private final CustomerService customerService;
@@ -64,7 +64,7 @@ public class CustomerCheckoutController {
         }
 
         model.addAttribute("customerOrders",orders );
-        return "template/user/customer/product/checkout-page";
+        return "template/user/page/customer/checkoutPage/checkout-page";
     }
 
 //    @GetMapping("/checkout")

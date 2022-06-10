@@ -1,4 +1,4 @@
-package com.notrika.controller.user;
+package com.notrika.controller.pages.customer;
 
 import com.notrika.entity.Customer;
 import com.notrika.entity.User;

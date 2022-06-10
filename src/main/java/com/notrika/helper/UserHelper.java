@@ -1,8 +1,10 @@
 package com.notrika.helper;
 
 
+import com.notrika.entity.Customer;
 import com.notrika.entity.User;
 import com.notrika.entity.UserDetail;
+import com.notrika.service.CustomerService;
 import com.notrika.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -26,4 +28,19 @@ public class UserHelper {
         return model;
     }
 
+    public Customer getCustomer(Authentication authentication, CustomerService customerService,UserService userService) {
+        Customer model = null;
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof UserDetail){
+                UserDetail userDetails = (UserDetail) authentication.getPrincipal();
+                model = customerService.findByUserId(userDetails.getUser().getId());
+            }
+            if (authentication.getPrincipal() instanceof OAuth2User) {
+                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+                User user = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
+                model = customerService.findByUserId(user.getId());
+            }
+        }
+        return model;
+    }
 }

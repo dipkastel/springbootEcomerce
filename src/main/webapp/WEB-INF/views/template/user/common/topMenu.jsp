@@ -100,7 +100,14 @@
                                                     </c:choose>
                                             >
 
-                                                    ${user.phoneNumber}
+                                                <c:choose>
+                                                    <c:when test="${customer.firstName!=''&&customer.lastName!=''}">
+                                                        ${customer.firstName}  ${customer.lastName}
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        ${user.phoneNumber}
+                                                    </c:otherwise>
+                                                </c:choose>
 
                                                     </a></div>
                                             <ul class="ps-dropdown-menu">
