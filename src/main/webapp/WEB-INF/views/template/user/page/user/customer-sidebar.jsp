@@ -11,7 +11,7 @@
             <ul>
                 <li class="${pageContext.request.requestURI.contains("/customer/info") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/info"><i class="icon-user"></i> اطلاعات حساب کاربری</a></li>
                 <li class="${pageContext.request.requestURI.contains("/customer/wallet") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/wallet" ><i class="icon-wallet"></i>  کیف پول <span>تومان 10000</span> </a></li>
-                <li class="${pageContext.request.requestURI.contains("/customer/checkout-page") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/checkout-page" ><i class="icon-credit-card"></i> صورت حساب </a></li>
+                <li class="${pageContext.request.requestURI.contains("/customer/checkout") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/checkout-page" ><i class="icon-credit-card"></i> صورت حساب </a></li>
                 <li class="${pageContext.request.requestURI.contains("/customer/address") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/address" ><i class="icon-map2"></i> آدرس ها </a></li>
                 <li class="${pageContext.request.requestURI.contains("/customer/invoice") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/order" style="display: none"><i class="icon-papers"></i> سفارشات</a></li>
                 <li class="${pageContext.request.requestURI.contains("/customer/wishlist") ?"active":""}"><a href="${pageContext.servletContext.contextPath}/customer/wishlist"><i class="icon-heart"></i> خرید بعدی</a></li>

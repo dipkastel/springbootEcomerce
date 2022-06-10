@@ -17,7 +17,7 @@
                      class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a class="d-block">${user.username}</a>
+                <a class="d-block">${user.phoneNumber}</a>
             </div>
         </div>
 

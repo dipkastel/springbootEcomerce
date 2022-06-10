@@ -7,7 +7,6 @@ import com.notrika.entity.UserDetail;
 import com.notrika.service.CustomerService;
 import com.notrika.service.UserService;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
 
@@ -20,10 +19,10 @@ public class UserHelper {
                 UserDetail userDetails = (UserDetail) authentication.getPrincipal();
                 model = userDetails.getUser();
             }
-            if (authentication.getPrincipal() instanceof OAuth2User) {
-                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-                model = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
-            }
+//            if (authentication.getPrincipal() instanceof OAuth2User) {
+//                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//                model = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
+//            }
         }
         return model;
     }
@@ -35,11 +34,11 @@ public class UserHelper {
                 UserDetail userDetails = (UserDetail) authentication.getPrincipal();
                 model = customerService.findByUserId(userDetails.getUser().getId());
             }
-            if (authentication.getPrincipal() instanceof OAuth2User) {
-                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-                User user = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
-                model = customerService.findByUserId(user.getId());
-            }
+//            if (authentication.getPrincipal() instanceof OAuth2User) {
+//                OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//                User user = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
+//                model = customerService.findByUserId(user.getId());
+//            }
         }
         return model;
     }

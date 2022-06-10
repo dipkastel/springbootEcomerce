@@ -86,11 +86,11 @@
         </dependency>
         <!-- restful -->
         <!-- restful -->
-        <dependency>
-            <groupId>com.googlecode.rapid-framework</groupId>
-            <artifactId>rapid-core</artifactId>
-            <version>4.0.5</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.googlecode.rapid-framework</groupId>-->
+<!--            <artifactId>rapid-core</artifactId>-->
+<!--            <version>4.0.5</version>-->
+<!--        </dependency>-->
         <!-- restful -->
 
 
@@ -149,19 +149,19 @@
         <!--CKFinder end -->
 <!--        MOMO-->
 
-        		<dependency>
-        			<groupId>io.github.momo-wallet</groupId>
-        			<artifactId>momopayment</artifactId>
-        			<version>1.0</version>
-        		</dependency>
+<!--        		<dependency>-->
+<!--        			<groupId>io.github.momo-wallet</groupId>-->
+<!--        			<artifactId>momopayment</artifactId>-->
+<!--        			<version>1.0</version>-->
+<!--        		</dependency>-->
 
 <!--        MOMO-->
 
         <!--		social login-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-oauth2-client</artifactId>-->
+<!--        </dependency>-->
         <!--		social login-->
         <!--		social login-->
         <dependency>

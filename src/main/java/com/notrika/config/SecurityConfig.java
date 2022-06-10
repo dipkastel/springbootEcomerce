@@ -4,7 +4,6 @@ import com.notrika.controller.admin.AdminTypeController;
 import com.notrika.entity.Cart;
 import com.notrika.entity.UserDetail;
 import com.notrika.service.CustomerService;
-import com.notrika.service.UserOauthService;
 import com.notrika.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -39,14 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
     private final CustomerService customerService;
     private final Cart cart;
-    private final UserOauthService userOauthService;
 
     @Autowired
-    SecurityConfig(UserService userService, CustomerService customerService, Cart cart, UserOauthService userOauthService) {
+    SecurityConfig(UserService userService, CustomerService customerService, Cart cart) {
         this.userService = userService;
         this.customerService = customerService;
         this.cart = cart;
-        this.userOauthService = userOauthService;
     }
 
     @Bean
@@ -122,27 +118,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
-                .and()
-                .oauth2Login()
-                .loginPage("/confirm")
-                .userInfoEndpoint()
-                .userService(userOauthService)
-                .and()
-                .successHandler(new AuthenticationSuccessHandler() {
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) throws IOException, ServletException {
-                        System.err.println(authentication.getPrincipal());
-                        if (authentication.getPrincipal() instanceof OAuth2User) {
-                            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-                            String message = (String) request.getSession().getAttribute("message");
-                            userService.processUserOAuth(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
-                            request.getSession().setAttribute("message", "Login success!");
-                        }
-                        response.sendRedirect(request.getContextPath() + "/");
-                    }
-                })
-
                 .and()
                 .logout()
                 .logoutUrl("/logout")

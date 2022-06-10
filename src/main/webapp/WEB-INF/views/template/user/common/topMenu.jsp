@@ -103,6 +103,7 @@
                                                 <c:choose>
                                                     <c:when test="${customer.firstName!=''&&customer.lastName!=''}">
                                                         ${customer.firstName}  ${customer.lastName}
+                                                        ${user.phoneNumber}
                                                     </c:when>
                                                     <c:otherwise>
                                                         ${user.phoneNumber}

@@ -74,20 +74,11 @@
 									role="tabpanel" aria-labelledby="product-desc-tab">
 									<div class="card-body mt-3">
 										<div class="form-group row" style="">
-											<label for="name"
-												class="col-sm-2 col-form-label text-sm-right required">UserName</label>
+											<label for="phoneNumber"
+												class="col-sm-2 col-form-label text-sm-right required">phone number</label>
 											<div class="col-xs-12 col-sm-8">
-												<input type="text" id="username" name="username"
-													value="${userDetail.username}"
-													class="form-control form-control-sm" disabled>
-											</div>
-										</div>
-										<div class="form-group row" style="">
-											<label for="email"
-												class="col-sm-2 col-form-label text-sm-right required">Email</label>
-											<div class="col-xs-12 col-sm-8">
-												<input type="text" id="email" name="email"
-													value="${userDetail.email}"
+												<input type="text" id="phoneNumber" name="phoneNumber"
+													value="${userDetail.phoneNumber}"
 													class="form-control form-control-sm" disabled>
 											</div>
 										</div>
@@ -95,7 +86,7 @@
 											<label for="status"
 												class="col-sm-2 col-form-label text-sm-right">Status</label>
 											<div class="col-xs-12 col-sm-8">
-												<select id="enabled" name="enabled"
+												<select id="enabled" name="enabled" id="Status"
 													class="custom-select custom-select-sm">
 													<option>${userDetail.enabled ? "Active" :"InActive"}</option>
 												</select>
@@ -162,20 +153,20 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="phone"
-												class="col-sm-2 col-form-label text-sm-right required">Phone</label>
+											<label for="email"
+												class="col-sm-2 col-form-label text-sm-right required">email</label>
 											<div class="col-xs-12 col-sm-8">
-												<input type="text" id="phone" name="phone"
-													value="${customer.phone}"
+												<input type="text" id="email" name="email"
+													value="${customer.email}"
 													class="form-control form-control-sm" disabled>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="address"
-												class="col-sm-2 col-form-label text-sm-right required">Address</label>
+											<label for="nationalCode"
+												class="col-sm-2 col-form-label text-sm-right required">nationalCode</label>
 											<div class="col-xs-12 col-sm-8">
-												<input type="text" id="address" name="address"
-													value="${customer.address}"
+												<input type="text" id="nationalCode" name="nationalCode"
+													value="${customer.nationalCode}"
 													class="form-control form-control-sm" disabled>
 											</div>
 										</div>

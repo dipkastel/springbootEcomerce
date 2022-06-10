@@ -56,8 +56,6 @@
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Username</th>
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
-																rowspan="1" colspan="1">Email</th>
-															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Status</th>
 															<th class="sorting text-center" tabindex="0" aria-controls="example1"
 																rowspan="1" colspan="1">Role</th>
@@ -70,10 +68,9 @@
 															<tr>
 																<td class="text-center">${u.id}</td>
 																<td class="text-center">
-																	<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}">${u.username}
+																	<a href="${pageContext.servletContext.contextPath}/admin/user/detail?id=${u.id}">${u.phoneNumber}
 																	</a>
 																</td>
-																<td class="text-center">${u.email}</td>
 																<td class="text-center position-relative"><c:choose>
 																		<c:when test="${u.enabled == true}">
 																			<a

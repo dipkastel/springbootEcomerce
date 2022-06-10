@@ -1,8 +1,5 @@
 package com.notrika.controller.pages;
 
-import com.mservice.allinone.models.CaptureMoMoRequest;
-import com.mservice.allinone.processor.allinone.CaptureMoMo;
-import com.mservice.shared.sharedmodels.Environment;
 import com.notrika.entity.BannerGallery;
 import com.notrika.entity.Product;
 import com.notrika.entity.Widget;
@@ -162,23 +159,23 @@ public class PageHomeController {
         String requestId = String.valueOf(System.currentTimeMillis());
         String orderId = String.valueOf(System.currentTimeMillis());
         long amount = 50000;
-
-        String orderInfo = "Pay With MoMo";
-        String returnURL = "https://google.com.vn";
-        String notifyURL = "https://google.com.vn";
-        String extraData = "";
-        String bankCode = "SML";
-        Environment environment = Environment.selectEnv("dev", Environment.ProcessType.PAY_GATE);
-        CaptureMoMo captureMoMo = new CaptureMoMo(environment);
-        CaptureMoMoRequest captureMoMoRequest = captureMoMo.createPaymentCreationRequest(orderId, requestId,
-                Long.toString(amount), orderInfo, returnURL, notifyURL, extraData);
-//		try {
-//			CaptureMoMoResponse captureMoMoResponse = CaptureMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "");
-//		}catch (Exception e){
-//			model.addAttribute("response",e.getMessage());
-//		}
-
-        model.addAttribute("payment", captureMoMoRequest);
+//
+//        String orderInfo = "Pay With MoMo";
+//        String returnURL = "https://google.com.vn";
+//        String notifyURL = "https://google.com.vn";
+//        String extraData = "";
+//        String bankCode = "SML";
+//        Environment environment = Environment.selectEnv("dev", Environment.ProcessType.PAY_GATE);
+//        CaptureMoMo captureMoMo = new CaptureMoMo(environment);
+//        CaptureMoMoRequest captureMoMoRequest = captureMoMo.createPaymentCreationRequest(orderId, requestId,
+//                Long.toString(amount), orderInfo, returnURL, notifyURL, extraData);
+////		try {
+////			CaptureMoMoResponse captureMoMoResponse = CaptureMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "");
+////		}catch (Exception e){
+////			model.addAttribute("response",e.getMessage());
+////		}
+//
+//        model.addAttribute("payment", captureMoMoRequest);
 
         return "template/user/page/momo";
 

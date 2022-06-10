@@ -4,7 +4,6 @@ import com.notrika.entity.*;
 import com.notrika.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,11 +39,11 @@ public class CustomerCashController {
 			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
 			user = userDetails.getUser();
 		}
-
-		if (authentication.getPrincipal() instanceof OAuth2User) {
-			OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-			user = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
-		}
+//
+//		if (authentication.getPrincipal() instanceof OAuth2User) {
+//			OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+//			user = userService.findByPhoneNumber(String.valueOf(oAuth2User.getAttributes().get("phoneNumber")));
+//		}
 
 
 		Long countCustomer = customerService.countByUserId(user.getId());

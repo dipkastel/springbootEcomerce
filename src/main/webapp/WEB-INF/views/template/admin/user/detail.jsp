@@ -56,7 +56,7 @@
 												class="col-sm-2 col-form-label text-sm-right required">UserName</label>
 											<div class="col-xs-12 col-sm-8">
 												<input type="text" id="username" name="username"
-													value="${userDetail.username}"
+													value="${userDetail.phoneNumber}"
 													class="form-control form-control-sm" disabled>
 											</div>
 										</div>
