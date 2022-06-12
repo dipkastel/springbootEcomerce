@@ -235,32 +235,6 @@ public class PageProductController {
         return "redirect:/register";
     }
 
-    @GetMapping("/wishlist")
-    public String cartPage(Authentication authentication,HttpServletRequest res, Model model) {
-//		if (authentication!=null){
-//			UserDetail userDetails = (UserDetail) authentication.getPrincipal();
-//			model.addAttribute("user",userDetails.getUser());
-//		}
-
-        log.info("wishlist: ");
-        Cookie[] cl = res.getCookies();
-        List<Product> whishlist = new ArrayList<Product>();
-        if (cl != null) {
-            for (Cookie o : cl) {
-                if (o.getName().equals("wishlist")) {
-                    if (!o.getValue().isEmpty()) {
-                        String[] txt = o.getValue().split("a");
-                        for (String s : txt) {
-                            Long id = Long.parseLong(s);
-                            whishlist.add(productService.findById(id));
-                        }
-                    }
-                }
-            }
-        }
-        model.addAttribute("wishlist", whishlist);
-        return "template/user/page/product/wishlist";
-    }
 
 
 }

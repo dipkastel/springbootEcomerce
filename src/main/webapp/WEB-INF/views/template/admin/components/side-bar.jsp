@@ -165,7 +165,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="${pageContext.servletContext.contextPath}/admin/coupen"
+                            <a href="${pageContext.servletContext.contextPath}/admin/coupon"
                                class="nav-link">
                                 <i class="fa fa-credit-card nav-icon"></i>
                                 <p>کوپن ها</p>

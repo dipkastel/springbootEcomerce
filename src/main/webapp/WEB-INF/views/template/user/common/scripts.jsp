@@ -58,3 +58,6 @@
 <c:choose><c:when test="${param.quickView =='true'}">
 <script src="${pageContext.servletContext.contextPath}/js/quickview.js"></script>
 </c:when></c:choose>
+<c:choose><c:when test="${param.cardFunctions =='true'}">
+<script src="${pageContext.servletContext.contextPath}/js/cardFunctions.js"></script>
+</c:when></c:choose>

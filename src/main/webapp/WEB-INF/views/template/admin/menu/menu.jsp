@@ -176,6 +176,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+</body>
 <jsp:include page="../components/script.jsp">
     <jsp:param name="admintheme" value="true"/>
     <jsp:param name="bootstrap" value="true"/>
@@ -183,5 +184,4 @@
     <jsp:param name="sweetalert2" value="true"/>
 </jsp:include>
 <jsp:include page="js/script.jsp"/>
-</body>
 </html>

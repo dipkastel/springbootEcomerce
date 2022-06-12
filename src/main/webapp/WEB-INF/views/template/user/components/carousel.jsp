@@ -40,7 +40,7 @@
                                     ><i
                                             class="icon-eye"></i></a></li>
                                     <li><a data-toggle="tooltip" data-placement="top"
-                                           title="اضافه به خرید بعدی" onclick="addToWishList(${p.id})"><i
+                                           title="اضافه به علاقه‌مندی‌ها" onclick="addToWishList(${p.id})"><i
                                             class="icon-heart"></i></a></li>
                                 </ul>
                             </c:when>

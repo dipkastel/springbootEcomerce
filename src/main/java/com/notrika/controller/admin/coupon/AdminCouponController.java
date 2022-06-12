@@ -1,4 +1,4 @@
-package com.notrika.controller.admin.settings.paymentGatewaySetting;
+package com.notrika.controller.admin.coupon;
 
 import com.notrika.service.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminPaymentGatewaysController {
+public class AdminCouponController {
 
     private final SettingsService settingsService;
 
 
     @Autowired
-    public AdminPaymentGatewaysController(SettingsService settingsService) {
+    public AdminCouponController(SettingsService settingsService) {
         this.settingsService = settingsService;
     }
 
-    @GetMapping("/getwaySettings")
+    @GetMapping("/coupon")
     public String show(Authentication authentication, Model model) {
-        return "template/admin/settings/PaymentGateways/paymentGateways";
+        return "template/admin/coupon/coupon";
     }
 
 

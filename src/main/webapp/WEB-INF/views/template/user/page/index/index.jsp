@@ -43,6 +43,7 @@
     <jsp:param name="backToTop" value="true"/>
     <jsp:param name="loader" value="true"/>
     <jsp:param name="quickView" value="true"/>
+    <jsp:param name="cardFunctions" value="true"/>
 </jsp:include>
 <jsp:include page="js/js.jsp"/>
 

@@ -31,9 +31,8 @@
             </div>
             <div class="header__right">
                 <div class="header__actions">
-                    <a class="header__extra" style="display: none"><i class="icon-chart-bars"></i><span><i>0</i></span></a>
-                    <a class="header__extra"
-                       href="${pageContext.servletContext.contextPath}/product/wishlist"><i
+                   <a class="header__extra"
+                       href="${pageContext.servletContext.contextPath}/customer/wishlist"><i
                             class="icon-heart"></i><span><i id="countWish">0</i></span></a>
                     <div class="ps-cart--mini"><a class="header__extra"><i class="icon-bag2"></i><span><i
                             id="cartItemCount-1">0</i></span></a>
