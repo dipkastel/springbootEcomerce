@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.notrika.entity.EmailSubscriber;
+import com.notrika.entity.tables.EmailSubscriber;
 import com.notrika.service.SubscriberService;
 import org.springframework.web.bind.annotation.RequestParam;
 

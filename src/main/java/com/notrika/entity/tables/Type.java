@@ -1,5 +1,7 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
+import com.notrika.entity.tables.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Type {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class Type extends BaseEntity {
 
     private String name;
     @ManyToOne(targetEntity = Category.class)

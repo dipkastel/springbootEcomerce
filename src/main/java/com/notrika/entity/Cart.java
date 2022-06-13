@@ -1,5 +1,6 @@
 package com.notrika.entity;
 
+import com.notrika.entity.tables.CartItem;
 import com.notrika.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

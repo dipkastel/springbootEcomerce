@@ -1,12 +1,10 @@
 package com.notrika.controller.image;
 
-import com.notrika.entity.ImageGallery;
+import com.notrika.entity.tables.ImageGallery;
 import com.notrika.service.ImageService;
-import lombok.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

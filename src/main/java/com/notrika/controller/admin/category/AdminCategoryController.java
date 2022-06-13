@@ -1,6 +1,6 @@
 package com.notrika.controller.admin.category;
 
-import com.notrika.entity.Category;
+import com.notrika.entity.tables.Category;
 import com.notrika.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

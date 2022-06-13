@@ -1,6 +1,5 @@
 package com.notrika.config;
 
-import com.notrika.entity.User;
 import com.notrika.repository.UserRepository;
 import lombok.Data;
 import org.springframework.boot.CommandLineRunner;

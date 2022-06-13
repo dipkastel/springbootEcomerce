@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.notrika.entity.BannerGallery;
+import com.notrika.entity.tables.BannerGallery;
 import com.notrika.repository.BannerGalleryRepository;
 import com.notrika.repository.DAO;
 @Service

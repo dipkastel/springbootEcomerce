@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.User;
+import com.notrika.entity.tables.User;
 import com.notrika.entity.UserDetail;
 import com.notrika.repository.UserRepository;
 

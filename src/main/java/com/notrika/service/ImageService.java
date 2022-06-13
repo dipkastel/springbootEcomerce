@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.ImageGallery;
+import com.notrika.entity.tables.ImageGallery;
 import com.notrika.repository.DAO;
 import com.notrika.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;

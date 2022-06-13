@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.Type;
+import com.notrika.entity.tables.Type;
 import com.notrika.repository.DAO;
 import com.notrika.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

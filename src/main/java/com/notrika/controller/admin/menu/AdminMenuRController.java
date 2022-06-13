@@ -1,6 +1,6 @@
 package com.notrika.controller.admin.menu;
 
-import com.notrika.entity.Menu;
+import com.notrika.entity.tables.Menu;
 import com.notrika.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -1,6 +1,6 @@
 package com.notrika.controller.pages;
 
-import com.notrika.entity.EmailSubscriber;
+import com.notrika.entity.tables.EmailSubscriber;
 import com.notrika.service.SubscriberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

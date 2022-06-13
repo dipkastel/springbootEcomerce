@@ -2,7 +2,7 @@
 <jsp:include page="../../components/head.jsp"></jsp:include>
 <jsp:include page="../../components/header.jsp"></jsp:include>
 <%@ page import="java.util.List"%>
-<%@ page import="com.notrika.entity.User"%>
+<%@ page import="com.notrika.entity.tables.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 

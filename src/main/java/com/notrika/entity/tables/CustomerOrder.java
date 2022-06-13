@@ -1,5 +1,8 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
+import com.notrika.entity.tables.CartItem;
+import com.notrika.entity.tables.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class CustomerOrder {
+public class CustomerOrder extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
 
     private String deliverCustomerName;
     private String deliverCustomerAddress;
@@ -25,7 +25,6 @@ public class CustomerOrder {
 
     private double totalPrice;
     private Date orderDate;
-    private boolean status;
 
     @ManyToOne (targetEntity = Customer.class)
     private Customer customer;
@@ -37,12 +36,11 @@ public class CustomerOrder {
         this.orderDate = new Date();
     }
 
-    public CustomerOrder(String deliverCustomerName, String deliverCustomerAddress, String deliverCustomerPhone, double totalPrice, boolean status, Customer customer,List<CartItem> cartItems) {
+    public CustomerOrder(String deliverCustomerName, String deliverCustomerAddress, String deliverCustomerPhone, double totalPrice, Customer customer,List<CartItem> cartItems) {
         this.deliverCustomerName = deliverCustomerName;
         this.deliverCustomerAddress = deliverCustomerAddress;
         this.deliverCustomerPhone = deliverCustomerPhone;
         this.totalPrice = totalPrice;
-        this.status = status;
         this.customer = customer;
         this.cartItems = cartItems;
     }

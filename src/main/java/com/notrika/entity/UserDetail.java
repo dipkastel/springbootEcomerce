@@ -1,5 +1,6 @@
 package com.notrika.entity;
 
+import com.notrika.entity.tables.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

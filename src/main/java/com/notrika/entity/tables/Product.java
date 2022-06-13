@@ -1,6 +1,7 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.notrika.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,16 +13,13 @@ import java.util.*;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class Product {
+public class Product extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+
 
     public String name;
     public String slug;
     public String type;
-    public String status;
     public Boolean featured;
     public String catalogVisibility;
     @Column(columnDefinition = "LONGTEXT")

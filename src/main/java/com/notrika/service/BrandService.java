@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.Brand;
+import com.notrika.entity.tables.Brand;
 import com.notrika.repository.BrandRepository;
 import com.notrika.repository.DAO;
 import org.springframework.beans.factory.annotation.Autowired;

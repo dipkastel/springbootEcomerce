@@ -1,6 +1,6 @@
 package com.notrika.helper;
 
-import com.notrika.entity.Setting;
+import com.notrika.entity.tables.Setting;
 import com.notrika.service.SettingsService;
 import com.notrika.wpRestApi.WpRestApi;
 import com.notrika.wpRestApi.constAndEnums.EnumWpApiVersion;

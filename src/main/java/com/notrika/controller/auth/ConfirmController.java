@@ -1,22 +1,17 @@
 package com.notrika.controller.auth;
 
-import com.notrika.entity.Ref;
-import com.notrika.entity.User;
-import com.notrika.helper.SmsHelper;
-import com.notrika.helper.StringHelper;
-import com.notrika.repository.UserRepository;
+import com.notrika.entity.tables.Ref;
+import com.notrika.entity.tables.User;
 import com.notrika.service.RefService;
 import com.notrika.service.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/confirm")

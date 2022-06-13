@@ -1,6 +1,6 @@
 package com.notrika.repository;
 
-import com.notrika.entity.Setting;
+import com.notrika.entity.tables.Setting;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

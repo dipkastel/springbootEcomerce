@@ -1,8 +1,8 @@
 package com.notrika.helper;
 
 
-import com.notrika.entity.Customer;
-import com.notrika.entity.User;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.User;
 import com.notrika.entity.UserDetail;
 import com.notrika.service.CustomerService;
 import com.notrika.service.UserService;

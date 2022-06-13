@@ -1,6 +1,7 @@
 package com.notrika.controller.pages;
 
 import com.notrika.entity.*;
+import com.notrika.entity.tables.CartItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

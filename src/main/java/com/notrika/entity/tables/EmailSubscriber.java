@@ -1,28 +1,22 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "customers")
+@Table(name = "email_subscriber")
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class EmailSubscriber extends BaseEntity {
+
 
     private String firstName;
     private String lastName;
     private String email;
-    private String nationalCode;
-
-
-    @OneToOne(targetEntity = User.class)
-    private User user;
-
 }

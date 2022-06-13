@@ -1,7 +1,7 @@
 package com.notrika.helper;
 
 
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.Product;
 import com.notrika.service.ProductService;
 import org.springframework.stereotype.Component;
 

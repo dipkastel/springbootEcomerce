@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.Widget;
+import com.notrika.entity.tables.Widget;
 import com.notrika.helper.enums.WidgetType;
 import com.notrika.repository.DAO;
 import com.notrika.repository.WidgetRepository;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 
 @Service

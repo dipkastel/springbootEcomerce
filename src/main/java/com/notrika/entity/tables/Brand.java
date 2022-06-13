@@ -1,9 +1,9 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,10 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Brand {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class Brand extends BaseEntity {
+
 
     private String name;
     public String slug;

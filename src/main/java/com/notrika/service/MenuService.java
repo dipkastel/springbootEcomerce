@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.Menu;
+import com.notrika.entity.tables.Menu;
 import com.notrika.repository.DAO;
 import com.notrika.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;

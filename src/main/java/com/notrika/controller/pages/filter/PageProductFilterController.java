@@ -1,7 +1,7 @@
 package com.notrika.controller.pages.filter;
 
-import com.notrika.entity.Brand;
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.Brand;
+import com.notrika.entity.tables.Product;
 import com.notrika.service.BrandService;
 import com.notrika.service.ProductService;
 import org.slf4j.Logger;

@@ -1,5 +1,6 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Setting {
+public class Setting extends BaseEntity {
 
 
     public Setting(String Key, String value,String section){
@@ -20,9 +21,7 @@ public class Setting {
         this.section = section;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+
 
     private String skey;
     private String svalue;

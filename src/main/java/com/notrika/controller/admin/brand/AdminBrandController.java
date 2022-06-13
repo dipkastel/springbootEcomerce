@@ -1,6 +1,6 @@
 package com.notrika.controller.admin.brand;
 
-import com.notrika.entity.Brand;
+import com.notrika.entity.tables.Brand;
 import com.notrika.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

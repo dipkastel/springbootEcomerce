@@ -1,7 +1,7 @@
 package com.notrika.controller.admin.widget;
 
-import com.notrika.entity.ImageGallery;
-import com.notrika.entity.Widget;
+import com.notrika.entity.tables.ImageGallery;
+import com.notrika.entity.tables.Widget;
 import com.notrika.helper.enums.WidgetType;
 import com.notrika.service.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;

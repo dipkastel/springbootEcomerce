@@ -1,6 +1,6 @@
 package com.notrika.service;
 
-import com.notrika.entity.Tag;
+import com.notrika.entity.tables.Tag;
 import com.notrika.repository.DAO;
 import com.notrika.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,9 @@
 package com.notrika.controller.pages.customer;
 
-import com.notrika.entity.*;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.CustomerOrder;
+import com.notrika.entity.tables.Payment;
+import com.notrika.entity.tables.User;
 import com.notrika.helper.UserHelper;
 import com.notrika.service.*;
 import org.springframework.beans.factory.annotation.Autowired;

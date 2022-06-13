@@ -1,6 +1,9 @@
 package com.notrika.service;
 
 import com.notrika.entity.*;
+import com.notrika.entity.tables.CartItem;
+import com.notrika.entity.tables.CustomerOrder;
+import com.notrika.entity.tables.Product;
 import com.notrika.repository.CustomerOrderRepository;
 import com.notrika.repository.DAO;
 import lombok.extern.slf4j.Slf4j;

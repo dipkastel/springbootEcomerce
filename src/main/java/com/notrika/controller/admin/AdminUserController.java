@@ -1,9 +1,9 @@
 package com.notrika.controller.admin;
 
-import com.notrika.entity.Customer;
-import com.notrika.entity.CustomerOrder;
-import com.notrika.entity.Payment;
-import com.notrika.entity.User;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.CustomerOrder;
+import com.notrika.entity.tables.Payment;
+import com.notrika.entity.tables.User;
 import com.notrika.service.CustomerOrderService;
 import com.notrika.service.CustomerService;
 import com.notrika.service.PaymentService;

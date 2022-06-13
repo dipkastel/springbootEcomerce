@@ -1,6 +1,6 @@
 <%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <%@ page import="java.util.List"%>
-<%@ page import="com.notrika.entity.User"%>
+<%@ page import="com.notrika.entity.tables.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>

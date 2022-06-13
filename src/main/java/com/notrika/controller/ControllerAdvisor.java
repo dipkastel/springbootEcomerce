@@ -1,6 +1,8 @@
 package com.notrika.controller;
 
-import com.notrika.entity.*;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.Menu;
+import com.notrika.entity.tables.User;
 import com.notrika.helper.UserHelper;
 import com.notrika.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @ControllerAdvice

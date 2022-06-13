@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FormResult {
+public class FormResult extends BaseEntity {
 
     private String refId;
 

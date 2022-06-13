@@ -1,5 +1,6 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -10,19 +11,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class CartItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class CartItem extends BaseEntity {
 
     @OneToOne(targetEntity = Product.class)
     private Product product;
     private int sellingQuantity;
     private double totalPrice;
 
-    public CartItem(Product product, int sellingQuantity, double totalPrice) {
-        this.product = product;
-        this.sellingQuantity = sellingQuantity;
-        this.totalPrice = totalPrice;
-    }
 }

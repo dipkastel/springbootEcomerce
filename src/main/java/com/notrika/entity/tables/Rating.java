@@ -1,5 +1,8 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +14,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Rating {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class Rating extends BaseEntity {
+
 
     private int starNumber;
     private String review;

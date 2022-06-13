@@ -1,6 +1,6 @@
 package com.notrika.controller.admin.tag;
 
-import com.notrika.entity.Tag;
+import com.notrika.entity.tables.Tag;
 import com.notrika.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

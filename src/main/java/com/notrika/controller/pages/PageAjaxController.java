@@ -1,6 +1,6 @@
 package com.notrika.controller.pages;
 
-import com.notrika.entity.User;
+import com.notrika.entity.tables.User;
 import com.notrika.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package com.notrika.controller.admin.home;
 
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.Product;
 import com.notrika.service.ContactService;
 import com.notrika.service.OrderService;
 import com.notrika.service.PaymentService;

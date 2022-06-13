@@ -1,6 +1,10 @@
 package com.notrika.controller.pages.customer;
 
 import com.notrika.entity.*;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.CustomerOrder;
+import com.notrika.entity.tables.Payment;
+import com.notrika.entity.tables.User;
 import com.notrika.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Date;
 
 
 @Controller
@@ -50,13 +56,14 @@ public class CustomerCashController {
 		if (countCustomer >0) {
 			Customer customer = customerService.findByUserId(user.getId());
 			order = customerOrderService.findOrderByCustomerId(customer.getId());
-			paymentService.save(new com.notrika.entity.Payment(
-					order.getTotalPrice(),
-					"cash",
-					false,
-					order
-			));
-			order.setStatus(true);
+			Payment payment = new Payment();
+			payment.setPaymentDate(new Date());
+			payment.setPaymentMethod("cash");
+			payment.setTracked(false);
+			payment.setAmount(order.getTotalPrice());
+			payment.setCustomerOrder(order);
+			paymentService.save(payment);
+//			order.setStatus(true);
 			if (customerOrderService.saveOrder(order)!=null){
 				return "redirect:/customer/payment/cash/payment-success";
 			}

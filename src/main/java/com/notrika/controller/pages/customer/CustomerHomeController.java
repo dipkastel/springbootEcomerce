@@ -1,7 +1,7 @@
 package com.notrika.controller.pages.customer;
 
 import com.notrika.entity.Cart;
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.Product;
 import com.notrika.helper.CookieHelper;
 
 import com.notrika.service.ProductService;

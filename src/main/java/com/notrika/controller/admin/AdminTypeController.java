@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.notrika.entity.Type;
+import com.notrika.entity.tables.Type;
 import com.notrika.service.CategoryService;
 import com.notrika.service.TypeService;
 

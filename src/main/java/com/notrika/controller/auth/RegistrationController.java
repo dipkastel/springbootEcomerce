@@ -1,8 +1,8 @@
 package com.notrika.controller.auth;
 
 import com.notrika.controller.admin.AdminTypeController;
-import com.notrika.entity.Ref;
-import com.notrika.entity.User;
+import com.notrika.entity.tables.Ref;
+import com.notrika.entity.tables.User;
 import com.notrika.helper.SmsHelper;
 import com.notrika.helper.StringHelper;
 import com.notrika.repository.UserRepository;
@@ -68,10 +68,15 @@ public class RegistrationController {
                 request.getSession().setAttribute("message", "خطا در ارسال پیامک");
                 return "redirect:/register";
             }
-            userRepo.save(user.toUser(encoder));
+            User newuser=new User();
+            newuser.setPhoneNumber(user.getPhoneNumber());
+            newuser.setRole("ROLE_USER");
+            newuser.setEnabled(true);
+            newuser.setPassword(encoder.encode(user.getPassword()));
+            userRepo.save(newuser);
             user.setPassword("");
             model.addAttribute("user", user);
-            return "redirect:/confirm";
+            return "redirect:/confirm?n="+user.getPhoneNumber();
         } else if(countUser==1) {
             //login
             user = userRepo.findByPhoneNumber(user.getPhoneNumber());

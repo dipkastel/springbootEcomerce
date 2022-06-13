@@ -1,11 +1,10 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 
 @Entity
@@ -13,10 +12,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Menu {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class Menu extends BaseEntity {
+
     private String url;
     private String name;
     private Long periority;

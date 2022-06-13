@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.Product;
 import com.notrika.service.ProductService;
 
 

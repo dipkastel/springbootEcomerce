@@ -1,20 +1,15 @@
 package com.notrika.service;
 
-import com.notrika.entity.ImageGallery;
-import com.notrika.entity.Ref;
+import com.notrika.entity.tables.Ref;
 import com.notrika.helper.StringHelper;
 import com.notrika.repository.DAO;
-import com.notrika.repository.ImageRepository;
 import com.notrika.repository.RefRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Random;
 
 @Service
 @Transactional

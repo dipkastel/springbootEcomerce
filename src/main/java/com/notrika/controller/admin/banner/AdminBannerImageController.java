@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.notrika.entity.BannerGallery;
+import com.notrika.entity.tables.BannerGallery;
 import com.notrika.service.BannerGalleryService;
 
 import lombok.extern.slf4j.Slf4j;

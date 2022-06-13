@@ -1,16 +1,16 @@
 
 /* $(document).ready(function(){ */
-// var queryOnchange="";
-// var queryFilter="";
-// var filter = document.querySelector('#filter');
-// var brand = document.querySelector('#filterBrand');
-// var part = document.querySelector('#filterPart');
-// var tblProduct = document.querySelector('#filteredProduct');
-// var totalProduct = document.querySelector('#productTotal');
-// var cbxFilter =document.querySelector('#cbxFilter');
-// var searchBrand =document.querySelector('#searchBrand');
-// var queryParams = new URLSearchParams(window.location.search);
-// var btnPrice =document.querySelector('#btnPrice');
+var queryOnchange="";
+var queryFilter="";
+var filter = document.querySelector('#filter');
+var brand = document.querySelector('#filterBrand');
+var part = document.querySelector('#filterPart');
+var tblProduct = document.querySelector('#filteredProduct');
+var totalProduct = document.querySelector('#productTotal');
+var cbxFilter =document.querySelector('#cbxFilter');
+var searchBrand =document.querySelector('#searchBrand');
+var queryParams = new URLSearchParams(window.location.search);
+var btnPrice =document.querySelector('#btnPrice');
 var countWish = document.querySelector('#countWish');
 var cookie = document.cookie;
 var arr_product;
@@ -63,7 +63,7 @@ $(document).on("click", ".removeCartProduct", function () {
         var deleteProductIndex = -1;
         // alert($(this).attr('value'));
         for (let i = 0; i < cartItems.length; i++) {
-            if (cartItems[i].product.id == deleteProductId) {
+            if (cartItems[i].id == deleteProductId) {
                 deleteProductIndex = i;
                 break;
             }
@@ -86,13 +86,13 @@ function getCartItemContent(items) {
             totalPrice += cartItems[i].totalPrice
             cartItemContent += "<div class='ps-cart__items'>";
             cartItemContent += "<div class='ps-product--cart-mobile'>"
-            cartItemContent += "<div class='ps-product__thumbnail'><a href='#'><img src='${pageContext.request.contextPath}/product/display/0&" + cartItems[i].product.id + "' alt=''></a></div>"
-            cartItemContent += "<div class='ps-product__content '><a class='ps-product__remove removeCartProduct ' value='" + cartItems[i].product.id + "' ><i class='icon-cross ' ></i></a><a href='product-default.html'>"
-                + cartItems[i].product.productName + "</a>"
+            cartItemContent += "<div class='ps-product__thumbnail'><a href='#'><img src='/product/display/0&" + cartItems[i].id + "' alt=''></a></div>"
+            cartItemContent += "<div class='ps-product__content '><a class='ps-product__remove removeCartProduct ' value='" + cartItems[i].id + "' ><i class='icon-cross ' ></i></a><a href='product-default.html'>"
+                + cartItems[i].name + "</a>"
             cartItemContent += "<p><strong>فروشنده:</strong>  بایچه</p><small>"
-                + cartItems[i].sellingQuantity
+                + cartItems[i].quantity
                 + "x"
-                + cartItems[i].product.price
+                + cartItems[i].price
                 + " تومان</small>"
             cartItemContent += " </div> </div>"
             cartItemContent += " </div>"
@@ -101,9 +101,9 @@ function getCartItemContent(items) {
         cartItemContent += "<h3>مجموع:<strong>" + totalPrice
             + " تومان</strong></h3>"
         if (user !== "") {
-            cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout-page'>سبد خرید</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>صورت حساب</a></figure>"
+            cartItemContent += "<figure><a class='ps-btn' href='/customer/product/checkout-page'>سبد خرید</a><a class='ps-btn' href='/customer/product/checkout'>صورت حساب</a></figure>"
         } else {
-            cartItemContent += "<figure><a class='ps-btn' href='${pageContext.servletContext.contextPath}/cart'>سبد خرید</a><a class='ps-btn' href='${pageContext.servletContext.contextPath}/customer/product/checkout'>صورت حساب</a></figure>"
+            cartItemContent += "<figure><a class='ps-btn' href='/cart'>سبد خرید</a><a class='ps-btn' href='/customer/product/checkout'>صورت حساب</a></figure>"
         }
         cartItemContent += " </div>"
     }
@@ -148,7 +148,7 @@ function initCartItemData() {
 
     xhr
         .open("GET",
-            "${pageContext.servletContext.contextPath}/cart/getAll");
+            "/product/getAll");
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(data);
 }
@@ -173,7 +173,7 @@ function initCartItem() {
 
     xhr
         .open("GET",
-            "${pageContext.servletContext.contextPath}/cart/getAll");
+            "/cart/getAll");
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(data);
 }
@@ -203,7 +203,7 @@ function updateCartItemsCookie(cartItemsArr) {
     });
 
     xhr.open("POST",
-        "${pageContext.servletContext.contextPath}/cart/update");
+        "/cart/update");
     xhr.setRequestHeader('Content-type', 'application/json');
     console.log(data)
     xhr.send(data);
@@ -216,14 +216,14 @@ $(document).on("click", ".toCart", function (event) {
 });
 
 $(document).on("click", ".buyNow", function (event) {
-    var user = '${user}'
+    var user = ''
     initCartItem();
     toCart(this.getAttribute('value'), event)
     window.setTimeout(function () {
         if (user !== "") {
-            window.location.href = "${pageContext.servletContext.contextPath}/customer/product/checkout-page";
+            window.location.href = "/customer/product/checkout-page";
         } else {
-            window.location.href = "${pageContext.servletContext.contextPath}/cart";
+            window.location.href = "/cart";
         }
     }, 500)
 });
@@ -231,7 +231,7 @@ $(document).on("click", ".buyNow", function (event) {
 
 function toCart(value, event) {
     if (checkStock(value, getCartProductQty(value))) {
-        addItemToCart("${pageContext.servletContext.contextPath}/cart/get?productId=" + value)
+        addItemToCart("/restapi/product/detail?id=" + value)
     } else {
         event.preventDefault()
     }
@@ -258,7 +258,7 @@ function checkStock(productId, qty) {
 function getCartProductQty(productId) {
     if (cartItems.length > 0) {
         for (let i = 0; i < cartItems.length; i++) {
-            if (cartItems[i].product.id == productId) {
+            if (cartItems[i].id == productId) {
                 return cartItems[i].sellingQuantity
             }
         }
@@ -278,9 +278,9 @@ function addItemToCart(url) {
                 var count = 0;
                 for (let i = 0; i < cartItems.length; i++) {
                     //if duplicate sellingQuantity +=1
-                    if (cartItems[i].product.id == json.product.id) {
+                    if (cartItems[i].id == json.id) {
                         cartItems[i].sellingQuantity += 1
-                        cartItems[i].totalPrice = parseFloat(cartItems[i].product.price) * parseInt(cartItems[i].sellingQuantity)
+                        cartItems[i].totalPrice = parseFloat(cartItems[i].price) * parseInt(cartItems[i].sellingQuantity)
                         count += 1
                     }
                 }

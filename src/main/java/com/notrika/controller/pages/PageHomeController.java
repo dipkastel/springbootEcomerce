@@ -1,8 +1,8 @@
 package com.notrika.controller.pages;
 
-import com.notrika.entity.BannerGallery;
-import com.notrika.entity.Product;
-import com.notrika.entity.Widget;
+import com.notrika.entity.tables.BannerGallery;
+import com.notrika.entity.tables.Product;
+import com.notrika.entity.tables.Widget;
 import com.notrika.entity.helper.MainPageList;
 import com.notrika.helper.enums.WidgetType;
 import com.notrika.service.BannerGalleryService;
@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 

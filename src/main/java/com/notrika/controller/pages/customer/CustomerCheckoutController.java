@@ -1,6 +1,10 @@
 package com.notrika.controller.pages.customer;
 
 import com.notrika.entity.*;
+import com.notrika.entity.tables.CartItem;
+import com.notrika.entity.tables.Customer;
+import com.notrika.entity.tables.CustomerOrder;
+import com.notrika.entity.tables.User;
 import com.notrika.helper.UserHelper;
 import com.notrika.service.CustomerOrderService;
 import com.notrika.service.CustomerService;
@@ -107,7 +111,6 @@ public class CustomerCheckoutController {
                 order.getDeliverCustomerAddress(),
                 order.getDeliverCustomerPhone(),
                 cart.calCartTotal(),
-                false,
                 customer,
                 listItem
         );

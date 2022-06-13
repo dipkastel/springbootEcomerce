@@ -1,6 +1,7 @@
 package com.notrika.controller.admin.settings.importSetting;
 
 import com.notrika.entity.*;
+import com.notrika.entity.tables.*;
 import com.notrika.helper.Wp;
 import com.notrika.service.*;
 import com.notrika.wpRestApi.WpRestApi;
@@ -122,8 +123,8 @@ public class AdminImportRController {
         progress.setOpration("تغییر فرمت ");
 
 
-        List<com.notrika.entity.Tag> myTags = allTags.stream().map(p -> {
-            com.notrika.entity.Tag tag = new com.notrika.entity.Tag();
+        List<Tag> myTags = allTags.stream().map(p -> {
+            Tag tag = new Tag();
             tag.setId(p.id);
             tag.setName(p.name);
             tag.setSlug(p.slug);
@@ -167,7 +168,7 @@ public class AdminImportRController {
         progress.setOpration("تغییر فرمت ");
 
 
-        List<com.notrika.entity.Category> mycats = getcats(allcats, 0l);
+        List<Category> mycats = getcats(allcats, 0l);
 
 
         progress.setOpration("ثبت در پایگاه");
@@ -182,9 +183,9 @@ public class AdminImportRController {
     }
 
     //recursive
-    private List<com.notrika.entity.Category> getcats(List<com.notrika.wpRestApi.entities.category.Category> allcats, Long parent) {
+    private List<Category> getcats(List<com.notrika.wpRestApi.entities.category.Category> allcats, Long parent) {
         return allcats.stream().filter(c -> Long.valueOf(c.parent).equals(parent)).map(p -> {
-            com.notrika.entity.Category cat = new com.notrika.entity.Category();
+            Category cat = new Category();
             cat.setId(p.id);
             cat.setName(p.name);
             cat.setSlug(p.slug);
@@ -202,7 +203,7 @@ public class AdminImportRController {
         progress.setOpration("تغییر محصولات به فرمت سایت ");
         allProducts.forEach(p -> {
             try {
-                com.notrika.entity.Product myProduct = new com.notrika.entity.Product();
+                Product myProduct = new Product();
                 myProduct.setName(p.name);
                 myProduct.setSlug(p.slug);
                 myProduct.setType(p.type);

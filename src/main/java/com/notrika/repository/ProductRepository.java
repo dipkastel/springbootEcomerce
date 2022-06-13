@@ -1,6 +1,6 @@
 package com.notrika.repository;
 
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,13 +1,6 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.notrika.wpRestApi.entities.common.Image;
-import com.notrika.wpRestApi.entities.common.Links;
-import com.notrika.wpRestApi.entities.product.Attribute;
-import com.notrika.wpRestApi.entities.product.Brand;
-import com.notrika.wpRestApi.entities.product.Dimensions;
-import com.notrika.wpRestApi.entities.product.MetaDatum;
+import com.notrika.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,11 +14,9 @@ import java.util.*;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class Category {
+public class Category extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+
 
     private String name;
     public String slug;

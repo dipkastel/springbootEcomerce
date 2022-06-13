@@ -1,5 +1,6 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import io.micrometer.core.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -18,11 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Tag {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class Tag extends BaseEntity {
 
     private String name;
     private String slug="";

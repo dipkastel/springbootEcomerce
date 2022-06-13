@@ -1,5 +1,7 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
+import com.notrika.entity.tables.CustomerOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -12,26 +14,16 @@ import java.util.Date;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Payment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class Payment extends BaseEntity {
+
 
     private double amount;
     private Date paymentDate;
     private String paymentMethod; //cash
-    private boolean status;
     private boolean tracked;
 
     @OneToOne(targetEntity = CustomerOrder.class)
     private CustomerOrder customerOrder;
-
-    public Payment(double amount, String paymentMethod, boolean status, CustomerOrder customerOrder) {
-        this.amount = amount;
-        this.paymentMethod = paymentMethod;
-        this.status = status;
-        this.customerOrder = customerOrder;
-    }
 
     @PrePersist
     void orderDate() {

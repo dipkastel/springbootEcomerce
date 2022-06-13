@@ -1,8 +1,8 @@
 package com.notrika.entity.helper;
 
-import com.notrika.entity.BannerGallery;
-import com.notrika.entity.Product;
-import com.notrika.entity.Widget;
+import com.notrika.entity.tables.BannerGallery;
+import com.notrika.entity.tables.Product;
+import com.notrika.entity.tables.Widget;
 import lombok.Getter;
 import lombok.Setter;
 

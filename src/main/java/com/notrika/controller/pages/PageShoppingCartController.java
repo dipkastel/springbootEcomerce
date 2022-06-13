@@ -1,8 +1,8 @@
 package com.notrika.controller.pages;
 
 import com.notrika.entity.Cart;
-import com.notrika.entity.CartItem;
-import com.notrika.entity.Product;
+import com.notrika.entity.tables.CartItem;
+import com.notrika.entity.tables.Product;
 import com.notrika.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +40,10 @@ public class PageShoppingCartController {
             ){
         log.info("Get CartItem wit ProductId: "+productId);
         Product product = productService.findById(productId);
-        CartItem item = new CartItem(
-                product,
-                1,
-                product.getPrice()
-        );
+        CartItem item = new CartItem();
+        item.setProduct(product);
+        item.setTotalPrice(product.getPrice());
+        item.setSellingQuantity(1);
         return item;
     }
 

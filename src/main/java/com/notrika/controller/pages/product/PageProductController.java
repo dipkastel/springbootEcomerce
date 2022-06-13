@@ -1,6 +1,6 @@
 package com.notrika.controller.pages.product;
 
-import com.notrika.entity.*;
+import com.notrika.entity.tables.*;
 import com.notrika.helper.UserHelper;
 import com.notrika.service.*;
 import org.slf4j.Logger;
@@ -130,7 +130,7 @@ public class PageProductController {
     }
 
 
-    public void addModelAttribute(List<Product> productList,Long countProduct,Category categoryByProduct,Model model){
+    public void addModelAttribute(List<Product> productList, Long countProduct, Category categoryByProduct, Model model){
         model.addAttribute("products", productList);
         model.addAttribute("countProduct", countProduct);
         model.addAttribute("categoryByProduct",categoryByProduct);

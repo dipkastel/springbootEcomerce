@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.notrika.entity.Payment;
+import com.notrika.entity.tables.Payment;
 import com.notrika.service.PaymentService;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class AdminPaymentController {
 	@RequestMapping(value = "/payment/saveUpdate", method = RequestMethod.POST)
 	public String SaveUserController(Model model, Payment paymentFrm,HttpServletResponse response, Authentication authentication) {	     
 		Payment paymentIn = payment.findById(paymentFrm.getId());
-		paymentIn.setStatus(paymentFrm.isStatus());
+//		paymentIn.setTransactionStatus(paymentFrm.isTransactionStatus());
 		paymentIn.setTracked(paymentFrm.isTracked());
 		payment.save(paymentIn);
 		return "redirect:/admin/payment";
@@ -62,9 +62,9 @@ public class AdminPaymentController {
 		listId.forEach(id->{
 			Payment p = payment.findById(id);
 			if (method.equals("status")){
-				p.setStatus(true);
+//				p.setTransactionStatus(true);
 			}else {
-				p.setStatus(true);
+//				p.setTransactionStatus(true);
 				p.setTracked(true);
 			}
 			payment.save(p);

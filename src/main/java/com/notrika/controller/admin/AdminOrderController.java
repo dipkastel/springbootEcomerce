@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.notrika.entity.CustomerOrder;
+import com.notrika.entity.tables.CustomerOrder;
 import com.notrika.entity.UserDetail;
 import com.notrika.service.OrderService;
 
@@ -43,7 +43,7 @@ public class AdminOrderController {
 	@RequestMapping(value = "/order/saveUpdate", method = RequestMethod.POST)
 	public String SaveUserController(Model model, CustomerOrder orderFrm,HttpServletResponse response, Authentication authentication) {	     
 		CustomerOrder paymentIn = order.findById(orderFrm.getId());
-		paymentIn.setStatus(orderFrm.isStatus());
+//		paymentIn.setStatus(orderFrm.isStatus());
 		order.save(paymentIn);
 		return "redirect:/admin/order";
 	}

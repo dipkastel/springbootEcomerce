@@ -1,5 +1,7 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
+import com.notrika.entity.tables.ImageGallery;
 import com.notrika.helper.enums.WidgetType;
 import io.micrometer.core.lang.Nullable;
 import lombok.AllArgsConstructor;
@@ -8,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
@@ -17,11 +17,8 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Widget {
+public class Widget extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
 
     private String name;
     private String url;

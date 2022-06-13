@@ -1,5 +1,6 @@
-package com.notrika.entity;
+package com.notrika.entity.tables;
 
+import com.notrika.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class productAttribute {
+public class productAttribute extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
     public String name;
     @Column(columnDefinition = "LONGTEXT")
     public String option;
