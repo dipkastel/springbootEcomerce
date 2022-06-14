@@ -257,10 +257,17 @@ public class AdminImportRController {
                 //category
                 try {
                     List<com.notrika.wpRestApi.entities.product.Category> wpcats = p.categories;
-                    List<Category> cats = new ArrayList<>();
                     for (com.notrika.wpRestApi.entities.product.Category cat : wpcats) {
                         Category myCat = categoryService.findByName(cat.name);
-                        myProduct.categories.add(myCat);
+                        if(myCat!=null){
+                            myProduct.categories.add(myCat);
+                        }else{
+                            myCat = new Category();
+                            myCat.setName(cat.name);
+                            myCat.setSlug(cat.slug);
+                            categoryService.save(myCat);
+                            myProduct.categories.add(myCat);
+                        }
                     }
 
                 } catch (Exception e) {
@@ -288,16 +295,19 @@ public class AdminImportRController {
                 //tags
                 try {
                     List<com.notrika.wpRestApi.entities.Tag.Tag> wptags = p.tags;
-                    Set<Tag> tagSet =new  HashSet();
                     wptags.forEach(t -> {
-                            Tag mytag = new Tag();
+                        Tag mytag = tagService.findByName(t.name);
+                        if(mytag==null)
+                        {
+                            mytag= new Tag();
                             mytag.setName(t.name);
                             mytag.setSlug(t.slug);
                             mytag.setDescription(t.description);
                             mytag.setMasterTag(false);
-                        tagSet.add(mytag);
+                            tagService.save(mytag);
+                        }
+                            myProduct.tags.add(mytag);
                     });
-                    myProduct.setTags(tagSet);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,10 +23,13 @@ public  class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Nullable
     private Date createdDate = new Date();
+    @Nullable
     private Date UpdateDate = new Date();
+    @Nullable
     private boolean isDeleted = false;
+    @Nullable
     private String Status = "normal";
 
 }

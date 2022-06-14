@@ -1,4 +1,5 @@
 
+<%@ page contentType="text/html; charset=UTF-8" %>
 <script>
     $('#btnSetConnection').on('click', function () {
         $('#frmSetConnection').submit();

@@ -57,13 +57,13 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="${pageContext.servletContext.contextPath}/admin/banner"
-                               class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>بنر ها</p>
-                            </a>
-                        </li>
+<%--                        <li class="nav-item">--%>
+<%--                            <a href="${pageContext.servletContext.contextPath}/admin/banner"--%>
+<%--                               class="nav-link">--%>
+<%--                                <i class="nav-icon far fa-image"></i>--%>
+<%--                                <p>بنر ها</p>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
                         <li class="nav-item">
                             <a href="${pageContext.servletContext.contextPath}/admin/menu"
                                class="nav-link">

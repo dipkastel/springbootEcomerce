@@ -49,13 +49,13 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "brand_id")
     public Brand brand = null;
 
-    @JsonIgnoreProperties({"products"})
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @ManyToMany(cascade = CascadeType.DETACH )
     @ToString.Exclude
     public Set<Category> categories = new HashSet<>();
 
-    @ManyToMany()
-    Set<Tag> tags = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.DETACH )
+    @ToString.Exclude
+    public Set<Tag> tags = new HashSet<>();
 
     @OneToMany( cascade = CascadeType.ALL)
     @ToString.Exclude

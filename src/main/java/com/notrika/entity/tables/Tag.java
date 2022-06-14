@@ -25,10 +25,6 @@ public class Tag extends BaseEntity {
     private Boolean masterTag=false;
 
 
-    @ManyToMany
-    @ToString.Exclude
-    private Set<Product> products = new HashSet<>();
-
     @OneToOne
     @JoinColumn(name = "image_id")
     @Nullable

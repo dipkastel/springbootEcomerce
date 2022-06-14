@@ -29,14 +29,9 @@ public class Category extends BaseEntity {
 
 
 
-    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="parent_id")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @ToString.Exclude
     private List<Category> subCategories;
-
-    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "categories")
-    @ToString.Exclude
-    private Set<Product> products = new HashSet<>();
 
     public Date updated;
     @PrePersist
