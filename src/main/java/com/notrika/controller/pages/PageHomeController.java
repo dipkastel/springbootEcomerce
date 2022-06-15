@@ -63,8 +63,8 @@ public class PageHomeController {
 
         //banners
         MainPageList banners = new MainPageList(MainPageList.ListTypes.BANNER_LIST);
-        List<BannerGallery> bannerList = bannerGalleryService.findAll();
-        banners.setBanners(bannerList);
+        List<Widget> listNormalBanners = widgetService.findByType(WidgetType.BANNER_NORMAL);
+        banners.setWidgets(listNormalBanners);
         mainPageLayout.add(banners);
 
         //THRIPLE_BANNER_SAME Widget

@@ -271,5 +271,5 @@
             </div>
         </div>
     </c:when>
-    <c:otherwise>undefined</c:otherwise>
+    <c:otherwise></c:otherwise>
 </c:choose>

@@ -14,16 +14,17 @@ import java.util.List;
 @Data
 public class Menu extends BaseEntity {
 
-    private String url;
-    private String name;
-    private Long periority;
-    private boolean active;
+    public String url;
+    public String name;
+    public Long periority;
+    public boolean active;
 
-    private Long Parent_id;
+    public Long Parent_id;
 
 
     @OneToMany
     @JoinColumn(name = "Parent_id")
+    @ToString.Exclude
     private List<Menu> subMenu;
 
 }

@@ -11,6 +11,8 @@
 	<jsp:param name="jsgrid" value="false" />
 	<jsp:param name="daterangePicker" value="false" />
 	<jsp:param name="summernote" value="false" />
+	<jsp:param name="jstree" value="false" />
+	<jsp:param name="sweetalert2" value="false" />
 </jsp:include>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
@@ -275,7 +277,6 @@
 	<!-- ./wrapper -->
 	<jsp:include page="../components/script.jsp">
 		<jsp:param name="admintheme" value="true" />
-		<jsp:param name="bootstrap" value="false" />
 		<jsp:param name="dataTable" value="true" />
 		<jsp:param name="Sparkline" value="false" />
 		<jsp:param name="JQVMap" value="false" />

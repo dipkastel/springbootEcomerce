@@ -3,8 +3,7 @@
 <c:choose><c:when test="${param.admintheme =='true'}">
     <script src="${pageContext.servletContext.contextPath}/plugins-admin/jquery/jquery.min.js"></script>
     <script src="${pageContext.servletContext.contextPath}/plugins-admin/jquery-ui/jquery-ui.min.js"></script>
-</c:when></c:choose>
-<c:choose><c:when test="${param.bootstrap =='true'}">
+
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>

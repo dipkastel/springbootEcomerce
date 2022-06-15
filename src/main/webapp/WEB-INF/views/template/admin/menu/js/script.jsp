@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <script>
     $(function () {
         initJsTree();
@@ -24,16 +25,6 @@
             })
             return result;
         }
-
-        function addNode(node) {
-            $.post("${pageContext.servletContext.contextPath}/api/menu/add", node)
-                .done(function (data) {
-                    $("#jstree").jstree(true).refresh();
-                }).fail(function (e) {
-                console.log(e);
-            })
-        }
-
         function initJsTree() {
             $('#jstree')
                 .jstree({
@@ -177,26 +168,30 @@
         }
 
         $("#btn_submit_add").click(function (e) {
-
-            $.post("${pageContext.servletContext.contextPath}/api/menu/add",
-                {
-                    name: $("#add-name").val(),
-                    url: $("#add-url").val(),
-                    Parent_id: $("#add-parent-id").val(),
-                    periority: 0,
-                    active: true
-                })
-                .done(function (data) {
-
+            let leadDetails = {
+                name: $("#add-name").val(),
+                url: $("#add-url").val(),
+                Parent_id: $("#add-parent-id").val(),
+                periority: 0,
+                active: true
+            };
+            $.ajax({
+                url: "${pageContext.servletContext.contextPath}/api/menu/add",
+                data: JSON.stringify(leadDetails),
+                type: "POST",
+                contentType: "application/json",
+                dataType: "text",
+                success: function (response) {
                     $("#add-parent-id").val("");
                     $("#add-name").val("");
                     $("#add-url").val("");
                     $("#jstree").jstree(true).refresh();
                     $("#item-add").collapse("hide")
-
-                }).fail(function (e) {
-                console.log(e);
-            })
+                },
+                error: function (response) {
+                    console.log('fail.');
+                }
+            });
         })
         $("#btn_submit_delete").click(function (e) {
             $.ajax({
@@ -214,21 +209,33 @@
 
         $("#btn_submit_update").click(function (e) {
 
-
-            $.post("${pageContext.servletContext.contextPath}/api/menu/update",
-                {
-                    id: $("#update-id").val(),
-                    name: $("#update-name").val(),
-                    url: $("#update-url").val(),
-                    Parent_id: $("#update-parent-id").val(),
-                    periority: 0,
-                    active: true
-                })
-                .done(function (data) {
+            let leadDetails = {
+                id: $("#update-id").val(),
+                name: $("#update-name").val(),
+                url: $("#update-url").val(),
+                Parent_id: $("#update-parent-id").val(),
+                periority: 0,
+                active: true
+            };
+            $.ajax({
+                url: "${pageContext.servletContext.contextPath}/api/menu/update",
+                data: JSON.stringify(leadDetails),
+                type: "POST",
+                contentType: "application/json",
+                dataType: "text",
+                success: function (response) {
                     $("#jstree").jstree(true).refresh();
-                }).fail(function (e) {
-                console.log(e);
-            })
+                    $("#add-parent-id").val("");
+                    $("#add-name").val("");
+                    $("#add-url").val("");
+                    $("#jstree").jstree(true).refresh();
+                    $("#item-add").collapse("hide")
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+
         })
 
         $(".btn-add-tiggle").click(function (e) {
