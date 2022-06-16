@@ -36,11 +36,13 @@
 <jsp:include page="../../common/newsLetter.jsp"/>
 <jsp:include page="../../common/footer.jsp"/>
 <jsp:include page="../../common/backToTop.jsp"/>
+<jsp:include page="../../common/chat.jsp"/>
 <jsp:include page="../../common/scripts.jsp">
     <jsp:param name="jquery" value="true"/>
     <jsp:param name="carousel" value="true"/>
     <jsp:param name="bootstrap" value="true"/>
     <jsp:param name="backToTop" value="true"/>
+    <jsp:param name="chat" value="true"/>
     <jsp:param name="loader" value="true"/>
     <jsp:param name="quickView" value="true"/>
     <jsp:param name="cardFunctions" value="true"/>

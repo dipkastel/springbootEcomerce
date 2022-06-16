@@ -61,3 +61,7 @@
 <c:choose><c:when test="${param.cardFunctions =='true'}">
 <script src="${pageContext.servletContext.contextPath}/js/cardFunctions.js"></script>
 </c:when></c:choose>
+<c:choose><c:when test="${param.chat =='true'}">
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+</c:when></c:choose>

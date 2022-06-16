@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%--popup--%>
 <script>
     (function ($) {
         $(".open-quick-view").click(function (arg) {
@@ -43,8 +46,109 @@
     })(jQuery);
 
 </script>
+<%--chat--%>
+<script>
 
+    (function ($) {
+        var chatClient = null;
+        var userUniqeId = readCookie("uuid");
+        if(userUniqeId==null){
+            let uniqid= GenerateRandomUUID();
+            createCookie("uuid",uniqid,30);
+            userUniqeId = uniqid;
+        }
+        $("#chat").click(function (arg) {
+            $("#chat").addClass("hidden");
+            $("#chatBox").removeClass("hidden");
+        })
+        $("#btn_close_chat").click(function (arg) {
+            $("#chat").removeClass("hidden");
+            $("#chatBox").addClass("hidden");
+        })
 
+        function setConnected(connected) {
+        }
+
+        function connect(user) {
+            var socket = new SockJS('/ChatEndPoint');
+            chatClient = Stomp.over(socket);
+            chatClient.connect({}, function (frame) {
+                setConnected(true);
+                chatClient.subscribe('/chat/' + user + '/ctoa', function (greeting) {
+                    messageRecived(JSON.parse(greeting.body));
+                });
+            });
+        }
+
+        function disconnect() {
+            if (chatClient !== null) {
+                chatClient.disconnect();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
+
+        function sendName() {
+            var message = {'message': $("#message").val()}
+
+            var data = JSON.stringify(message)
+            chatClient.send("/app/chat/toAdmin/"+userUniqeId, {}, data);
+
+            var item = $("#my-chat-item").clone()
+            item.find(".direct-chat-text").html(message.message)
+            item.find(".direct-chat-name").html(userUniqeId)
+            var dt = new Date();
+            item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+            $("#message_Box").prepend(item)
+            $("#message").val("")
+            console.log(data);
+
+        }
+
+        function messageRecived(data) {
+            var item = $($("#chat-item").html()).clone()
+            item.find(".direct-chat-text").html(data.message)
+            item.find(".direct-chat-timestamp").html(data.createdDate)
+            $("#message_Box").prepend(item)
+            console.log(data);
+        }
+        $("#btn-chat-send").on('click', function (e) {
+            sendName();
+        });
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            }
+            else var expires = "";
+
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+        function GenerateRandomUUID() {
+            let min = 100000000
+            let max = 999999999
+            return "Visitor"+Math.floor(Math.random() * (max - min + 1) + min)
+        }
+        $(function () {
+
+            connect(userUniqeId);
+
+        });
+    })(jQuery);
+
+</script>
 <%--<script>--%>
 <%--    function addToWishList(id) {--%>
 <%--        const data = null;--%>

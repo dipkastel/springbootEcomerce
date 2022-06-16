@@ -75,8 +75,8 @@
                             <div class="remember">
                                 <form action="">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="remember-me">
-                                        <label class="form-check-label" for="remember-me">
+                                        <input class="form-check-input" type="checkbox" value="" id="remind-me">
+                                        <label class="form-check-label" for="remind-me">
                                             به من خبر بده
                                         </label>
                                     </div>

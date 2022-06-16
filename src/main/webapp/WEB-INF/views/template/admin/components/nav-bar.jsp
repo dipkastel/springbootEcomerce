@@ -109,7 +109,7 @@
                     <!-- Message End -->
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="/admin/messages" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="/admin/message" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>
         </li>
         <!-- Notifications Dropdown Menu -->

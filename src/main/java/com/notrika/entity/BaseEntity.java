@@ -10,6 +10,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -24,9 +25,9 @@ public  class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Nullable
-    private Date createdDate = new Date();
+    private LocalDateTime createdDate  = LocalDateTime.now();
     @Nullable
-    private Date UpdateDate = new Date();
+    private LocalDateTime UpdateDate = LocalDateTime.now();
     @Nullable
     private boolean isDeleted = false;
     @Nullable
