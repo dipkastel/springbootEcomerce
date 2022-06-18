@@ -19,6 +19,8 @@ public class Message extends BaseEntity {
     private String message;
 
     private String customerUniq;
+    private String destination;
+    private String userName;
 
     private boolean Unread=true;
     private boolean fromAdmin;

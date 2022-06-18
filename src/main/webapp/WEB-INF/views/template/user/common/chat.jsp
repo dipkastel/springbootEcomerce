@@ -42,12 +42,16 @@
                 <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
                 <!-- /.direct-chat-img -->
                 <div class="direct-chat-text">
-                    Is this template really for free? That's unbelievable!
+
                 </div>
                 <!-- /.direct-chat-text -->
                 <div class="direct-chat-infos clearfix">
-                    <span class="direct-chat-name float-left">Alexander Pierce</span>
-                    <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                    <span class="direct-chat-name float-left">
+
+                    </span>
+                    <span class="direct-chat-timestamp float-right">
+
+                    </span>
                 </div>
             </div>
         </div>
@@ -55,14 +59,11 @@
             <div id="my-chat-item" class="direct-chat-msg right">
                 <div class="ps-block__left direct-chat-img "><i class="icon-user"></i></div>
                 <div class="direct-chat-text">
-                    ااااااااااا
                 </div>
                 <div class="direct-chat-infos clearfix">
                     <span class="direct-chat-name float-right">
-ااااااااااااا
                     </span>
                     <span class="direct-chat-timestamp float-left">
-اااااااااااا
                     </span>
                 </div>
             </div>

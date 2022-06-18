@@ -40,5 +40,13 @@ public class MessageService implements DAO<Message> {
     public List<Message> getUsersAndLastMessages() {
         return repo.getUsersAndLastMessages();
     }
+
+    public List<Message> getMessagesOfUser(String userUnique) {
+        return repo.getMessagesOfUser(userUnique);
+    }
+
+    public void readAllMessages(String id) {
+        repo.readAllMessages(id);
+    }
 }
 //commit

@@ -1806,6 +1806,7 @@ span.modal-close {
     right: 70px;
     bottom: 80px;
     width: 300px;
+    z-index: 99;
 }
 .card-header {
     background: #c331be;

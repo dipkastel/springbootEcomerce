@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminMessageController {
 
     private final SettingsService settingsService;
@@ -28,32 +27,47 @@ public class AdminMessageController {
 
 
     @Autowired
-    public AdminMessageController(SettingsService settingsService,MessageService messageService,UserService userService) {
+    public AdminMessageController(SettingsService settingsService, MessageService messageService, UserService userService) {
         this.settingsService = settingsService;
         this.messageService = messageService;
         this.userService = userService;
     }
 
 
-    @MessageMapping("/chat/{reciverId}/{senderId}")
-    @SendTo("/chat/{reciverId}/ctoa")
-    public Message greeting(@DestinationVariable String reciverId, @DestinationVariable String senderId, Message message,Authentication authentication)  {
-        if(authentication!=null){
+    @MessageMapping("/toadmin/{senderId}")
+    @SendTo("/chat/admin")
+    public Message toAdmin(@DestinationVariable String senderId, Message message, Authentication authentication) {
+        if (authentication != null) {
             User user = userService.findByPhoneNumber(authentication.getName());
             message.setUser(user);
-            message.setFromAdmin(authentication.getAuthorities().stream().anyMatch(p->p.getAuthority().startsWith("ROLE_ADMIN")));
-            message.setCustomerUniq(user.getId().toString());
-        }else{
+            message.setFromAdmin(authentication.getAuthorities().stream().anyMatch(p -> p.getAuthority().startsWith("ROLE_ADMIN")));
+            message.setCustomerUniq(authentication.getName());
+        } else {
             message.setCustomerUniq(senderId);
         }
+        message.setDestination("admin");
         messageService.save(message);
         return message;
     }
 
-    @GetMapping("/message")
+    @MessageMapping("/toclient/{reciverId}")
+    @SendTo("/chat/{reciverId}")
+    public Message fromAdmin(@DestinationVariable String reciverId, Message message, Authentication authentication) {
+        User user = userService.findByPhoneNumber(authentication.getName());
+        message.setUser(user);
+        message.setFromAdmin(authentication.getAuthorities().stream().anyMatch(p -> p.getAuthority().startsWith("ROLE_ADMIN")));
+        message.setCustomerUniq(authentication.getName());
+        message.setDestination(reciverId);
+        messageService.save(message);
+        if (message.isFromAdmin())
+            message.setCustomerUniq("پشتیبان سایت");
+        return message;
+    }
+
+
+    @GetMapping("/admin/message")
     public String messages(Authentication authentication, Model model) {
-        List<Message> messages = messageService.getUsersAndLastMessages();
-        model.addAttribute("LastMessages", messages);
         return "template/admin/message/message";
     }
+
 }

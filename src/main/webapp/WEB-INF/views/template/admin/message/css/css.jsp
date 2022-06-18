@@ -21,4 +21,9 @@
         font-weight: 900;
         background: #d4e8fd;
     }
+    .message-text{
+        width: fit-content;
+        clear: both;
+        display: contents;
+    }
 </style>

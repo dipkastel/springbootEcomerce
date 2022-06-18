@@ -56,33 +56,8 @@
                             <!-- /.card-tools -->
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body card-comments  p-0">
-                            <c:forEach var="l" items="${LastMessages }">
-                            <div class="card-comment user-chat-item <c:if test = '${l.unread}'>unread</c:if>">
-                                <!-- User image -->
-                                <img class="img-circle img-sm" src="../dist/img/avatar5.png" alt="User Image">
+                        <div id="messagesList" class="card-body card-comments  p-0">
 
-                                <div class="comment-text">
-                                    <span class="username">
-                                      ${l.user.phoneNumber}
-                                      <span class="text-muted float-right">${l.user.createdDate}</span>
-                                    </span><!-- /.username -->
-                                        ${fn:substring(l.message, 0, 25)}
-                                    <span title="3 New Messages" class="badge bg-primary float-right">3</span>
-                                </div>
-                                <div class="chat-tools">
-                                    <button type="button" class="btn btn-outline-primary btn-sm"><i
-                                            class="far fa-comments"></i> chat
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary btn-sm"><i
-                                            class="fas fa-share"></i> Share
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary btn-sm"><i
-                                            class="far fa-thumbs-up"></i> Like
-                                    </button>
-                                </div>
-                            </div>
-                            </c:forEach>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer p-0">
@@ -95,9 +70,11 @@
 
                 <div class="col-md-9">
                     <!-- DIRECT CHAT PRIMARY -->
-                    <div class="card card-primary card-outline direct-chat direct-chat-primary">
+                    <div id="message-card" class="card card-primary card-outline direct-chat direct-chat-primary">
                         <div class="card-header">
-                            <h3 class="card-title">ابراهیم حنیف</h3>
+                            <h3 class="card-title">
+
+                            </h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -115,19 +92,6 @@
                         <div class="card-body">
                             <div id="messageBox" class="direct-chat-messages">
 
-                                <div class="direct-chat-msg right">
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg"
-                                         alt="Message User Image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        You better believe it!
-                                    </div>
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
                             </div>
 
                             <div class="direct-chat-contacts">
@@ -173,8 +137,8 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
-        <div id="chat-item" class="hidden">
-            <div class="direct-chat-msg">
+        <div id="hidden-box" class="hidden">
+            <div class="direct-chat-msg msg_item_left">
                 <!-- /.direct-chat-infos -->
                 <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
                 <!-- /.direct-chat-img -->
@@ -187,6 +151,41 @@
                     </span>
                 </div>
                 <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg right msg_item_right">
+                <!-- /.direct-chat-infos -->
+                <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg"
+                     alt="Message User Image">
+                <!-- /.direct-chat-img -->
+                <div class="direct-chat-text">
+                    You better believe it!
+                </div>
+                <div class="direct-chat-infos clearfix">
+                    <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                </div>
+                <!-- /.direct-chat-text -->
+            </div>
+            <div class="card-comment user-chat-item">
+                <!-- User image -->
+                <img class="img-circle img-sm" src="../dist/img/avatar5.png" alt="User Image">
+
+                <div class="comment-text">
+                                    <span class="username">
+                                      <span class="text-muted float-right"></span>
+                                    </span>
+                                    <div class="message-text"></div>
+                </div>
+                <div class="chat-tools">
+                    <button  type="button" class="btn btn-outline-primary btn-sm btnchat"><i
+                            class="far fa-comments"></i> chat
+                    </button>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i
+                            class="fas fa-share"></i> Share
+                    </button>
+                    <button type="button" class="btn btn-outline-primary btn-sm"><i
+                            class="far fa-thumbs-up"></i> Like
+                    </button>
+                </div>
             </div>
         </div>
 

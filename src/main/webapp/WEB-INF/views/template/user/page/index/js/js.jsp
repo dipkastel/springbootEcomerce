@@ -74,7 +74,7 @@
             chatClient = Stomp.over(socket);
             chatClient.connect({}, function (frame) {
                 setConnected(true);
-                chatClient.subscribe('/chat/' + user + '/ctoa', function (greeting) {
+                chatClient.subscribe('/chat/' + user, function (greeting) {
                     messageRecived(JSON.parse(greeting.body));
                 });
             });
@@ -92,25 +92,29 @@
             var message = {'message': $("#message").val()}
 
             var data = JSON.stringify(message)
-            chatClient.send("/app/chat/toAdmin/"+userUniqeId, {}, data);
+            chatClient.send("/app/toadmin/"+userUniqeId, {}, data);
 
             var item = $("#my-chat-item").clone()
             item.find(".direct-chat-text").html(message.message)
             item.find(".direct-chat-name").html(userUniqeId)
             var dt = new Date();
             item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
-            $("#message_Box").prepend(item)
+            $("#message_Box").append(item)
             $("#message").val("")
+            $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
             console.log(data);
 
         }
 
         function messageRecived(data) {
-            var item = $($("#chat-item").html()).clone()
+
+            var item = $("#chat-item").clone()
             item.find(".direct-chat-text").html(data.message)
-            item.find(".direct-chat-timestamp").html(data.createdDate)
-            $("#message_Box").prepend(item)
-            console.log(data);
+            item.find(".direct-chat-name").html(data.customerUniq)
+            var dt = new Date();
+            item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+            $("#message_Box").append(item)
+            $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
         }
         $("#btn-chat-send").on('click', function (e) {
             sendName();
