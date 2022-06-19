@@ -4,7 +4,6 @@ import com.notrika.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -17,13 +16,8 @@ public class Message extends BaseEntity {
 
 
     private String message;
-
-    private String customerUniq;
-    private String destination;
-    private String userName;
-
-    private boolean Unread=true;
-    private boolean fromAdmin;
+    private String sender;
+    private String reciver;
 
     @OneToOne(targetEntity = User.class)
     private User user;

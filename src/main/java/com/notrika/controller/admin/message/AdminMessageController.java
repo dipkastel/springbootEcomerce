@@ -1,9 +1,10 @@
 package com.notrika.controller.admin.message;
 
 import com.notrika.entity.tables.Message;
-import com.notrika.entity.tables.User;
+import com.notrika.entity.tables.SiteVisit;
 import com.notrika.service.MessageService;
 import com.notrika.service.SettingsService;
+import com.notrika.service.SiteVisitService;
 import com.notrika.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -13,10 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AdminMessageController {
@@ -24,45 +23,60 @@ public class AdminMessageController {
     private final SettingsService settingsService;
     private final UserService userService;
     private final MessageService messageService;
+    private final SiteVisitService siteVisitService;
 
 
     @Autowired
-    public AdminMessageController(SettingsService settingsService, MessageService messageService, UserService userService) {
+    public AdminMessageController(SettingsService settingsService, MessageService messageService, UserService userService,SiteVisitService siteVisitService) {
         this.settingsService = settingsService;
         this.messageService = messageService;
         this.userService = userService;
+        this.siteVisitService = siteVisitService;
     }
 
 
-    @MessageMapping("/toadmin/{senderId}")
+    @MessageMapping("/siteChat/{senderId}")
+    @SendTo({"/chat/admin", "/chat/siteChat/{senderId}"})
+    public Message chat(@DestinationVariable String senderId, Message message, Authentication authentication) {
+        messageService.save(message);
+        return message;
+    }
+    @MessageMapping("/siteChatDelivery/{senderId}")
+    @SendTo({"/chat/admin", "/siteChat/{senderId}"})
+    public Message delivery(@DestinationVariable String senderId, Message message, Authentication authentication) {
+        Message m =  messageService.findById(Long.parseLong(message.getMessage()));
+        m.setStatus("deliverd");
+        messageService.save(m);
+        return message;
+    }
+    @MessageMapping("/siteChatRead/{senderId}")
+    @SendTo({"/chat/admin", "/siteChat/{senderId}"})
+    public Message readMessage(@DestinationVariable String senderId, Message message, Authentication authentication) {
+        Message m =  messageService.findById(Long.parseLong(message.getMessage()));
+        m.setStatus("read");
+        messageService.save(m);
+        return message;
+    }
+    @MessageMapping("/siteVisit")
     @SendTo("/chat/admin")
-    public Message toAdmin(@DestinationVariable String senderId, Message message, Authentication authentication) {
-        if (authentication != null) {
-            User user = userService.findByPhoneNumber(authentication.getName());
-            message.setUser(user);
-            message.setFromAdmin(authentication.getAuthorities().stream().anyMatch(p -> p.getAuthority().startsWith("ROLE_ADMIN")));
-            message.setCustomerUniq(authentication.getName());
-        } else {
-            message.setCustomerUniq(senderId);
-        }
-        message.setDestination("admin");
-        messageService.save(message);
-        return message;
+    public SiteVisit siteVisit(SiteVisit siteVisit, Authentication authentication) {
+        siteVisitService.save(siteVisit);
+        return siteVisit;
     }
-
-    @MessageMapping("/toclient/{reciverId}")
-    @SendTo("/chat/{reciverId}")
-    public Message fromAdmin(@DestinationVariable String reciverId, Message message, Authentication authentication) {
-        User user = userService.findByPhoneNumber(authentication.getName());
-        message.setUser(user);
-        message.setFromAdmin(authentication.getAuthorities().stream().anyMatch(p -> p.getAuthority().startsWith("ROLE_ADMIN")));
-        message.setCustomerUniq(authentication.getName());
-        message.setDestination(reciverId);
-        messageService.save(message);
-        if (message.isFromAdmin())
-            message.setCustomerUniq("پشتیبان سایت");
-        return message;
-    }
+//
+//    @MessageMapping("/toclient/{reciverId}/{type}")
+//    @SendTo({"/chat/{reciverId}","/chat/admin"})
+//    public Message fromAdmin(@DestinationVariable String reciverId, @DestinationVariable MessageType type, Message message, Authentication authentication) {
+//        User user = userService.findByPhoneNumber(authentication.getName());
+//        message.setUser(user);
+//        message.setFromAdmin(authentication.getAuthorities().stream().anyMatch(p -> p.getAuthority().startsWith("ROLE_ADMIN")));
+//        message.setCustomerUniq(authentication.getName());
+//        message.setDestination(reciverId);
+//        messageService.save(message);
+//        if (message.isFromAdmin())
+//            message.setCustomerUniq("پشتیبان سایت");
+//        return message;
+//    }
 
 
     @GetMapping("/admin/message")

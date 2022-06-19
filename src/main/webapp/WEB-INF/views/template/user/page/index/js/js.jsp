@@ -57,68 +57,93 @@
             createCookie("uuid",uniqid,30);
             userUniqeId = uniqid;
         }
-        $("#chat").click(function (arg) {
+        function openChatBox(){
             $("#chat").addClass("hidden");
             $("#chatBox").removeClass("hidden");
-        })
-        $("#btn_close_chat").click(function (arg) {
+        }
+        function CloseChatBox(){
             $("#chat").removeClass("hidden");
             $("#chatBox").addClass("hidden");
-        })
-
-        function setConnected(connected) {
         }
+        $("#chat").on('click', function (e) {
+            openChatBox();
+        })
+        $("#btn_close_chat").on('click', function (e) {
+            CloseChatBox();
+        })
+        $("#btn-chat-send").on('click', function (e) {
+            ChatSend($("#message").val(),"CHAT")
+        });
 
         function connect(user) {
             var socket = new SockJS('/ChatEndPoint');
             chatClient = Stomp.over(socket);
             chatClient.connect({}, function (frame) {
-                setConnected(true);
-                chatClient.subscribe('/chat/' + user, function (greeting) {
-                    messageRecived(JSON.parse(greeting.body));
-                });
+                if(frame.command=="CONNECTED"){
+                    onChatConnect();
+                }
             });
+        }
+        function onChatConnect(){
+            chatClient.subscribe('/chat/siteChat/' + userUniqeId, function (greeting) {
+                messageRecived(JSON.parse(greeting.body));
+            });
+            $("#chat").removeClass("hidden")
+            siteVisitSend(window.location.href)
         }
 
         function disconnect() {
             if (chatClient !== null) {
                 chatClient.disconnect();
             }
-            setConnected(false);
             console.log("Disconnected");
         }
 
-        function sendName() {
-            var message = {'message': $("#message").val()}
-
+        function ChatSend(message){
+            var message = {'message': message,
+                            'sender':userUniqeId,
+                            'reciver':'admin'}
             var data = JSON.stringify(message)
-            chatClient.send("/app/toadmin/"+userUniqeId, {}, data);
+            chatClient.send("/app/siteChat/"+userUniqeId, {}, data);
+        }
+        function DeliverSend(MessageId){
+            chatClient.send("/app/siteChatDelivery/"+userUniqeId+"/"+MessageId, {}, {});
+        }
+        function ReadSend(MessageId){
+            chatClient.send("/app/siteChatRead/"+userUniqeId+"/"+MessageId, {}, {});
+        }
+        function siteVisitSend(url){
 
-            var item = $("#my-chat-item").clone()
-            item.find(".direct-chat-text").html(message.message)
-            item.find(".direct-chat-name").html(userUniqeId)
-            var dt = new Date();
-            item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
-            $("#message_Box").append(item)
-            $("#message").val("")
-            $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
-            console.log(data);
-
+            var siteVisit =  {
+                'userUniq':userUniqeId,
+                'url':window.location.href
+            }
+            var data = JSON.stringify(siteVisit)
+            chatClient.send("/app/siteVisit", {},siteVisit=data);
         }
 
         function messageRecived(data) {
-
-            var item = $("#chat-item").clone()
-            item.find(".direct-chat-text").html(data.message)
-            item.find(".direct-chat-name").html(data.customerUniq)
-            var dt = new Date();
-            item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
-            $("#message_Box").append(item)
-            $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
+            if(data.sender==userUniqeId){
+                var item = $("#my-chat-item").clone()
+                item.find(".direct-chat-text").html(data.message)
+                item.find(".direct-chat-name").html(data.sender)
+                var dt = new Date(data.createdDate);
+                item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+                $("#message_Box").append(item)
+                $("#message").val("")
+                $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
+            }
+            if(data.reciver==userUniqeId){
+                var item = $("#chat-item").clone()
+                item.find(".direct-chat-text").html(data.message)
+                item.find(".direct-chat-name").html(data.customerUniq)
+                var dt = new Date();
+                item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+                $("#message_Box").append(item)
+                $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
+                DeliverSend(data.id)
+            }
         }
-        $("#btn-chat-send").on('click', function (e) {
-            sendName();
-        });
 
         function readCookie(name) {
             var nameEQ = name + "=";
@@ -145,6 +170,7 @@
             let max = 999999999
             return "Visitor"+Math.floor(Math.random() * (max - min + 1) + min)
         }
+
         $(function () {
 
             connect(userUniqeId);

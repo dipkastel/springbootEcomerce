@@ -13,12 +13,12 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message,Long>  {
 
-    @Query(value = "SELECT m1.* FROM message m1 LEFT JOIN message m2 ON (m1.customer_uniq=m2.customer_uniq AND m1.created_date < m2.created_date) WHERE m2.id IS NULL",nativeQuery = true)
+    @Query(value = "SELECT m1.* FROM message m1 LEFT JOIN message m2 ON (m1.sender=m2.sender AND m1.created_date < m2.created_date) WHERE m2.id IS NULL",nativeQuery = true)
     List<Message> getUsersAndLastMessages();
 
-    @Query(value = "SELECT * from message where customer_uniq=:customer_uniq or destination=:customer_uniq",nativeQuery = true)
+    @Query(value = "SELECT * from message where sender=:customer_uniq or reciver=:customer_uniq",nativeQuery = true)
     List<Message> getMessagesOfUser(@Param("customer_uniq") String customer_uniq);
 
-    @Query(value = "UPDATE message set unread=0 WHERE customer_uniq = :customer_uniq",nativeQuery = true)
+    @Query(value = "UPDATE message set status='read' WHERE reciver = :customer_uniq",nativeQuery = true)
     void readAllMessages(@Param("customer_uniq") String customer_uniq);
 }

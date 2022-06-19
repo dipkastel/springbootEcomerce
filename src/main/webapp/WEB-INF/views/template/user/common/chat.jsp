@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div class="chat">
-    <div id="chat" class="">
+    <div id="chat" class="hidden">
         <i class="icon icon-bubbles "></i>
     </div>
     <div id="chatBox" class="chat-box hidden">
