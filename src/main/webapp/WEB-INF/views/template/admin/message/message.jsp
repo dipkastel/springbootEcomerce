@@ -41,28 +41,35 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" placeholder="Search Mail">
-                                    <div class="input-group-append">
-                                        <div class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </div>
+
+                    <div class="card card-primary card-tabs">
+                        <div class="card-header p-0 pt-1">
+                            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">چت</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">کاربران حاظر</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="custom-tabs-one-tabContent">
+                                <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+
+                                    <div id="messagesList">
+
                                     </div>
                                 </div>
+                                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+
+                                    <div id="onlineList">
+
+                                    </div>
+                                 </div>
                             </div>
-                            <!-- /.card-tools -->
                         </div>
-                        <!-- /.card-header -->
-                        <div id="messagesList" class="card-body card-comments  p-0">
-
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer p-0">
-
-                        </div>
+                        <!-- /.card -->
                     </div>
                     <!-- /.card -->
                 </div>
@@ -119,15 +126,13 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <form action="#" method="post">
                                 <div class="input-group">
                                     <input type="text" id="message" name="message" placeholder="Type Message ..."
                                            class="form-control">
                                     <span class="input-group-append">
-                      <button type="submit" class="btn btn-primary">Send</button>
+                      <button id="btn_send_message" type="submit" class="btn btn-primary">Send</button>
                     </span>
                                 </div>
-                            </form>
                         </div>
                         <!-- /.card-footer-->
                     </div>
@@ -170,10 +175,14 @@
                 <img class="img-circle img-sm" src="../dist/img/avatar5.png" alt="User Image">
 
                 <div class="comment-text">
+                    <div class="user_time">
                                     <span class="username">
                                       <span class="text-muted float-right"></span>
                                     </span>
-                                    <div class="message-text"></div>
+                    </div>
+                    <div class="user_message">
+                        <div class="message-text"></div>
+                    </div>
                 </div>
                 <div class="chat-tools">
                     <button  type="button" class="btn btn-outline-primary btn-sm btnchat"><i

@@ -72,7 +72,7 @@
             CloseChatBox();
         })
         $("#btn-chat-send").on('click', function (e) {
-            ChatSend($("#message").val(),"CHAT")
+            ChatSend($("#message").val())
         });
 
         function connect(user) {

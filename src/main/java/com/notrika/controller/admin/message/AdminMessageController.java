@@ -36,13 +36,13 @@ public class AdminMessageController {
 
 
     @MessageMapping("/siteChat/{senderId}")
-    @SendTo({"/chat/admin", "/chat/siteChat/{senderId}"})
+    @SendTo({"/chat/siteChat/admin", "/chat/siteChat/{senderId}"})
     public Message chat(@DestinationVariable String senderId, Message message, Authentication authentication) {
         messageService.save(message);
         return message;
     }
     @MessageMapping("/siteChatDelivery/{senderId}")
-    @SendTo({"/chat/admin", "/siteChat/{senderId}"})
+    @SendTo({"/chat/siteChat/admin", "/chat/siteChat/{senderId}"})
     public Message delivery(@DestinationVariable String senderId, Message message, Authentication authentication) {
         Message m =  messageService.findById(Long.parseLong(message.getMessage()));
         m.setStatus("deliverd");
@@ -50,7 +50,7 @@ public class AdminMessageController {
         return message;
     }
     @MessageMapping("/siteChatRead/{senderId}")
-    @SendTo({"/chat/admin", "/siteChat/{senderId}"})
+    @SendTo({"/chat/siteChat/admin", "/chat/siteChat/{senderId}"})
     public Message readMessage(@DestinationVariable String senderId, Message message, Authentication authentication) {
         Message m =  messageService.findById(Long.parseLong(message.getMessage()));
         m.setStatus("read");
@@ -58,7 +58,7 @@ public class AdminMessageController {
         return message;
     }
     @MessageMapping("/siteVisit")
-    @SendTo("/chat/admin")
+    @SendTo("/chat/siteChat/admin")
     public SiteVisit siteVisit(SiteVisit siteVisit, Authentication authentication) {
         siteVisitService.save(siteVisit);
         return siteVisit;

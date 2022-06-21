@@ -36,8 +36,8 @@ public class AdminMessageRController {
     }
 
     @GetMapping("/messages/ChatHistory")
-    public List<Message> ChatHistory(String userUnique, Authentication authentication, Model model) {
-        List<Message> messages = messageService.getMessagesOfUser(userUnique);
+    public List<Message> ChatHistory(@RequestParam("id") String id, Authentication authentication, Model model) {
+        List<Message> messages = messageService.getMessagesOfUser(id);
         return messages;
     }
 }
