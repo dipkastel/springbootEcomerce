@@ -21,7 +21,7 @@
 
             refreshList();
         }
-        
+
         function refreshList(){
 
             $.get("/api/messages/getLatestList")
