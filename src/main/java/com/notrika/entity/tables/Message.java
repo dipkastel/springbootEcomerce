@@ -18,6 +18,7 @@ public class Message extends BaseEntity {
     private String message;
     private String sender;
     private String reciver;
+    private String client;
 
     @OneToOne(targetEntity = User.class)
     private User user;

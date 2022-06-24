@@ -102,6 +102,7 @@
         function ChatSend(message){
             var message = {'message': message,
                             'sender':userUniqeId,
+                            'client':userUniqeId,
                             'reciver':'admin'}
             var data = JSON.stringify(message)
             chatClient.send("/app/siteChat/"+userUniqeId, {}, data);
@@ -136,13 +137,14 @@
             if(data.reciver==userUniqeId){
                 var item = $("#chat-item").clone()
                 item.find(".direct-chat-text").html(data.message)
-                item.find(".direct-chat-name").html(data.customerUniq)
+                item.find(".direct-chat-name").html(data.sender)
                 var dt = new Date();
                 item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
                 $("#message_Box").append(item)
                 $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
                 DeliverSend(data.id)
             }
+            openChatBox()
         }
 
         function readCookie(name) {

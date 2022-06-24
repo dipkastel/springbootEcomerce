@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
 
-                                    <div id="onlineList">
+                                    <div id="visitorList">
 
                                     </div>
                                  </div>

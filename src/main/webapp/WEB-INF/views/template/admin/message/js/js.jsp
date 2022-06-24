@@ -15,7 +15,11 @@
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
                 stompClient.subscribe('/chat/siteChat/admin', function (greeting) {
-                    onRecived(JSON.parse(greeting.body));
+                    item = JSON.parse(greeting.body);
+                    if(item.message)
+                        onRecivedMessage(item);
+                    if(item.url)
+                        onRecivedVisitor(item);
                 });
             });
 
@@ -28,23 +32,7 @@
                 .done(function (_data) {
                     $("#messagesList").html("");
                     _data.forEach(function (_item){
-                        var item = $("#hidden-box .user-chat-item").clone()
-                        item.attr("id",_item.reciver)
-                        if(_item.unread)
-                            item.addClass("unread");
-                        item.find(".username").prepend(_item.sender);
-
-                        var dt = new Date(_item.createdDate);
-                        item.find(".text-muted").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds());
-                        item.find(".btnchat").on('click', function (e) {
-                            e.preventDefault();
-                            onUserSelect(_item.sender)
-                        });
-                        item.find(".message-text").html(_item.message);
-                        if(_item.status!=="Read")
-                        item.find(".user_message").append('<span title="3 New Messages" class="badge bg-primary float-right">3</span>');
-
-                        $("#messagesList").append(item);
+                        addMessageListItem(_item)
                     })
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
@@ -69,7 +57,7 @@
                 .done(function (_data) {
                     $("#messageBox").html("");
                     _data.forEach(function (item) {
-                        onRecived(item);
+                        onRecivedMessage(item);
                     })
                     $("#messageBox").animate({ scrollTop: $("#messageBox").prop("scrollHeight") }, 100);
                 })
@@ -81,13 +69,16 @@
         function sendName(message) {
             var mymessage = {'message': message,
                 'sender':'admin',
-                'reciver':selectedClient}
+                'reciver':selectedClient,
+                'client':selectedClient
+
+            }
             var data = JSON.stringify(mymessage)
             stompClient.send("/app/siteChat/" + selectedClient, {}, data);
             $("#message").val("");
         }
 
-        function onRecived(data) {
+        function onRecivedMessage(data) {
             if(selectedClient===data.reciver){
                 var item = $("#hidden-box .msg_item_right").clone()
                 item.find(".direct-chat-text").html(data.message)
@@ -95,6 +86,7 @@
                 item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
                 $("#messageBox").append(item)
                 $("#messageBox").animate({ scrollTop: $("#messageBox").prop("scrollHeight") }, 100);
+
             }
             if(selectedClient===data.sender){
                 var item = $("#hidden-box .msg_item_left").clone()
@@ -104,12 +96,61 @@
                 $("#messageBox").append(item)
                 $("#messageBox").animate({ scrollTop: $("#messageBox").prop("scrollHeight") }, 100);
             }
-            $("#"+data.sender).find(".message-text").html(data.message);
+            var chatListItem = $("#"+data.client)
+            if(chatListItem[0]){
 
-            var dt = new Date(data.createdDate);
-            $("#"+data.sender).find(".text-muted .float-right").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+                $("#"+data.client).find(".message-text").html(data.message);
+                var dt = new Date(data.createdDate);
+                $("#"+data.client).find(".text-muted").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+            }else{
+                addMessageListItem(data)
+            }
             console.log(data);
         }
+        function onRecivedVisitor(data) {
+            var visitorListItem = $("#v"+data.userUniq)
+            if(visitorListItem[0]){
+                visitorListItem.find(".message-text").html(data.message);
+                var dt = new Date(data.createdDate);
+                visitorListItem.find(".text-muted").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
+            }else{
+                addVisitorListItem(data)
+            }
+            console.log(data);
+        }
+        function addMessageListItem(data){
+            var item = $("#hidden-box .user-chat-item").clone()
+            item.attr("id",data.client)
+            if(data.unread)
+                item.addClass("unread");
+            item.find(".username").prepend(data.client);
+
+            var dt = new Date(data.createdDate);
+            item.find(".text-muted").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds());
+            item.find(".btnchat").on('click', function (e) {
+                e.preventDefault();
+                onUserSelect(data.client)
+            });
+            item.find(".message-text").html(data.message);
+            if(data.status!=="Read")
+                item.find(".user_message").append('<span title="3 New Messages" class="badge bg-primary float-right">3</span>');
+
+            $("#messagesList").prepend(item);
+        }
+
+
+        function addVisitorListItem(data){
+            var item = $("#hidden-box .user-chat-item").clone()
+            item.attr("id","v"+data.userUniq)
+            item.find(".username").prepend(data.userUniq);
+
+            var dt = new Date(data.createdDate);
+            item.find(".text-muted").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds());
+            item.find(".message-text").html(data.url);
+
+            $("#visitorList").prepend(item);
+        }
+
 
         $(function () {
             $("#message-card").hide()

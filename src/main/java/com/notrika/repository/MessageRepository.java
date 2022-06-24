@@ -13,12 +13,12 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message,Long>  {
 
-    @Query(value = "SELECT m1.* FROM message m1 LEFT JOIN message m2 ON (m1.sender=m2.sender AND m1.created_date < m2.created_date) WHERE m2.id IS NULL   ",nativeQuery = true)
+    @Query(value = "SELECT n.* FROM message n INNER JOIN (SELECT rs.usr, max(max_date) as max_date FROM ((SELECT n.reciver as usr ,max(n.created_date) as max_date FROM message n GROUP BY n.reciver) UNION (SELECT n.sender as usr ,max(n.created_date) as max_date FROM message n GROUP BY n.sender)) rs GROUP BY rs.usr) lm WHERE (lm.usr=n.reciver or lm.usr=n.sender) AND n.created_date = lm.max_date AND n.sender != lm.usr",nativeQuery = true)
     List<Message> getUsersAndLastMessages();
 
-    @Query(value = "SELECT * from message where sender=:customer_uniq or reciver=:customer_uniq",nativeQuery = true)
-    List<Message> getMessagesOfUser(@Param("customer_uniq") String customer_uniq);
+    @Query(value = "SELECT * from message where sender=:user or reciver=:user",nativeQuery = true)
+    List<Message> getMessagesOfUser(@Param("user") String user);
 
-    @Query(value = "UPDATE message set status='read' WHERE reciver = :customer_uniq",nativeQuery = true)
-    void readAllMessages(@Param("customer_uniq") String customer_uniq);
+    @Query(value = "UPDATE message set status='read' WHERE reciver = :reciver",nativeQuery = true)
+    void readAllMessages(@Param("reciver") String reciver);
 }
