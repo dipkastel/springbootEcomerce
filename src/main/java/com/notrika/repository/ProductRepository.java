@@ -26,15 +26,22 @@ public interface ProductRepository extends JpaRepository<Product,Long>  {
             nativeQuery = true)
     List<Product> findProductContains(@Param("keyword") String keyword);
 
-    @Query(value="select * from products p left join products_categories pc on p.id = pc.product_id left join categories c on pc.categories_id = c.id  where  p.category_id LIKE %:categoryId% ",
+    @Query(value="select p.* from products p left join products_categories pc on p.id = pc.product_id WHERE pc.categories_id = :categoryId ",
             nativeQuery = true)
-    List<Product> findByCategories(@Param("categoryId") Long categoryId);
+    List<Product> findByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Query(value="select p.* from products p left join products_categories pc on p.id = pc.product_id left join categories c on pc.categories_id = c.id where c.slug LIKE %:CategorySlug% ",
+            nativeQuery = true)
+    List<Product> findByCategorySlug(@Param("CategorySlug") String CategorySlug);
 
     @Query(value = "select * from products p order by id limit :start , :itemcount ",nativeQuery = true)
     List<Product> findFromAndTake(@Param("start") Integer startFrom,@Param("itemcount") Integer itemcount);
 
     @Query(value = "select * from products p where status = :status order by id  limit :limit",nativeQuery = true)
     List<Product> findByFilter(@Param("limit") Integer limit,@Param("status") String status);
+
+    @Query(value = "select Count(*) from products p where status = :status",nativeQuery = true)
+    int productCounts(@Param("status") String status);
 
 
 //

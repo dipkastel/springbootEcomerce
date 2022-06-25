@@ -89,7 +89,7 @@ public class PageProductFilterController {
             }else{
                 //all
                 LOGGER.info("list filter by All with (categoryId!=null,listBrandId==null,listType==null)");
-                products =  productService.findByCategories(categoryId);
+                products =  productService.findByCategoryId(categoryId);
             }
 
         }else{

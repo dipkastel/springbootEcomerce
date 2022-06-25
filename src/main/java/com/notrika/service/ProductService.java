@@ -38,8 +38,12 @@ public class ProductService implements DAO<Product> {
         repo.deleteById(id);
     }
 
-    public List<Product> findByCategories(Long categoryId) {
-        return repo.findByCategories(categoryId);
+    public List<Product> findByCategoryId(Long categoryId) {
+        return repo.findByCategoryId(categoryId);
+    }
+
+    public List<Product> findByCategorySlog(String categorySlug) {
+        return repo.findByCategorySlug(categorySlug);
     }
 
     public List<Product> findByCategoriesContainsAndBrandId(Long categoryId, Long brandId) {
@@ -102,4 +106,8 @@ public class ProductService implements DAO<Product> {
         return repo.findByFilter(limit,"publish");
     }
 
+    public int productCounts() {
+       return repo.productCounts("publish");
+
+    }
 }

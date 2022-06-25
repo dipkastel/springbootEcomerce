@@ -44,7 +44,7 @@ public class AdminMessageController {
     @MessageMapping("/siteChatDelivery/{senderId}")
     @SendTo({"/chat/siteChat/admin", "/chat/siteChat/{senderId}"})
     public Message delivery(@DestinationVariable String senderId, Message message, Authentication authentication) {
-        Message m =  messageService.findById(Long.parseLong(message.getMessage()));
+        Message m =  messageService.findById(message.getId());
         m.setStatus("deliverd");
         messageService.save(m);
         return message;
@@ -52,7 +52,7 @@ public class AdminMessageController {
     @MessageMapping("/siteChatRead/{senderId}")
     @SendTo({"/chat/siteChat/admin", "/chat/siteChat/{senderId}"})
     public Message readMessage(@DestinationVariable String senderId, Message message, Authentication authentication) {
-        Message m =  messageService.findById(Long.parseLong(message.getMessage()));
+        Message m =  messageService.findById(message.getId());
         m.setStatus("read");
         messageService.save(m);
         return message;

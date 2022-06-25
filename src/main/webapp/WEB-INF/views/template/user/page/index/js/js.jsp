@@ -107,11 +107,11 @@
             var data = JSON.stringify(message)
             chatClient.send("/app/siteChat/"+userUniqeId, {}, data);
         }
-        function DeliverSend(MessageId){
-            chatClient.send("/app/siteChatDelivery/"+userUniqeId+"/"+MessageId, {}, {});
+        function DeliverSend(message){
+            chatClient.send("/app/siteChatDelivery/"+userUniqeId, {}, JSON.stringify(message));
         }
-        function ReadSend(MessageId){
-            chatClient.send("/app/siteChatRead/"+userUniqeId+"/"+MessageId, {}, {});
+        function ReadSend(message){
+            chatClient.send("/app/siteChatRead/"+userUniqeId, {},JSON.stringify(message));
         }
         function siteVisitSend(url){
 
@@ -124,8 +124,14 @@
         }
 
         function messageRecived(data) {
+            if($("#"+data.id)[0]){
+                console.log("is delivery")
+                $("#"+data.id).find(".direct-chat-timestamp").append('<i class="far fa-check-circle float-left"></i>');
+                return;
+            }
             if(data.sender==userUniqeId){
                 var item = $("#my-chat-item").clone()
+                item.attr("id",data.id);
                 item.find(".direct-chat-text").html(data.message)
                 item.find(".direct-chat-name").html(data.sender)
                 var dt = new Date(data.createdDate);
@@ -136,13 +142,14 @@
             }
             if(data.reciver==userUniqeId){
                 var item = $("#chat-item").clone()
+                item.attr("id",data.id);
                 item.find(".direct-chat-text").html(data.message)
                 item.find(".direct-chat-name").html(data.sender)
                 var dt = new Date();
                 item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
                 $("#message_Box").append(item)
                 $("#message_Box").animate({ scrollTop: $("#message_Box").height() }, 100);
-                DeliverSend(data.id)
+                DeliverSend(data)
             }
             openChatBox()
         }

@@ -52,8 +52,8 @@ public class PageProductController {
             log.info("load by CategoryId (categoryId != null)");
             this.categoryId = categoryId;
             addModelAttribute(
-                    productService.findByCategories(categoryId),
-                    productService.findByCategories(categoryId).stream().count(),
+                    productService.findByCategoryId(categoryId),
+                    productService.findByCategoryId(categoryId).stream().count(),
                     categoryService.findById(categoryId),
                     model
             );
@@ -81,22 +81,10 @@ public class PageProductController {
 
             log.info("load by  (categoryId == null)");
                 //all null
-                model.addAttribute("products", productService.findAll());
-                model.addAttribute("countProduct", productService.findAll().stream().count());
-                Set<Brand> brandByProduct = new HashSet<>();
-                Set<String> typeByProduct = new HashSet<>();
-                productService.findAll().forEach(p -> {
-                    brandByProduct.add(p.getBrand());
-                    typeByProduct.add(p.getType());
-                });
-                model.addAttribute("brandByProduct", brandByProduct);
-                model.addAttribute("typeByProduct", typeByProduct);
-
-
+                model.addAttribute("products", productService.findByPagination(1,50));
+                model.addAttribute("countProduct", productService.productCounts());
         }
-        model.addAttribute("allProducts", productService.findAll());
-        log.info("return");
-        return "template/user/page/product/shop-by-category";
+        return "template/user/page/product/products-filter";
     }
 
     @PostMapping

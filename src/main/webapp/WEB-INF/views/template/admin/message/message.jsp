@@ -163,10 +163,12 @@
                      alt="Message User Image">
                 <!-- /.direct-chat-img -->
                 <div class="direct-chat-text">
-                    You better believe it!
+
                 </div>
                 <div class="direct-chat-infos clearfix">
-                    <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                    <span class="direct-chat-timestamp float-left">
+
+                    </span>
                 </div>
                 <!-- /.direct-chat-text -->
             </div>

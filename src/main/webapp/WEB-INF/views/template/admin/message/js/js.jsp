@@ -1,7 +1,7 @@
 <script>
     (function ($) {
 
-        var stompClient = null;
+        var chatClient = null;
         var selectedClient = ${user.id};
 
 
@@ -12,9 +12,9 @@
 
         function connect() {
             var socket = new SockJS('/ChatEndPoint');
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, function (frame) {
-                stompClient.subscribe('/chat/siteChat/admin', function (greeting) {
+            chatClient = Stomp.over(socket);
+            chatClient.connect({}, function (frame) {
+                chatClient.subscribe('/chat/siteChat/admin', function (greeting) {
                     item = JSON.parse(greeting.body);
                     if(item.message)
                         onRecivedMessage(item);
@@ -41,8 +41,8 @@
         }
 
         function disconnect() {
-            if (stompClient !== null) {
-                stompClient.disconnect();
+            if (chatClient !== null) {
+                chatClient.disconnect();
             }
         }
         function onUserSelect(user) {
@@ -66,6 +66,13 @@
                 });
         }
 
+        function DeliverSend(message){
+            chatClient.send("/app/siteChatDelivery/"+selectedClient, {}, JSON.stringify(message));
+        }
+        function ReadSend(message){
+            chatClient.send("/app/siteChatRead/"+selectedClient, {},JSON.stringify(message));
+        }
+
         function sendName(message) {
             var mymessage = {'message': message,
                 'sender':'admin',
@@ -74,13 +81,19 @@
 
             }
             var data = JSON.stringify(mymessage)
-            stompClient.send("/app/siteChat/" + selectedClient, {}, data);
+            chatClient.send("/app/siteChat/" + selectedClient, {}, data);
             $("#message").val("");
         }
 
         function onRecivedMessage(data) {
+            if($("#"+data.id)[0]){
+                console.log("is delivery")
+                $("#"+data.id).find(".direct-chat-timestamp").append('<i class="far fa-check-circle float-left"></i>');
+                return;
+            }
             if(selectedClient===data.reciver){
                 var item = $("#hidden-box .msg_item_right").clone()
+                item.attr("id",data.id);
                 item.find(".direct-chat-text").html(data.message)
                 var dt = new Date(data.createdDate);
                 item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
@@ -90,11 +103,13 @@
             }
             if(selectedClient===data.sender){
                 var item = $("#hidden-box .msg_item_left").clone()
+                item.attr("id",data.id);
                 item.find(".direct-chat-text").html(data.message)
                 var dt = new Date(data.createdDate);
                 item.find(".direct-chat-timestamp").html( dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds())
                 $("#messageBox").append(item)
                 $("#messageBox").animate({ scrollTop: $("#messageBox").prop("scrollHeight") }, 100);
+                DeliverSend(data);
             }
             var chatListItem = $("#"+data.client)
             if(chatListItem[0]){
