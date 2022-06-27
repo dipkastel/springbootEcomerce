@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.ServletException;
@@ -74,6 +75,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/**").hasAnyRole("ADMIN", "ADMIN_TRAINEE")
                 .anyRequest().permitAll()
                 .and()
+                .headers().addHeaderWriter(
+                        new XFrameOptionsHeaderWriter(
+                                XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)).frameOptions().disable()
+                .and()
                 .exceptionHandling()
                 .accessDeniedHandler(new AccessDeniedHandler() {
                     @Override
@@ -82,8 +87,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         response.sendRedirect(request.getContextPath() + "/method-denied");
                     }
                 })
-
-
                 .and()
                 .formLogin()
                 .loginPage("/confirm").permitAll()
@@ -136,5 +139,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 });
 
     }
-
 }

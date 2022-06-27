@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class CookieHelper {
 
-    public List<Product> getCookieByName(HttpServletRequest res, ProductService productService,String cookieName){
+    public static List<Product> getCookieByName(HttpServletRequest res, ProductService productService,String cookieName){
         Cookie[] cl = res.getCookies();
         List<Product> list =  new ArrayList<Product>();
         if (cl != null) {
@@ -31,6 +31,17 @@ public class CookieHelper {
             }
         }
         return list;
+    }
+    public static String getUserUniqueCookie(HttpServletRequest res){
+        Cookie[] cl = res.getCookies();
+        if (cl != null) {
+            for (Cookie o : cl) {
+                if (o.getName().equals("uuid")) {
+                    return o.getValue();
+                }
+            }
+        }
+        return null;
     }
 
 }

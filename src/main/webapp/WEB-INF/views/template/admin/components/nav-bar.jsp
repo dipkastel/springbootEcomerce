@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -58,57 +59,36 @@
                 <span class="badge badge-danger navbar-badge">3</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="${pageContext.servletContext.contextPath}/dist/img/user1-128x128.jpg"
-                             alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                ابراهیم لنگرودی
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">تاریخ انقضای کرم چقدر است؟</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 102 ساعت پیش</p>
+                <c:forEach items="${messages}" var="m">
+                    <a class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="${pageContext.servletContext.contextPath}/dist/img/user1-128x128.jpg"
+                                 alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    ${m.client}
+                                    <c:if test="${m.status!='read'&&m.sender!='admin'}">
+                                        <span class="float-right text-sm text-danger">
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                    </c:if>
+                                </h3>
+                                <p class="text-sm">
+                                       <small> ${m.sender}:</small>
+                                </p>
+                                <p class="text-sm">
+                                        ${m.message}
+                                </p>
+                                <p class="text-sm text-muted "><i class="far fa-clock mr-1"></i>
+                                    <small class="toPersianDate">${m.createdDate}</small>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="${pageContext.servletContext.contextPath}/dist/img/user8-128x128.jpg"
-                             alt="User Avatar" class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                John Pierce
-                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">I got your message bro</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="${pageContext.servletContext.contextPath}/dist/img/user3-128x128.jpg"
-                             alt="User Avatar" class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Nora Silvester
-                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">The subject goes here</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                </c:forEach>
                 <a href="/admin/message" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>
         </li>

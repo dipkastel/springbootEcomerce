@@ -2,15 +2,20 @@ package com.notrika.controller;
 
 import com.notrika.entity.tables.Customer;
 import com.notrika.entity.tables.Menu;
+import com.notrika.entity.tables.Message;
 import com.notrika.entity.tables.User;
+import com.notrika.helper.CookieHelper;
 import com.notrika.helper.UserHelper;
 import com.notrika.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
+import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 
@@ -22,18 +27,20 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
     private final UserHelper userHelper;
     private final MenuService menuService;
     private final CustomerService customerService;
+    private final MessageService messageService;
 
     @Autowired
-    public ControllerAdvisor(UserService userService,UserHelper userHelper,MenuService menuService,CustomerService customerService) {
+    public ControllerAdvisor(UserService userService,UserHelper userHelper,MenuService menuService,CustomerService customerService,MessageService messageService) {
 
         this.userService = userService;
         this.userHelper = userHelper;
         this.menuService = menuService;
         this.customerService = customerService;
+        this.messageService= messageService;
     }
 
 
-    @ModelAttribute("user")
+    @ModelAttribute(value = "user")
     public User user(Authentication authentication){
         return userHelper.getUser(authentication,userService);
     }
@@ -57,6 +64,17 @@ public class ControllerAdvisor  extends DefaultHandlerExceptionResolver  {
     @ModelAttribute("menu")
     public List<Menu> brands(){
         return  menuService.findAll();
+    }
+
+    @ModelAttribute(value = "messages")
+    public List<Message> Messages(Authentication authentication, HttpServletRequest request){
+        User user =  userHelper.getUser(authentication,userService);
+        if(user==null||!Objects.equals(user.getRole(), "ROLE_ADMIN")){
+           String uuid =  CookieHelper.getUserUniqueCookie(request);
+           return messageService.getMessagesOfUser(uuid);
+        }else{
+            return messageService.getUsersAndLastMessages();
+        }
     }
 
 

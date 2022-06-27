@@ -6,6 +6,12 @@
 
     <script>
         $.widget.bridge('uibutton', $.ui.button)
+        $(".toPersianDate").each(function (data) {
+
+            let options = {year: '2-digit', month: '2-digit', day: '2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'};
+            let h = new Date($(this).html()).toLocaleDateString('fa-IR', options);
+            $(this).html(h)
+        })
     </script>
     <script src="${pageContext.servletContext.contextPath}/plugins-admin/bootstrap/js/bootstrap.bundle.min.js"></script>
 </c:when></c:choose>
@@ -56,7 +62,7 @@
 <c:choose><c:when test="${param.admintheme =='true'}">
     <script src="${pageContext.servletContext.contextPath}/plugins-admin/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="${pageContext.servletContext.contextPath}/dist/js/adminlte.js"></script>
-<%--    <script src="${pageContext.servletContext.contextPath}/dist/js/demo.js"></script>--%>
+    <%--    <script src="${pageContext.servletContext.contextPath}/dist/js/demo.js"></script>--%>
     <script src="${pageContext.servletContext.contextPath}/dist/js/sidemenu.js"></script>
 </c:when></c:choose>
 <jsp:include page="../../user/message/message.jsp"></jsp:include>
