@@ -1,4 +1,4 @@
-package com.notrika.controller.pages;
+package com.notrika.controller.pages.home;
 
 import com.notrika.entity.tables.BannerGallery;
 import com.notrika.entity.tables.Product;

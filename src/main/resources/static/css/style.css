@@ -8,7 +8,6 @@ html {
 body {
     margin: 0;
     direction: rtl;
-    overflow-x: hidden;
     background: #f9f9f9;
     font-size: 12px;
     text-align: right;

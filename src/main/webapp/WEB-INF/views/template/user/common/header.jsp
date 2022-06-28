@@ -24,6 +24,7 @@
 </c:when></c:choose>
 <c:choose><c:when test="${param.bootstrap =='true'}">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/plugins/bootstrap/css/bootstrap.rtl.min.css">
 </c:when></c:choose>
 <c:choose><c:when test="${param.carousel =='true'}">
     <link rel="stylesheet"
