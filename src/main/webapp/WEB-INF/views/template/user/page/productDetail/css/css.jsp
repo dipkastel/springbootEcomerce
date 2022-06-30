@@ -431,12 +431,12 @@
         padding-right: 30px;
         vertical-align: top;
         max-height: 50px;
-        color: #6ab9b7;
+        color: #ffffff;
         font-size: 18px;
     }
 
     .ps-product--detail .ps-product__shopping .ps-btn.ps-btn--black {
-        color: #94c5c4;
+        color: #ffffff;
     }
 
     .ps-product--detail .ps-product__shopping .ps-btn--gray {

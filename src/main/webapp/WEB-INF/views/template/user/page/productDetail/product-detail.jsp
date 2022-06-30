@@ -79,6 +79,7 @@
                                         <label class="form-check-label" for="remind-me">
                                             به من خبر بده
                                         </label>
+                                        <input class="form-control" type="phoneNumber" id="remind-me-phone">
                                     </div>
                                 </form>
                             </div>
