@@ -1012,6 +1012,8 @@
         border-bottom: 1px solid #ddd;
     }
 
+
+    
     .product-attr-option {
         color: #000;
         display: flex;
