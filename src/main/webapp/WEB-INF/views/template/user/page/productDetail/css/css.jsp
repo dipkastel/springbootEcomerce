@@ -1011,8 +1011,6 @@
         padding: 15px 0px;
         border-bottom: 1px solid #ddd;
     }
-
-
     
     .product-attr-option {
         color: #000;
